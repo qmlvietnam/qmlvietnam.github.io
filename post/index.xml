@@ -17,13 +17,67 @@
       <link>https://example.com/post/why-qml/</link>
       <pubDate>Fri, 30 Sep 2022 22:37:50 +0700</pubDate>
       <guid>https://example.com/post/why-qml/</guid>
-      <description>&lt;h1 id=&#34;table-of-contents&#34;&gt;Table of contents&lt;/h1&gt;
+      <description>&lt;h2 id=&#34;table-of-contents&#34;&gt;Table of contents&lt;/h2&gt;
 &lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;#1&#34;&gt;Example 1&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#2&#34;&gt;Example 2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#1&#34;&gt;Quantum Machine Learning là gì?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2&#34;&gt;Một vài hướng tiếp cận của Quantum Machine Learning&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3&#34;&gt;Kết luận&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h1 id=&#34;example-1-a-name1a&#34;&gt;Example 1 &lt;a name=&#34;1&#34;&gt;&lt;/a&gt;&lt;/h1&gt;
-&lt;h1 id=&#34;example-2-a-name2a&#34;&gt;Example 2 &lt;a name=&#34;2&#34;&gt;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Khác với các topics của Machine Learning hay Deep Learning khi mà các ứng dụng của chúng đang dần trở nên phổ biến những năm gần đây, chủ đề về Quantum Machine Learning (hay QML) là một lĩnh vực nghiên cứu mới và đang được chú ý ở các công ty hàng đầu thế giới như IBM hay Google. Do đó, ở bài viết này ngoài việc cung cấp cho bạn đọc cái nhìn cụ thể Quantum Machine Learning là gì, mình cũng sẽ giải thích tại sao chúng ta lại cần QML và một vài hướng tiếp cận cụ thể.&lt;/p&gt;
+&lt;h2 id=&#34;quantum-machine-learning-là-gì-a-name1a&#34;&gt;Quantum Machine Learning là gì? &lt;a name=&#34;1&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Nếu như ai đã làm quen với các bài toán của Machine Learning hay Deep Learning, các mô hình đang dần được xây dựng lớn hơn và phức tạp hơn để giải quyết các bài toán khó (hard combinatorial optimization problems), nó dẫn tới việc tiêu tốn rất nhiều tài nguyên tính toán (computational resources) trong việc huấn luyện cũng như là vận hành. Một ví dụ điển hình là mô hình &lt;a href=&#34;https://lambdalabs.com/blog/demystifying-gpt-3/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GPT-3&lt;/a&gt; gồm 175 tỷ tham số sẽ cần tốn 355 năm và gần 5 triệu đô nếu train trên một NVIDIA Tesla V100 GPU. Do đó, trên thực tế họ đã train GPT-3 với 1024 A100 GPUs và mất 34 ngày.&lt;/p&gt;
+&lt;p&gt;Tuy nhiên, vấn đề đó có thể sẽ được giải quyết với sự xuất hiện của máy tính lượng tử (quantum computer). Máy tính lượng tử được phát triển dựa theo các thuyết của vật lý lượng tử để đưa ra một khả năng tính toán vượt trội so với máy tính truyền thống. Hãy lấy một bài toán tìm kiếm là một ví dụ: giả sử bạn phải tìm 1 quả bóng trong 1 triệu ngăn kéo và câu hỏi là bạn sẽ phải mở qua bao nhiêu ngăn kéo trước khi tìm được quả bóng đó? Đôi khi bạn sẽ may mắn tìm được quả bóng trong chỉ vài lần thử và ngược lại bạn cũng có thể phải mở gần như toàn bộ 1 triệu ngăn kéo kia. Trung bình bạn sẽ cần tới 500,000 lượt để tìm ra quả bóng. Tuy nhiên, với máy tính lượng tử, bạn có thể thực hiện bài toán đó trong vòng 1000 lượt bằng một thuật toán được gọi là &lt;a href=&#34;https://en.wikipedia.org/wiki/Grover%27s_algorithm&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Grover&amp;rsquo;s algorithm&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Từ đó sự ra đời của Quantum Machine Learning như một sự giao thoa của các thuật toán trên máy tính lượng tử với mô hình Machine Learning để cải thiện cả về mặt tính toán cũng như độ chính xác (được gọi là &lt;a href=&#34;https://en.wikipedia.org/wiki/Quantum_supremacy&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;quantum advantage&lt;/a&gt;).&lt;/p&gt;
+&lt;h2 id=&#34;một-vài-hướng-tiếp-cận-của-quantum-machine-learning-a-name2a&#34;&gt;Một vài hướng tiếp cận của Quantum Machine Learning &lt;a name=&#34;2&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Cho đến này đã có khá nhiều hướng triển khai QML được đề xuất, mặc dù nhiều trong số chúng vẫn chỉ là lý thuyết thuần túy và cần một máy tính lượng tử hoàn chỉnh để thực nghiệm; tuy nhiên, cũng đã có các thuật toán đã được triển khai trên quy mô nhỏ và chứng minh đạt được &amp;lsquo;quantum advantage&amp;rsquo;. Sau đây mình sẽ đề cập tới hai hướng tiệp cận phổ biến của QML.&lt;/p&gt;
+&lt;p&gt;a) QRAM-based Quantum Machine Learning&lt;/p&gt;
+&lt;p&gt;Tương tự RAM (Random Access Memory) ở các máy tính truyền thống, các nhà nghiên cứu đã giới thiệu một &amp;lsquo;quantum-version&amp;rsquo; của RAM được gọi là &lt;a href=&#34;https://en.wikipedia.org/wiki/Quantum_memory&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;QRAM&lt;/a&gt; để xử lý vấn đề ghi và đọc thông tin trên máy tính lượng tử. Có thể nói QRAM là một phần rất quan trọng nhiều thuật toán của QML. Thậm chí chúng đạt được &amp;lsquo;quantum advantage&amp;rsquo; là nhờ QRAM.&lt;/p&gt;
+&lt;p&gt;Một ứng dụng cụ thể và cũng như được dùng nhiều nhất của QRAM là khả năng cải thiện tốc độ tính toán của tích vô hướng (dot product) hay &lt;a href=&#34;https://en.wikipedia.org/wiki/Kernel_method&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Kernel Method&lt;/a&gt; - một phương pháp quen thuộc của Machine Learning mà điển hình là Support Vector Machine (SVM). Với sự can thiệp của QRAM, ta có thể tính tích vô hướng $x^Ty$ với độ phức tạp là $O(logN)$ so với $O(N)$ trên máy tính truyền thống, trong đó $x, y$ là các vectors $N$ chiều.&lt;/p&gt;
+&lt;p&gt;Từ đó các thuật toán được ra đời như là &lt;a href=&#34;https://arxiv.org/abs/1401.2142&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Quantum K-Means&lt;/a&gt; dựa vào QRAM để có độ phức tạp $O(log(Nd))$ (so với $O(Nd)$ của thuật toán K-Means), trong đó $N$ là số data và $d$ là số chiều. Hay &lt;a href=&#34;https://arxiv.org/abs/1307.0471&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Quantum Support Vector Machine&lt;/a&gt; đạt được độ phức tạp $O(log(Nd))$ so với $O(poly(N,d))$ của thuật toán SVM bình thường, và một số khác: &lt;a href=&#34;https://arxiv.org/abs/1307.0401&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Quantum PCA&lt;/a&gt;, &lt;a href=&#34;https://link.springer.com/article/10.1007/s10994-012-5316-5&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Quantum K-Medians&lt;/a&gt;, etc.&lt;/p&gt;
+&lt;p&gt;Ở hướng tiếp cận này, các thuật toán sẽ dựa vào khả năng tính toán vượt trội của quantum computing để cải thiện độ phức tạp. Tuy nhiên ở máy tính lượng tử không chỉ có vậy. Thông tin ở đó được biểu diễn dựa theo nguyên lý chồng chập (&lt;a href=&#34;https://en.wikipedia.org/wiki/Quantum_superposition&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Superposition&lt;/a&gt;), thay vì được mã hóa rời rạc thành các bits 0 và 1, có nghĩa thông tin có thể tồn tại đồng thời ở bit 0 và bit 1 theo một phân phối nào đó. Do đó, &amp;rsquo;learning space&amp;rsquo; ở máy tính lượng tử sẽ hoàn toàn khác và thậm chí được mở rộng hơn so với máy tính truyền thống. Thực tế đã có nhiều nghiên cứu với mục tiêu khám phá không gian này để cải thiện khả năng học tập (learning capability) của mô hình Machine Learning và hướng tiếp cận sau đây là ví dụ điển hình cho việc này.&lt;/p&gt;
+&lt;p&gt;b) Quantum Neural Network.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.google.com/url?sa=i&amp;amp;url=https%3A%2F%2Fwww.researchgate.net%2Ffigure%2FComparison-between-a-classical-neural-networks-and-b-quantum-neural-networks-used-for_fig3_345261288&amp;amp;psig=AOvVaw0GZmtR456ENI7xPiIde2Qb&amp;amp;ust=1664949826824000&amp;amp;source=images&amp;amp;cd=vfe&amp;amp;ved=0CAwQjRxqFwoTCKCo69PzxfoCFQAAAAAdAAAAABAN&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://www.researchgate.net/profile/Zhenyu-Cai-3/publication/345261288/figure/fig3/AS:953988396642305@1604459966798/Comparison-between-a-classical-neural-networks-and-b-quantum-neural-networks-used-for.ppm&#34; alt=&#34;Open Source Love&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Được thúc đẩy từ sự thành công của mạng học sâu (classical deep learning), mạng nơ-ron lượng tử (&lt;a href=&#34;https://en.wikipedia.org/wiki/Quantum_neural_network&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Quantum Neural Network&lt;/a&gt;, hay QNN) cũng mang những nét tương đồng với mạng nơ-ron truyền thống (NN). Chúng được thiết kế theo cấu trúc &lt;a href=&#34;https://en.wikipedia.org/wiki/Feedforward_neural_network&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;feed-forward&lt;/a&gt;, trong đó các layers là các phép biến đổi đơn nhất (&lt;a href=&#34;https://en.wikipedia.org/wiki/Unitary_transformation#:~:text=In%20mathematics%2C%20a%20unitary%20transformation,inner%20product%20after%20the%20transformation.&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;unitary transformation&lt;/a&gt;). Hầu hết cấu trúc của QNN dựa theo &lt;a href=&#34;https://pennylane.ai/qml/glossary/variational_circuit.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Variational Quantum Circuits&lt;/a&gt; hay thường được gọi Parameterised Quantum Circuits. Ở đó các biến đổi trong cấu trúc mạng QNN sẽ phụ thuộc vào tham số $\theta$ (learning parameters) và chúng sẽ thay đổi trong quá trình tối ưu.&lt;/p&gt;
+&lt;p&gt;Đến nay, đã có khá nhiều nghiên cứu bắt đầu những bước sơ khai trong việc ứng dụng QNN vào các bài toán mà tạo nên thành công của Deep Learning (image classification, natural language processing): &lt;a href=&#34;https://ieeexplore.ieee.org/document/9574030&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Quantum Convolutional Neural Network&lt;/a&gt;, &lt;a href=&#34;https://arxiv.org/abs/2202.11766&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Quantum Natural Language Processing&lt;/a&gt;, etc. Mặc dù đã có những chứng minh cho thấy khả năng QNN có thể giúp giảm thiểu số lượng tham số cần phải huấn luyện so với NN trong khi vẫn đạt được độ chính xác tương đương; tuy nhiên, các thí nghiệm vẫn ở trên quy mô nhỏ và các mô hình NN thường bị giới hạn để so sánh. Do đó, QNN vẫn đang là hướng tiếp cận mở và hiện tại vẫn đang thu hút rất nhiều sự chú ý.&lt;/p&gt;
+&lt;h2 id=&#34;kết-luận-a-name3a&#34;&gt;Kết luận &lt;a name=&#34;3&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Bài viết này, mình đã chia sẻ qua Quantum Machine Learning là gì và cũng như lý do ta cần suy xét tới chúng. Cuối cùng, mình trình bày qua hai hướng tiếp cận phổ biến của QML: QRAM-based Quantum Machine Learning và Quantum Neural Network. Tuy nhiên, có một vài các hướng khác mọi người có thể xem qua: &lt;a href=&#34;https://en.wikipedia.org/wiki/Quantum_annealing&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Quantum annealing&lt;/a&gt;, &lt;a href=&#34;https://arxiv.org/pdf/0810.3828.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Quantum-enhanced Reinforcement Learning&lt;/a&gt;, etc. Có thể thấy QML tuy là một lĩnh vực mới nhưng đã thu hút rất nhiều nghiên cứu ở nhiều chủ đề khác nhau của Machine Learning. Ở các bài viết tiếp theo, mình sẽ cố gắng trình bày một cách hệ thống để giúp các bạn nắm rõ hơn các kiến thức thú vị này.&lt;/p&gt;
+&lt;p&gt;Cảm ơn mọi người đã đọc bài.&lt;/p&gt;
+&lt;script src=&#34;https://giscus.app/client.js&#34;
+        data-repo=&#34;qmlvietnam/qmlvietnam.github.io&#34;
+        data-repo-id=&#34;R_kgDOH833kg&#34;
+        data-category=&#34;General&#34;
+        data-category-id=&#34;DIC_kwDOH833ks4CRwGU&#34;
+        data-mapping=&#34;pathname&#34;
+        data-strict=&#34;0&#34;
+        data-reactions-enabled=&#34;1&#34;
+        data-emit-metadata=&#34;0&#34;
+        data-input-position=&#34;bottom&#34;
+        data-theme=&#34;light_high_contrast&#34;
+        data-lang=&#34;vi&#34;
+        crossorigin=&#34;anonymous&#34;
+        async&gt;
+&lt;/script&gt;&lt;blockquote&gt;
+&lt;/blockquote&gt;
 </description>
     </item>
     
