@@ -5,25 +5,397 @@
     <link>https://example.com/post/</link>
       <atom:link href="https://example.com/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Fri, 30 Sep 2022 22:37:50 +0700</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Tue, 11 Oct 2022 23:25:52 +0700</lastBuildDate>
     <image>
-      <url>https://example.com/media/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
+      <url>https://example.com/media/icon_hu03ccfb93536ffaa14d5c51dca71785c3_35563_512x512_fill_lanczos_center_3.png</url>
       <title>Posts</title>
       <link>https://example.com/post/</link>
     </image>
     
     <item>
-      <title>Giới thiệu về Quantum Machine Learning</title>
+      <title>Bài 2: Quantum Squared-Distance Classifier</title>
+      <link>https://example.com/post/example-1/</link>
+      <pubDate>Tue, 11 Oct 2022 23:25:52 +0700</pubDate>
+      <guid>https://example.com/post/example-1/</guid>
+      <description>&lt;p&gt;Trong bài này, mình đi qua một phương pháp xử lý bài toán &lt;em&gt;nearest neighbour&lt;/em&gt; bằng thuật toán quantum. Bài viết dưới đây sẽ dựa vào bài báo gốc: &lt;a href=&#34;https://arxiv.org/pdf/1703.10793.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Implementing a distance-based classifier with a quantum interference circuit&lt;/a&gt;, nếu ai muốn tìm hiểu sâu hơn về ý tưởng này thì có thể ghé qua.&lt;/p&gt;
+&lt;h1 id=&#34;nội-dung&#34;&gt;Nội dung&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#1&#34;&gt;Squared-Distance Classifier&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2&#34;&gt;Quantum Squared-Distance Classifier&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3&#34;&gt;Kết luận&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#4&#34;&gt;Source Code&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;squared-distance-classifier-a-name1a&#34;&gt;Squared-Distance Classifier &lt;a name=&#34;1&#34;&gt;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Ở đây, mình xét ví dụ bài toán phân loại tập data &lt;a href=&#34;https://www.kaggle.com/c/titanic&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Titanic&lt;/a&gt;. Giả sử tập data được biểu diễn dưới dạng:&lt;/p&gt;
+
+$$
+\mathcal{D} = \Big\{ ({\bf{x}}^1, y^1), \ldots ({\bf{x}}^M , y^M)  \Big\},
+$$
+
+&lt;p&gt;trong đó các véc-tơ đầu vào 2 chiều: ${ {\bf{x}}^m = ({x_0}^m, {x_1}^m)^T}, m = 1,2,&amp;hellip;,M$ tượng trưng cho một hành khách trên chuyến tàu Titanic đã bị nhấn chìm vào năm 1912. Trong đó $x_0$ là giá vé trong khoảng từ 0 đến 10,000 đô la, và $x_1$ là số hiệu cabin trong khoảng từ 1 đến 2,500. Ứng với mỗi một véc-tơ đầu vào là nhãn $y^m = {0,1}$ tương ứng để chỉ ra hành khách đó đã sống sót hay không.&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-soucehttpslinkspringercombook101007978-3-319-96424-9&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;[Souce](https://link.springer.com/book/10.1007/978-3-319-96424-9)&#34; srcset=&#34;
+               /post/example-1/data_hu78303baaf7a0b85d6e4300342c9fda14_45037_631af45315bba8601596423120b56c6c.webp 400w,
+               /post/example-1/data_hu78303baaf7a0b85d6e4300342c9fda14_45037_3666c6daa3fe241e15be294f70efc0e8.webp 760w,
+               /post/example-1/data_hu78303baaf7a0b85d6e4300342c9fda14_45037_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;https://example.com/post/example-1/data_hu78303baaf7a0b85d6e4300342c9fda14_45037_631af45315bba8601596423120b56c6c.webp&#34;
+               width=&#34;760&#34;
+               height=&#34;183&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      &lt;a href=&#34;https://link.springer.com/book/10.1007/978-3-319-96424-9&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Souce&lt;/a&gt;
+    &lt;/figcaption&gt;&lt;/figure&gt;
+&lt;p&gt;Nếu từng tìm hiểu qua về Machine Learning, chắc hẳn các bạn đã nghe hoặc đọc qua về thuật toán &lt;em&gt;nearest neighbour&lt;/em&gt;: với mỗi véc-tơ đầu vào mới, thì nhãn của nó sẽ được quyết định bởi điểm dữ liệu gần nhất với nó. Có nhiều cách để xác định những điểm dữ liệu gần nhất đó nhưng phổ biến là &lt;a href=&#34;https://en.wikipedia.org/wiki/Euclidean_distance&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Euclidean distance&lt;/a&gt;. Do vậy, ta có cách tính hệ số cho việc gán nhãn véc-tơ $\tilde{x}$ mới theo nhãn của $x^m$:
+
+$$
+\gamma_m = 1-\frac{1}{c}|\tilde{{\bf x}}-{\bf x}^m|^2, 
+$$
+
+trong đó $c$ là hằng số. Hệ số càng cao chứng tỏ $\tilde{{\bf x}}$ càng gần $x^m$. Gọi $\tilde{y}$ là nhãn được gán cho $\tilde{{\bf x}}$, ta có xác xuất $p_{\tilde{{\bf x}}}(\tilde{y}=1)$ là tổng trung bình hệ số của $M_1$ điểm dữ liệu mà có nhãn là $1$:
+
+$$
+p_{\tilde{{\bf x}}}(\tilde{y}=1) = \frac{1}{\chi}\frac{1}{M_1} \sum_{m|y^m=1}(1-\frac{1}{c}|\tilde{{\bf x}}-{\bf x}^m|^2) 
+$$
+
+Tương tự như vậy,  $p_{\tilde{{\bf x}}}(\tilde{y}=0)$ là tổng trung bình hệ số của các điểm dữ liệu mà có nhãn là $0$. Trong đó $\frac{1}{\chi}$ là &lt;em&gt;normalizing factor&lt;/em&gt; sao cho $p_{\tilde{{\bf x}}}(\tilde{y}=0)+p_{\tilde{{\bf x}}}(\tilde{y}=1)=1$.&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-soucehttpslinkspringercombook101007978-3-319-96424-9&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;[Souce](https://link.springer.com/book/10.1007/978-3-319-96424-9)&#34; srcset=&#34;
+               /post/example-1/visualization_hu16f5b777f6d9f46571da58af462c2aaf_44927_fe9e1f90176d7b9290d6772978090665.webp 400w,
+               /post/example-1/visualization_hu16f5b777f6d9f46571da58af462c2aaf_44927_96d167ef3597b0fad12f14d6ffd877df.webp 760w,
+               /post/example-1/visualization_hu16f5b777f6d9f46571da58af462c2aaf_44927_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;https://example.com/post/example-1/visualization_hu16f5b777f6d9f46571da58af462c2aaf_44927_fe9e1f90176d7b9290d6772978090665.webp&#34;
+               width=&#34;760&#34;
+               height=&#34;263&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      &lt;a href=&#34;https://link.springer.com/book/10.1007/978-3-319-96424-9&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Souce&lt;/a&gt;
+    &lt;/figcaption&gt;&lt;/figure&gt;
+&lt;p&gt;Áp dụng phương pháp ta thấy &lt;em&gt;Passenger 3&lt;/em&gt; sẽ gần với &lt;em&gt;Passenger 1&lt;/em&gt; hơn so với &lt;em&gt;Passenger 2&lt;/em&gt; (Fig 1.2), và mô hình sẽ đưa ra dự đoán là $1$ tương ứng với &lt;em&gt;survival&lt;/em&gt;.&lt;/p&gt;
+&lt;h1 id=&#34;quantum-squared-distance-classifier-a-name2a&#34;&gt;Quantum Squared-Distance Classifier &lt;a name=&#34;2&#34;&gt;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Giờ hãy xử lý bài toàn này bằng phương pháp &amp;lsquo;quantum&amp;rsquo;.&lt;/p&gt;
+&lt;h2 id=&#34;bước-1-data-preprocessing-and-encoding&#34;&gt;Bước 1: Data preprocessing and Encoding&lt;/h2&gt;
+&lt;p&gt;Đầu tiên chúng ta sẽ đi tới một câu hỏi kinh điển &amp;ldquo;Làm sao có thể biểu diễn dữ liệu trên máy tính lượng tử?&amp;rdquo;. Nếu như trên máy tính truyền thống các thông tin như ảnh sẽ thường được biển diễn trên không gian RBG có giá trị từ 0 đến 255, hay chúng ta có &lt;a href=&#34;https://en.wikipedia.org/wiki/Word_embedding&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Word Embedding&lt;/a&gt; để biểu thông tin dạng văn bản thành các véc-tơ, thì vấn đề của các thuật toán lượng tử cũng như vậy. Thực chất, chủ đề về việc mã hóa thông tin trên không gian lượng tử (&lt;em&gt;Quantum Embedding&lt;/em&gt;) vẫn đang được cộng đồng nghiên cứu quan tâm đặc biệt trong lĩnh vực Quantum Machine Learning. Nếu các bạn quan tâm đến chủ đề này có thể xem qua &lt;a href=&#34;https://arxiv.org/abs/2001.03622&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;paper&lt;/a&gt; này để biết rõ hơn về các cách mã thông tin trong QML và sự quan trọng của nó. Mình sẽ làm một bài viết chi tiết hơn về chủ đề này trong tương lai.&lt;/p&gt;
+&lt;p&gt;Quay lại với bài toán của chúng ta, mình sẽ áp dụng một phương pháp gọi là &lt;em&gt;Amplitude Embedding&lt;/em&gt; - một phương pháp rất phố biến trong QML: Cho $X \in \mathbb{R}^N$ là một véc-tơ đơn nhất ($||X|| = 1$), ta có thể mã hóa $X$ bằng $n$ qubits dưới dạng:
+
+$$
+\ket{\psi_X} = \sum_{i=0}^{N-1}x_i \ket{i},
+$$
+
+trong đó $n = \log{N}$. Có thể thấy phương pháp này chỉ tốn $O(\log{N})$ qubits để biểu diễn một véc-tơ $N$ chiều. Hãy lấy ví dụ trong bài toán xử lý ngôn ngữ tự nhiên, giả sử bạn có một &lt;em&gt;text corpus&lt;/em&gt; với 10000 từ thì nếu như cách thông thường ta sử dụng &lt;a href=&#34;https://en.wikipedia.org/wiki/One-hot&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;One-hot encoding&lt;/a&gt; ta sẽ cần tới 10000 bits để mã hóa, nhưng điều này hoàn toán có thể giải quyết với 14 ($\lceil \log{10000} \rceil$) qubits với amplitude embedding.&lt;/p&gt;
+&lt;p&gt;Từ đây, với mỗi đầu vào $\ket{\psi_{\bf\tilde{x}}}$ mới, bài toán sẽ được khởi tạo dưới dạng:&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
+               /post/example-1/equation1_hu895413c6cafbee8ea8735175e11f8b65_165324_c12a5c7ac1ed347a463e9f71fb60f756.webp 400w,
+               /post/example-1/equation1_hu895413c6cafbee8ea8735175e11f8b65_165324_3f31152c28be40d0d2c5e116e940fd8b.webp 760w,
+               /post/example-1/equation1_hu895413c6cafbee8ea8735175e11f8b65_165324_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;https://example.com/post/example-1/equation1_hu895413c6cafbee8ea8735175e11f8b65_165324_c12a5c7ac1ed347a463e9f71fb60f756.webp&#34;
+               width=&#34;760&#34;
+               height=&#34;202&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;p&gt;Trong đó $\ket{m}$ và $\ket{y^m}$ mã hóa cho số thứ tự và nhãn tương ứng của véc-tơ đầu vào thứ $m^{th}$. Tuy nhiên điều chú ý ở đây nằm ở &lt;em&gt;ancilla qubit&lt;/em&gt; được kết nối với $\ket{\psi_{\bf\tilde{{x}}}}$ và $\ket{\psi_{\bf{x}^m}}$. Chú ý rằng khi ta thực hiện phép do trên một hoặc một hệ qubits thì qubit(s) sẽ bị &lt;em&gt;collapsed&lt;/em&gt; hay &lt;em&gt;terminated&lt;/em&gt;. Vậy khi ta chuyển phép đo của $\ket{\psi_{\bf\tilde{{x}}}}$ hay $\ket{\psi_{\bf{x}^m}}$ sang phép đo của một &lt;em&gt;ancilla qubit&lt;/em&gt; được kết nối với chúng thì ta vẫn thu được kết quả cần thiết của $\ket{\psi_{\bf\tilde{{x}}}}$ và $\ket{\psi_{\bf{x}^m}}$ mà không cần chấm dứt (&lt;em&gt;terminate&lt;/em&gt;) cả hệ thống. Kỹ thuật này rất hay sử dụng ở trong các thuật toán lượng tử và việc kết nối giữa &lt;em&gt;ancilla qubit&lt;/em&gt; với hệ thống là chúng ta đang tạo ra &lt;a href=&#34;https://en.wikipedia.org/wiki/Quantum_entanglement&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;em&gt;entanglement&lt;/em&gt;&lt;/a&gt; - một tính chất quan trọng khác trong lĩnh vực tính toán lượng tử.&lt;/p&gt;
+&lt;p&gt;Như vậy với ví dụ Titanic trên ta có:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
+               /post/example-1/data_processing_hu8c90f3f68a6d31a7f4dad34dc8d04642_53301_06417e8dac8b40de76662264a3b79f5c.webp 400w,
+               /post/example-1/data_processing_hu8c90f3f68a6d31a7f4dad34dc8d04642_53301_a62954af2ee2bbe430771a386cb5b63b.webp 760w,
+               /post/example-1/data_processing_hu8c90f3f68a6d31a7f4dad34dc8d04642_53301_1200x1200_fit_q75_h2_lanczos.webp 1200w&#34;
+               src=&#34;https://example.com/post/example-1/data_processing_hu8c90f3f68a6d31a7f4dad34dc8d04642_53301_06417e8dac8b40de76662264a3b79f5c.webp&#34;
+               width=&#34;760&#34;
+               height=&#34;348&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+
+$$
+\ket{\mathcal{D}} = \frac{1}{\sqrt{4}} \Big\{\ket{0}[\ket{0}(0.866\ket{0}+0.5\ket{1})+\ket{1}(0.921\ket{0}+0.39\ket{1})]\ket{1}
+$$
+&lt;/p&gt;
+
+$$
++ \ket{1}[\ket{0}(0.866\ket{0}+0.5\ket{1})+\ket{1}(0.141\ket{0}+0.99\ket{1})]\ket{0} \Big\}
+$$
+
+&lt;h2 id=&#34;bước-2-áp-dụng-biến-đổi-hadamard&#34;&gt;Bước 2: Áp dụng biến đổi Hadamard&lt;/h2&gt;
+&lt;p&gt;Như mình đề cập tới bài viết trước, hầu hết các biến đổi trên máy tính lượng tử là tuyên tính nên việc thực hiện các phép biến đổi là các phép nhân với ma trận biểu diễn tương ứng. Ở đây, ma trận Hadamard có dạng:
+
+$$
+H = \frac{1}{\sqrt{2}}\left( \begin{array}{cc} 1 &amp; 1 \\
+1 &amp; -1 \end{array} \right)
+$$
+&lt;/p&gt;
+&lt;p&gt;Như vậy, nếu ta áp dụng biến đổi Hadamard cho &lt;em&gt;ancilla qubit&lt;/em&gt; ta có:&lt;/p&gt;
+
+$$
+\ket{\mathcal{D}} \longrightarrow \frac{1}{\sqrt{2M}} \sum_{m=0}^{M-1} \ket{m}\Big(H\ket{0}\ket{\psi_{\bf\tilde{{x}}}} + H\ket{1}\ket{\psi_{\bf{x}^m}}\Big)\ket{y^m}
+$$
+
+&lt;p&gt;Với những bạn đã đọc qua &lt;a href=&#34;https://example.com/post/fair-coins&#34;&gt;Bài 1&lt;/a&gt; hoặc với một chút tính toán, chúng ta dễ dàng chứng minh được:
+
+$$
+H\ket{0} = \frac{1}{\sqrt{2}}(\ket{0}+\ket{1}), H\ket{1} = \frac{1}{\sqrt{2}}(\ket{0}-\ket{1}) 
+$$
+
+Áp dụng công thức trên, ta được:
+
+$$
+\ket{\mathcal{D}}\! \longrightarrow\! \frac{1}{2\sqrt{M}} \sum_{m=0}^{M-1} \ket{m}\Big(\ket{0}(\ket{\psi_{\bf\tilde{{x}}}}+\ket{\psi_{\bf{x}^m}}) + \ket{1}(\ket{\psi_{\bf\tilde{{x}}}}-\ket{\psi_{\bf{x}^m}})\Big)\ket{y^m}
+$$
+&lt;/p&gt;
+&lt;h2 id=&#34;bước-3-phép-đo&#34;&gt;Bước 3: Phép đo&lt;/h2&gt;
+&lt;p&gt;Ở đây ta sẽ cần sử dụng lần lượt 2 phép đo trên &lt;em&gt;ancilla qubit&lt;/em&gt; và $\ket{y^m}$. Nhưng trước đó mình sẽ viết lại kết quả thu được sau bước 2:
+
+$$ 
+\frac{1}{2\sqrt{M}} \sum_{m=0}^{M-1} \ket{m}\Big(\ket{0}\sum_{i=0}^{N} ({\tilde{{\bf{x}}}}^m_i+{\bf{x}}^m_i)\ket{i} + \ket{1}\sum_{i=0}^{N} ({\tilde{{\bf{x}}}}^m_i-{\bf{x}}^m_i)\ket{i}\Big)\ket{y^m} 
+$$
+&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;1. Phép đo trên ancilla qubit&lt;/em&gt;: Ở phép đó này, ta sẽ có xác suất $p_0 = \Big(\frac{1}{2\sqrt{M}} \sum_{m=0}^{M-1}\sum_{i=0}^{N} ({\tilde{{\bf{x}}}}^m_i+{\bf{x}}^m_i)\Big)^2 = \frac{1}{4M}\sum_M|{\bf\tilde{x}}+{\bf x}^m|^2$ thu được kết quả là $0$ và tương tự ta thu được kết quả 1 từ &lt;em&gt;ancilla qubit&lt;/em&gt; với xác suất $p_1=\frac{1}{4M}\sum_M|{\bf\tilde{x}}-{\bf x}^m|^2$. Tuy nhiên ở đây ta sẽ chỉ lấy kết quả thu được nếu &lt;em&gt;ancilla qubit&lt;/em&gt; có giá trị là $0$, hay nói cách khác ta &lt;em&gt;terminate&lt;/em&gt; nhánh mà &lt;em&gt;ancilla qubit&lt;/em&gt; có trạng thái là $\ket{1}$, ta có:
+
+$$ 
+\frac{1}{2\sqrt{Mp_0}} \sum_{m=0}^{M-1} \ket{m}\Big(\ket{0}\sum_{i=0}^{N} ({\tilde{{\bf{x}}}}^m_i+{\bf{x}}^m_i)\ket{i} \Big)\ket{y^m} 
+$$
+&lt;/p&gt;
+&lt;p&gt;Ta nhân $p_0$ ở đây để chắc chắn rằng hệ thống của chúng ta vẫn là đơn nhất (&lt;em&gt;unit length&lt;/em&gt;).&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;2. Phép đo trên $\ket{y^m}$&lt;/em&gt;
+Ta có thể dễ dàng thấy xác suất thu được có giá trị bằng $0$ là:
+
+$$ 
+p(y=0) = \frac{1}{4Mp_0}\sum_{m|y^m=0}|{\tilde{{\bf{x}}}+{\bf{x}}^m}|^2
+$$
+&lt;/p&gt;
+&lt;p&gt;Vì $\tilde{{\bf{x}}}$ hay ${{\bf{x}}}^m$ là đơn nhất nên ta hoàn toàn có thể chứng minh được:&lt;/p&gt;
+
+$$ 
+\frac{1}{4Mp_0}\sum_{m|y^m=0}|{\tilde{{\bf{x}}}+{\bf{x}}^m}|^2 = 1 - \frac{1}{4Mp_0}\sum_{m|y^m=0}|{\tilde{{\bf{x}}}-{\bf{x}}^m}|^2
+$$
+
+&lt;p&gt;Bài toán sẽ được hoàn toàn đưa về giống với kết quả trường hợp trên máy tính truyền thống mà mình đề cập tới ở trên.&lt;/p&gt;
+&lt;p&gt;Ta áp dụng bài toán của tập Titanic vào công thức trên ta được:
+
+$$ 
+p(y=0) = \frac{1}{4Mp_0}(|0.141+0.866|^2+|0.990+0.5|^2)  \approx 0.448, 
+$$
+&lt;/p&gt;
+
+$$ 
+p(y=1) = \frac{1}{4Mp_0}(|0.921+0.866|^2+|0.390+0.5|^2)  \approx 0.552, 
+$$
+
+&lt;p&gt;Như vậy có thể thấy kết quả thu được từ thuật toán lượng tử này cũng cho ra kết quả rằng &lt;em&gt;Passenger 3&lt;/em&gt; sẽ sống sót.&lt;/p&gt;
+&lt;h1 id=&#34;kết-luận-a-name3a&#34;&gt;Kết luận &lt;a name=&#34;3&#34;&gt;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Có thể thấy chúng ta hoàn toàn có thể xây dựng một thuật toán lượng tử tương đương trong bài toán &lt;em&gt;distanced-based classifier&lt;/em&gt;. Mặc dù ví dụ trên chưa cho chúng ta thấy được &lt;em&gt;quantum advantage&lt;/em&gt; nhưng nó giúp mọi người hiểu được cấu trúc chung của một thuật toán lượng tử nói chung và mô hình trong QML nói riêng: Mã hóa (embedding) -&amp;gt; Các phép biến đổi (Transformations) -&amp;gt; Phép đo (Measurement).&lt;/p&gt;
+&lt;h1 id=&#34;source-code-a-name4a&#34;&gt;Source Code &lt;a name=&#34;4&#34;&gt;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Mã nguồn trong bài này có thể được tìm thấy &lt;a href=&#34;https://github.com/qmlvietnam/CodeforBlog/blob/main/classifier.ipynb&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;tại đây&lt;/a&gt;.&lt;/p&gt;
+&lt;script src=&#34;https://giscus.app/client.js&#34;
+        data-repo=&#34;qmlvietnam/qmlvietnam.github.io&#34;
+        data-repo-id=&#34;R_kgDOH833kg&#34;
+        data-category=&#34;General&#34;
+        data-category-id=&#34;DIC_kwDOH833ks4CRwGU&#34;
+        data-mapping=&#34;pathname&#34;
+        data-strict=&#34;0&#34;
+        data-reactions-enabled=&#34;1&#34;
+        data-emit-metadata=&#34;0&#34;
+        data-input-position=&#34;bottom&#34;
+        data-theme=&#34;light_high_contrast&#34;
+        data-lang=&#34;vi&#34;
+        crossorigin=&#34;anonymous&#34;
+        async&gt;
+&lt;/script&gt;&lt;blockquote&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Bài 1: Quantum vs Classical Interference: First Example</title>
+      <link>https://example.com/post/fair-coins/</link>
+      <pubDate>Sun, 09 Oct 2022 14:41:26 +0700</pubDate>
+      <guid>https://example.com/post/fair-coins/</guid>
+      <description>&lt;h2 id=&#34;nội-dung&#34;&gt;Nội dung&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#1&#34;&gt;Giới thiệu bài toán&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2&#34;&gt;Classical Interference&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3&#34;&gt;Quantum Interference&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#4&#34;&gt;Kết luận&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Trước khi đi vào các thuật toán quantum trong học máy, mình muốn so sánh bài toán suy luận xác suất trên máy tính truyền thống cũng như trên máy tính lượng tử. Bài viết này sẽ giúp các bạn viết qua những thành phần cơ bản của vật lý lượng tử: &lt;em&gt;&lt;a href=&#34;https://vi.wikipedia.org/wiki/Qubit&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;qubits&lt;/a&gt;&lt;/em&gt;, &lt;em&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Unitary_transformation_%28quantum_mechanics%29&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;unitary transformation&lt;/a&gt;&lt;/em&gt;, và &lt;em&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Measurement_in_quantum_mechanics&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;measurement&lt;/a&gt;&lt;/em&gt; và cách hoạt động của chúng thông qua một ví dụ cụ thể.&lt;/p&gt;
+&lt;h2 id=&#34;giới-thiệu-bài-toán-a-name1a&#34;&gt;Giới thiệu bài toán &lt;a name=&#34;1&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Cho hai đồng xu đồng chất: $c_1$ và $c_2$ với xác suất ở mặt sấp (&lt;em&gt;tail&lt;/em&gt;) hay mặt ngửa (&lt;em&gt;head&lt;/em&gt;) là như nhau. Không gian mẫu của việc tung 2 đồng xu trên sẽ bao gồm: &lt;em&gt;(head, head)&lt;/em&gt;, &lt;em&gt;(head, tail)&lt;/em&gt;, &lt;em&gt;(tail, head)&lt;/em&gt;, và &lt;em&gt;(tail, tail)&lt;/em&gt;. Mình sẽ xét bài toán như sau: Bước 1, ta lật 2 đồng xu thành mặt ngửa (&lt;em&gt;head&lt;/em&gt; sẽ là giá trị ban đầu của 2 đống xu). Bước 2, ta tung đồng xu thứ nhất $c_1$ và kiểm tra kết quả. Và bước 3, ta cũng lại tung đồng xu $c_1$ lần thứ hai và kiểm tra kết quả (giả sử kết quả thu được là sau số lần thử đủ lớn).&lt;/p&gt;
+&lt;h2 id=&#34;classical-interference-suy-luận-xác-suất-truyền-thống-a-name2a&#34;&gt;Classical Interference (Suy luận xác suất truyền thống) &lt;a name=&#34;2&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Có thể thấy với máy tính truyền thống (&lt;em&gt;classical computer&lt;/em&gt;), 2 đồng xu có thể được coi là 2 bits ngẫu nhiên (&lt;em&gt;random bits&lt;/em&gt;). Ở bước 1, bài toán sẽ đưa về kết quả &lt;em&gt;(head, head)&lt;/em&gt;. Tuy nhiên, sau bước hai thì &lt;em&gt;(head, head)&lt;/em&gt; và &lt;em&gt;(tail, head)&lt;/em&gt; sẽ có xác suất bằng nhau và bằng 0.5. Phân phối này sẽ không thay đổi sau bước 3.&lt;/p&gt;
+&lt;h2 id=&#34;quantum-interference-suy-luận-xác-suất-trên-máy-tính-quantum-a-name3a&#34;&gt;Quantum Interference (Suy luận xác suất trên máy tính quantum) &lt;a name=&#34;3&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Tuy nhiên, ở đây sẽ có một chút khác biệt nếu ta biểu diễn bài toán trên máy tính quantum. Hai đồng xu sẽ được biểu diễn bằng hai &lt;em&gt;&lt;a href=&#34;https://vi.wikipedia.org/wiki/Qubit&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;qubits&lt;/a&gt;&lt;/em&gt; (quantum bits). Mỗi qubit có dạng $\alpha \ket{0} + \beta \ket{1}$, trong đó $\ket{0}$ và $\ket{1}$ là hai trạng thái cơ sở (&lt;em&gt;basis state&lt;/em&gt;) được biểu diễn dưới dạng véc-tơ tương ứng: $[1,0]^T$ và $[0,1]^T$. Có thể thấy rằng $\ket{0}$ và $\ket{1}$ tương ứng với hai giá trị nhị phân 0, 1 ở máy tính truyền thống; tuy nhiên, thay vì được mã hóa rời rạc thành chuỗi bit 1 hoặc 0, mỗi &lt;em&gt;qubit&lt;/em&gt; có thể tạo thành một tổ hợp tuyến tính của các trạng thái cơ sở theo xác suất:
+
+$$
+p(0) = |\alpha|^2, p(1) = |\beta|^2; \alpha, \beta \in \mathbb{C}
+$$
+ &lt;br&gt;
+Chú ý rằng $|\alpha|^2 + |\beta|^2 = 1$ để thỏa mãn xác suất trên. Như vậy nếu ta coi hai mặt của đồng xu là hai trạng thái cơ sở: $\ket{head} = \ket{0}$ và $\ket{tail} = \ket{1}$, thì việc tung đồng xu sẽ tương đương việc chúng ta thực hiện biến đổi &lt;a href=&#34;https://en.wikipedia.org/wiki/Hadamard_transform&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Hadamard&lt;/a&gt;. Việc biến đổi ở đây trên máy tính quantum chính là phép nhân ma trận Hadamard với trạng thái hiện tại của qubit. Trong đó biến đổi Hadamard có thể được biểu diễn dưới dạng ma trận:&lt;/p&gt;
+
+$$
+H = \frac{1}{\sqrt{2}}\left( \begin{array}{cc} 1 &amp; 1 \\
+1 &amp; -1 \end{array} \right)
+$$
+
+&lt;p&gt;Từ đó, ta có thể triển khai bài toán trên như sau: 2 qubits sẽ được khởi tạo thành $\ket{head}\ket{head}$ sau bước 1. Ở bước 2, ta nhân ma trận Hadamard với trạng thái của qubit thứ nhất, ta có:
+
+$$
+  H\ket{head}\ket{head}= H\ket{0}\ket{head} = \frac{1}{\sqrt{2}}\left( \begin{array}{cc} 1 &amp; 1 \\
+1 &amp; -1 \end{array} \right) \left( \begin{array}{c} 1 \\ 0 \end{array} \right) \ket{head}   
+$$
+
+
+$$
+=\!\frac{1}{\sqrt{2}}\left( \begin{array}{c} 1 \\ 1 \end{array} \right)\! \ket{head}\! =\! \frac{1}{\sqrt{2}} (\ket{0}\!+\!\ket{1})\!\ket{head}\! =\! \frac{1}{\sqrt{2}} (\ket{head}\!+\!\ket{tail})\!\ket{head}
+$$
+
+
+$$
+= \frac{1}{\sqrt{2}}\ket{head}\ket{head} + \frac{1}{\sqrt{2}}\ket{tail}\ket{head}   
+$$
+
+Như vậy, ta thấy giống như trường hợp trên, sau bước 2 xác suất đạt được $\ket{head}\ket{head}$ và $\ket{tail}\ket{head}$ là bằng nhau là cũng bằng $(\frac{1}{\sqrt{2}})^2 = 0.5$. Tuy nhiên sự khác biệt nằm ở bước 3, nếu ta tiếp tục tung đồng xu thứ nhất (hay thực hiện biến đổi Hadamard), với một chút tính toán ta nhận được kết quả:&lt;/p&gt;
+&lt;p&gt;
+$$
+\frac{1}{\sqrt{2}}H\ket{head}\ket{head} + \frac{1}{\sqrt{2}}H\ket{tail}\ket{head} = \ket{head}\ket{head}   
+$$
+
+Sau bước 3 ta sẽ luôn nhận được $\ket{head}\ket{head}$, kết quả này khác hoàn toán khi thực hiện bài toán trên máy tính truyền thống. Có thể nói đây là một sự khác nhau thú vị giữa máy tính lượng tử và máy tính truyền thống. Khác với máy tính truyền thống có xu hướng tối đa hóa sự không chắc chắn (&lt;em&gt;maximize uncertainty&lt;/em&gt;) vì luôn cho ra kết quả 50-50 giữa 2 trạng thái (head, head) và (tail, head), thì máy tính lượng tử cho ra kết quả có độ không chắc chắn thấp hơn. Chính vì lý do này, đã có nghiên cứu áp dụng &lt;em&gt;quantum inference&lt;/em&gt; như một hàm dự đoán (prediction function) trong bài toán học máy có giám sát (supervised learning) [&lt;a href=&#34;https://arxiv.org/abs/2004.01227&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;1&lt;/a&gt;]&lt;/p&gt;
+&lt;p&gt;Sự khác nhau trên cũng dẫn ta tới một vấn đề quan trọng khác: &lt;em&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Measurement_in_quantum_mechanics&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;measurement&lt;/a&gt;&lt;/em&gt; (phép đo). Phép đo chính là cầu nối giữa &lt;em&gt;quantum&lt;/em&gt; và &lt;em&gt;classical&lt;/em&gt;, giúp chúng ta đánh giá và phân tích trạng thái hiện tại của một hoặc một hệ qubit, và nó thường mang tính thống kê xác suất hơn là một đánh giá đơn lẻ. Nói cách khác, phép đo cho phép chúng ta phá bỏ tính chống chât của qubits (phá bỏ đi tổ hợp tuyến tính), từ đó làm cho trạng thái của qubit &lt;em&gt;&amp;lsquo;collapse&amp;rsquo;&lt;/em&gt; về một trong các trạng thái cơ sở. Ví dụ, thực hiện phép đo một qubit bất kỳ $\ket{\phi} = \alpha \ket{0} + \beta \ket{1}$ trên cơ sở chuẩn (&lt;em&gt;canonical basis&lt;/em&gt;) thì ta sẽ đạt được giá trị 0 với xác suất là $|\alpha|^2$ và giá trị 1 với xác suất $|\beta|^2$. Kết quả thu được từ phép đo sẽ là một thống kê xác suất.&lt;/p&gt;
+&lt;p&gt;Giờ mình sẽ triển khai lại bài toán trên nếu ta thực hiện phép đo giữa bước 2 và bước 3. Sau bước 2, trạng thái của 2 đồng xu có dạng: $\frac{1}{\sqrt{2}}\ket{head}\ket{head} + \frac{1}{\sqrt{2}}\ket{tail}\ket{head}$. Nếu ta thực hiện phép đo ở đây, ta có 50% thu được $\ket{head}\ket{head}$ và 50% thu được $\ket{tail}\ket{head}$. Do đó ở bước 3 ta xét hai trường hợp:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Trường hợp I:
+
+$$
+H\ket{head}\ket{head} = \frac{1}{\sqrt{2}}\ket{head}\ket{head} + \frac{1}{\sqrt{2}}\ket{tail}\ket{head}   
+$$
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Trường hợp II:
+
+$$
+H\ket{tail}\ket{head} = \frac{1}{\sqrt{2}}\ket{head}\ket{head} - \frac{1}{\sqrt{2}}\ket{tail}\ket{head}   
+$$
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Có thể thấy ở hai trường hợp thì sau bước 3 đều cho ra trạng thái $\ket{head}\ket{head}$ hay $\ket{tail}\ket{head}$ với xác suất $(\pm\frac{1}{\sqrt{2}})^2 = 0.5$ và sẽ giống với kết quả của máy tính truyền thống.&lt;/p&gt;
+&lt;h2 id=&#34;kết-luận-a-name4a&#34;&gt;Kết luận &lt;a name=&#34;4&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Trên đây, mình đã đưa ra ví dụ so sánh khả năng suy luận xác suất của máy tính truyền thống và máy tính lượng tử. Ngoài ra mình giới thiệu sơ bộ về thành phần cơ bản trong vật lý lượng tử như qubits, cách triển khai phép biến đổi, và phép đo.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Khác với máy tính truyền thống có xu hướng tối đa hóa sự không chắc chắn, thì máy tính lượng tử cho ra kết quả có độ không chắc chắn thấp hơn.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Qubit có dạng tổ hợp tuyến tính của các trạng thái cơ sở dựa theo một xác suất.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Trong máy tính lượng tử, phép biến đổi là phép nhân ma trận tương ứng với trạng thái hiện tại của qubit.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Phép đo là cầu nối giữa &lt;em&gt;&amp;lsquo;quantum&amp;rsquo;&lt;/em&gt; và &lt;em&gt;&amp;lsquo;classical&amp;rsquo;&lt;/em&gt; phá bỏ đi tính chồng chất của một hoặc một hệ qubits và cho ra kết quả là một thống kê xác suất.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Cảm ơn mọi người đã đọc bài.&lt;/p&gt;
+&lt;script src=&#34;https://giscus.app/client.js&#34;
+        data-repo=&#34;qmlvietnam/qmlvietnam.github.io&#34;
+        data-repo-id=&#34;R_kgDOH833kg&#34;
+        data-category=&#34;General&#34;
+        data-category-id=&#34;DIC_kwDOH833ks4CRwGU&#34;
+        data-mapping=&#34;pathname&#34;
+        data-strict=&#34;0&#34;
+        data-reactions-enabled=&#34;1&#34;
+        data-emit-metadata=&#34;0&#34;
+        data-input-position=&#34;bottom&#34;
+        data-theme=&#34;light_high_contrast&#34;
+        data-lang=&#34;vi&#34;
+        crossorigin=&#34;anonymous&#34;
+        async&gt;
+&lt;/script&gt;&lt;blockquote&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Bài 0: Giới thiệu về Quantum Machine Learning</title>
       <link>https://example.com/post/why-qml/</link>
       <pubDate>Fri, 30 Sep 2022 22:37:50 +0700</pubDate>
       <guid>https://example.com/post/why-qml/</guid>
-      <description>&lt;h2 id=&#34;table-of-contents&#34;&gt;Table of contents&lt;/h2&gt;
+      <description>&lt;h2 id=&#34;nội-dung&#34;&gt;Nội dung&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;#1&#34;&gt;Quantum Machine Learning là gì?&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#2&#34;&gt;Một vài hướng tiếp cận của Quantum Machine Learning&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#3&#34;&gt;Kết luận&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;Khác với các topics của Machine Learning hay Deep Learning khi mà các ứng dụng của chúng đang dần trở nên phổ biến những năm gần đây, chủ đề về Quantum Machine Learning (hay QML) là một lĩnh vực nghiên cứu mới và đang được chú ý ở các công ty hàng đầu thế giới như IBM hay Google. Do đó, ở bài viết này ngoài việc cung cấp cho bạn đọc cái nhìn cụ thể Quantum Machine Learning là gì, mình cũng sẽ giải thích tại sao chúng ta lại cần QML và một vài hướng tiếp cận cụ thể.&lt;/p&gt;
+&lt;p&gt;Khác với các chủ đề của Machine Learning hay Deep Learning khi mà các ứng dụng của chúng đang dần trở nên phổ biến những năm gần đây, chủ đề về Quantum Machine Learning (hay QML) là một lĩnh vực nghiên cứu mới và đang được chú ý ở các công ty hàng đầu thế giới như &lt;a href=&#34;https://quantum-computing.ibm.com/lab/docs/iql/machine-learning&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;IBM&lt;/a&gt; hay &lt;a href=&#34;https://quantumai.google/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Google&lt;/a&gt;. Do đó, ở bài viết này ngoài việc cung cấp cho bạn đọc cái nhìn cụ thể Quantum Machine Learning là gì, mình cũng sẽ giải thích tại sao chúng ta lại cần QML và một vài hướng tiếp cận cụ thể.&lt;/p&gt;
 &lt;h2 id=&#34;quantum-machine-learning-là-gì-a-name1a&#34;&gt;Quantum Machine Learning là gì? &lt;a name=&#34;1&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Nếu như ai đã làm quen với các bài toán của Machine Learning hay Deep Learning, các mô hình đang dần được xây dựng lớn hơn và phức tạp hơn để giải quyết các bài toán khó (hard combinatorial optimization problems), nó dẫn tới việc tiêu tốn rất nhiều tài nguyên tính toán (computational resources) trong việc huấn luyện cũng như là vận hành. Một ví dụ điển hình là mô hình &lt;a href=&#34;https://lambdalabs.com/blog/demystifying-gpt-3/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GPT-3&lt;/a&gt; gồm 175 tỷ tham số sẽ cần tốn 355 năm và gần 5 triệu đô nếu train trên một NVIDIA Tesla V100 GPU. Do đó, trên thực tế họ đã train GPT-3 với 1024 A100 GPUs và mất 34 ngày.&lt;/p&gt;
 &lt;p&gt;Tuy nhiên, vấn đề đó có thể sẽ được giải quyết với sự xuất hiện của máy tính lượng tử (quantum computer). Máy tính lượng tử được phát triển dựa theo các thuyết của vật lý lượng tử để đưa ra một khả năng tính toán vượt trội so với máy tính truyền thống. Hãy lấy một bài toán tìm kiếm là một ví dụ: giả sử bạn phải tìm 1 quả bóng trong 1 triệu ngăn kéo và câu hỏi là bạn sẽ phải mở qua bao nhiêu ngăn kéo trước khi tìm được quả bóng đó? Đôi khi bạn sẽ may mắn tìm được quả bóng trong chỉ vài lần thử và ngược lại bạn cũng có thể phải mở gần như toàn bộ 1 triệu ngăn kéo kia. Trung bình bạn sẽ cần tới 500,000 lượt để tìm ra quả bóng. Tuy nhiên, với máy tính lượng tử, bạn có thể thực hiện bài toán đó trong vòng 1000 lượt bằng một thuật toán được gọi là &lt;a href=&#34;https://en.wikipedia.org/wiki/Grover%27s_algorithm&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Grover&amp;rsquo;s algorithm&lt;/a&gt;.&lt;/p&gt;
@@ -54,7 +426,7 @@
 
 &lt;figure  &gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
-    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://www.researchgate.net/profile/Zhenyu-Cai-3/publication/345261288/figure/fig3/AS:953988396642305@1604459966798/Comparison-between-a-classical-neural-networks-and-b-quantum-neural-networks-used-for.ppm&#34; alt=&#34;Open Source Love&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://www.researchgate.net/profile/Zhenyu-Cai-3/publication/345261288/figure/fig3/AS:953988396642305@1604459966798/Comparison-between-a-classical-neural-networks-and-b-quantum-neural-networks-used-for.ppm&#34; alt=&#34;Source&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
   &lt;/div&gt;&lt;/figure&gt;
 &lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Được thúc đẩy từ sự thành công của mạng học sâu (classical deep learning), mạng nơ-ron lượng tử (&lt;a href=&#34;https://en.wikipedia.org/wiki/Quantum_neural_network&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Quantum Neural Network&lt;/a&gt;, hay QNN) cũng mang những nét tương đồng với mạng nơ-ron truyền thống (NN). Chúng được thiết kế theo cấu trúc &lt;a href=&#34;https://en.wikipedia.org/wiki/Feedforward_neural_network&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;feed-forward&lt;/a&gt;, trong đó các layers là các phép biến đổi đơn nhất (&lt;a href=&#34;https://en.wikipedia.org/wiki/Unitary_transformation#:~:text=In%20mathematics%2C%20a%20unitary%20transformation,inner%20product%20after%20the%20transformation.&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;unitary transformation&lt;/a&gt;). Hầu hết cấu trúc của QNN dựa theo &lt;a href=&#34;https://pennylane.ai/qml/glossary/variational_circuit.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Variational Quantum Circuits&lt;/a&gt; hay thường được gọi Parameterised Quantum Circuits. Ở đó các biến đổi trong cấu trúc mạng QNN sẽ phụ thuộc vào tham số $\theta$ (learning parameters) và chúng sẽ thay đổi trong quá trình tối ưu.&lt;/p&gt;

@@ -4,11 +4,15 @@
   
   
   <url>
+    <loc>https://example.com/post/example-1/</loc><lastmod>2022-10-11T23:25:52+07:00</lastmod><changefreq>weekly</changefreq></url>
+  <url>
+    <loc>https://example.com/post/</loc><lastmod>2022-10-11T23:25:52+07:00</lastmod><changefreq>weekly</changefreq></url>
+  <url>
+    <loc>https://example.com/</loc><lastmod>2022-10-11T23:25:52+07:00</lastmod><changefreq>weekly</changefreq></url>
+  <url>
+    <loc>https://example.com/post/fair-coins/</loc><lastmod>2022-10-09T14:41:26+07:00</lastmod><changefreq>weekly</changefreq></url>
+  <url>
     <loc>https://example.com/post/why-qml/</loc><lastmod>2022-09-30T22:37:50+07:00</lastmod><changefreq>weekly</changefreq></url>
-  <url>
-    <loc>https://example.com/post/</loc><lastmod>2022-09-30T22:37:50+07:00</lastmod><changefreq>weekly</changefreq></url>
-  <url>
-    <loc>https://example.com/</loc><lastmod>2022-09-30T22:37:50+07:00</lastmod><changefreq>weekly</changefreq></url>
   <url>
     <loc>https://example.com/authors/intro/</loc><lastmod>2022-09-30T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
   <url>

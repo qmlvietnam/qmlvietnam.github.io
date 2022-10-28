@@ -1,0 +1,1372 @@
+<!DOCTYPE html><html lang="en-us" >
+
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.6.0 for Hugo" />
+  
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Trong bài này, mình đi qua một phương pháp xử lý bài toán nearest neighbour bằng thuật toán quantum. Bài viết dưới đây sẽ dựa vào bài báo gốc: Implementing a distance-based classifier with a quantum interference circuit, nếu ai muốn tìm hiểu sâu hơn về ý tưởng này thì có thể ghé qua." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://example.com/post/example-1/" />
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+    
+    <script src="/js/mathjax-config.js"></script>
+  
+
+  
+
+  <link rel="stylesheet" href="/css/vendor-bundle.min.c7b8d9abd591ba2253ea42747e3ac3f5.css" media="print" onload="this.media='all'">
+
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css" integrity="sha512-W0xM4mr6dEP9nREo7Z9z+9X70wytKvMGeDsj7ps2+xg5QPrEBXC8tAW1IFnzjR6eoJ90JmCnFzerQJTLzIEHjA==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.3495fc6150afdd177f1d04fbba9f5e2c.css" />
+
+  
+  
+  
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="/css/libs/chroma/github-light.min.css" title="hl-light" media="print" onload="this.media='all'" >
+    <link rel="stylesheet" href="/css/libs/chroma/dracula.min.css" title="hl-dark" media="print" onload="this.media='all'" disabled>
+  
+
+  
+  
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+  
+  
+
+  
+  
+
+  
+  
+    <link rel="manifest" href="/manifest.webmanifest" />
+  
+
+  
+  <link rel="icon" type="image/png" href="/media/icon_hu03ccfb93536ffaa14d5c51dca71785c3_35563_32x32_fill_lanczos_center_3.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu03ccfb93536ffaa14d5c51dca71785c3_35563_180x180_fill_lanczos_center_3.png" />
+
+  <link rel="canonical" href="https://example.com/post/example-1/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+
+  
+  
+    
+    
+  
+  <meta property="twitter:card" content="summary_large_image" />
+  
+    <meta property="twitter:site" content="@wowchemy" />
+    <meta property="twitter:creator" content="@wowchemy" />
+  
+  <meta property="og:site_name" content="QML Vietnam" />
+  <meta property="og:url" content="https://example.com/post/example-1/" />
+  <meta property="og:title" content="Bài 2: Quantum Squared-Distance Classifier | QML Vietnam" />
+  <meta property="og:description" content="Trong bài này, mình đi qua một phương pháp xử lý bài toán nearest neighbour bằng thuật toán quantum. Bài viết dưới đây sẽ dựa vào bài báo gốc: Implementing a distance-based classifier with a quantum interference circuit, nếu ai muốn tìm hiểu sâu hơn về ý tưởng này thì có thể ghé qua." /><meta property="og:image" content="https://example.com/post/example-1/featured.jpg" />
+    <meta property="twitter:image" content="https://example.com/post/example-1/featured.jpg" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2022-10-11T23:25:52&#43;07:00"
+      />
+    
+    <meta property="article:modified_time" content="2022-10-11T23:25:52&#43;07:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.com/post/example-1/"
+  },
+  "headline": "Bài 2: Quantum Squared-Distance Classifier",
+  
+  "image": [
+    "https://example.com/post/example-1/featured.jpg"
+  ],
+  
+  "datePublished": "2022-10-11T23:25:52+07:00",
+  "dateModified": "2022-10-11T23:25:52+07:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Authors"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "QML Vietnam",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.com/media/icon_hu03ccfb93536ffaa14d5c51dca71785c3_35563_192x192_fill_lanczos_center_3.png"
+    }
+  },
+  "description": "Trong bài này, mình đi qua một phương pháp xử lý bài toán nearest neighbour bằng thuật toán quantum. Bài viết dưới đây sẽ dựa vào bài báo gốc: Implementing a distance-based classifier with a quantum interference circuit, nếu ai muốn tìm hiểu sâu hơn về ý tưởng này thì có thể ghé qua."
+}
+</script>
+
+  
+
+  
+
+  
+
+
+  <title>Bài 2: Quantum Squared-Distance Classifier | QML Vietnam</title>
+
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="41280be87b10845fb59ca0bce349f39e" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.613040fe4f2c0f007b4dcb64404201cb.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<header class="header--fixed">
+  <nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+    <div class="container-xl">
+
+      
+      <div class="d-none d-lg-inline-flex">
+        <a class="navbar-brand" href="/">QML Vietnam</a>
+      </div>
+      
+
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+      <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+      
+      <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+        <a class="navbar-brand" href="/">QML Vietnam</a>
+      </div>
+      
+
+      
+      
+      <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+        
+        <ul class="navbar-nav d-md-inline-flex">
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#about"><span>Home</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#posts"><span>Blogs</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#newsletter"><span>Newsletter</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#contact"><span>Contact</span></a>
+          </li>
+
+          
+          
+
+        
+
+          
+        </ul>
+      </div>
+
+      <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+        
+        
+
+        
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+        
+        
+        <li class="nav-item dropdown theme-dropdown">
+          <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+            <i class="fas fa-moon" aria-hidden="true"></i>
+          </a>
+          <div class="dropdown-menu">
+            <a href="#" class="dropdown-item js-set-theme-light">
+              <span>Light</span>
+            </a>
+            <a href="#" class="dropdown-item js-set-theme-dark">
+              <span>Dark</span>
+            </a>
+            <a href="#" class="dropdown-item js-set-theme-auto">
+              <span>Automatic</span>
+            </a>
+          </div>
+        </li>
+        
+
+        
+        
+
+      </ul>
+
+    </div>
+  </nav>
+</header>
+
+
+  </div>
+
+  <div class="page-body">
+    
+    
+    
+
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<div class="article-container pt-3">
+  <h1>Bài 2: Quantum Squared-Distance Classifier</h1>
+
+  
+  <p class="page-subtitle">How Quantum Computers can classify data</p>
+  
+
+  
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Oct 11, 2022
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    7 min read
+  </span>
+  
+
+  
+  
+  
+  
+
+  
+  
+
+</div>
+
+  
+
+
+
+
+
+</div>
+
+
+<div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 600px; max-height: 374px;">
+  <div style="position: relative">
+    <img src="/post/example-1/featured_hu3ca8a7a328c5089b73f644d53d05ab65_40912_720x2500_fit_q75_h2_lanczos.webp" width="600" height="374" alt="" class="featured-image">
+    
+  </div>
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <p>Trong bài này, mình đi qua một phương pháp xử lý bài toán <em>nearest neighbour</em> bằng thuật toán quantum. Bài viết dưới đây sẽ dựa vào bài báo gốc: <a href="https://arxiv.org/pdf/1703.10793.pdf" target="_blank" rel="noopener">Implementing a distance-based classifier with a quantum interference circuit</a>, nếu ai muốn tìm hiểu sâu hơn về ý tưởng này thì có thể ghé qua.</p>
+<h1 id="nội-dung">Nội dung</h1>
+<ol>
+<li><a href="#1">Squared-Distance Classifier</a></li>
+<li><a href="#2">Quantum Squared-Distance Classifier</a></li>
+<li><a href="#3">Kết luận</a></li>
+<li><a href="#4">Source Code</a></li>
+</ol>
+<h1 id="squared-distance-classifier-a-name1a">Squared-Distance Classifier <a name="1"></a></h1>
+<p>Ở đây, mình xét ví dụ bài toán phân loại tập data <a href="https://www.kaggle.com/c/titanic" target="_blank" rel="noopener">Titanic</a>. Giả sử tập data được biểu diễn dưới dạng:</p>
+
+$$
+\mathcal{D} = \Big\{ ({\bf{x}}^1, y^1), \ldots ({\bf{x}}^M , y^M)  \Big\},
+$$
+
+<p>trong đó các véc-tơ đầu vào 2 chiều: ${ {\bf{x}}^m = ({x_0}^m, {x_1}^m)^T}, m = 1,2,&hellip;,M$ tượng trưng cho một hành khách trên chuyến tàu Titanic đã bị nhấn chìm vào năm 1912. Trong đó $x_0$ là giá vé trong khoảng từ 0 đến 10,000 đô la, và $x_1$ là số hiệu cabin trong khoảng từ 1 đến 2,500. Ứng với mỗi một véc-tơ đầu vào là nhãn $y^m = {0,1}$ tương ứng để chỉ ra hành khách đó đã sống sót hay không.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  id="figure-soucehttpslinkspringercombook101007978-3-319-96424-9">
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="[Souce](https://link.springer.com/book/10.1007/978-3-319-96424-9)" srcset="
+               /post/example-1/data_hu78303baaf7a0b85d6e4300342c9fda14_45037_631af45315bba8601596423120b56c6c.webp 400w,
+               /post/example-1/data_hu78303baaf7a0b85d6e4300342c9fda14_45037_3666c6daa3fe241e15be294f70efc0e8.webp 760w,
+               /post/example-1/data_hu78303baaf7a0b85d6e4300342c9fda14_45037_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
+               src="/post/example-1/data_hu78303baaf7a0b85d6e4300342c9fda14_45037_631af45315bba8601596423120b56c6c.webp"
+               width="760"
+               height="183"
+               loading="lazy" data-zoomable /></div>
+  </div><figcaption>
+      <a href="https://link.springer.com/book/10.1007/978-3-319-96424-9" target="_blank" rel="noopener">Souce</a>
+    </figcaption></figure>
+<p>Nếu từng tìm hiểu qua về Machine Learning, chắc hẳn các bạn đã nghe hoặc đọc qua về thuật toán <em>nearest neighbour</em>: với mỗi véc-tơ đầu vào mới, thì nhãn của nó sẽ được quyết định bởi điểm dữ liệu gần nhất với nó. Có nhiều cách để xác định những điểm dữ liệu gần nhất đó nhưng phổ biến là <a href="https://en.wikipedia.org/wiki/Euclidean_distance" target="_blank" rel="noopener">Euclidean distance</a>. Do vậy, ta có cách tính hệ số cho việc gán nhãn véc-tơ $\tilde{x}$ mới theo nhãn của $x^m$:
+
+$$
+\gamma_m = 1-\frac{1}{c}|\tilde{{\bf x}}-{\bf x}^m|^2, 
+$$
+
+trong đó $c$ là hằng số. Hệ số càng cao chứng tỏ $\tilde{{\bf x}}$ càng gần $x^m$. Gọi $\tilde{y}$ là nhãn được gán cho $\tilde{{\bf x}}$, ta có xác xuất $p_{\tilde{{\bf x}}}(\tilde{y}=1)$ là tổng trung bình hệ số của $M_1$ điểm dữ liệu mà có nhãn là $1$:
+
+$$
+p_{\tilde{{\bf x}}}(\tilde{y}=1) = \frac{1}{\chi}\frac{1}{M_1} \sum_{m|y^m=1}(1-\frac{1}{c}|\tilde{{\bf x}}-{\bf x}^m|^2) 
+$$
+
+Tương tự như vậy,  $p_{\tilde{{\bf x}}}(\tilde{y}=0)$ là tổng trung bình hệ số của các điểm dữ liệu mà có nhãn là $0$. Trong đó $\frac{1}{\chi}$ là <em>normalizing factor</em> sao cho $p_{\tilde{{\bf x}}}(\tilde{y}=0)+p_{\tilde{{\bf x}}}(\tilde{y}=1)=1$.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  id="figure-soucehttpslinkspringercombook101007978-3-319-96424-9">
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="[Souce](https://link.springer.com/book/10.1007/978-3-319-96424-9)" srcset="
+               /post/example-1/visualization_hu16f5b777f6d9f46571da58af462c2aaf_44927_fe9e1f90176d7b9290d6772978090665.webp 400w,
+               /post/example-1/visualization_hu16f5b777f6d9f46571da58af462c2aaf_44927_96d167ef3597b0fad12f14d6ffd877df.webp 760w,
+               /post/example-1/visualization_hu16f5b777f6d9f46571da58af462c2aaf_44927_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
+               src="/post/example-1/visualization_hu16f5b777f6d9f46571da58af462c2aaf_44927_fe9e1f90176d7b9290d6772978090665.webp"
+               width="760"
+               height="263"
+               loading="lazy" data-zoomable /></div>
+  </div><figcaption>
+      <a href="https://link.springer.com/book/10.1007/978-3-319-96424-9" target="_blank" rel="noopener">Souce</a>
+    </figcaption></figure>
+<p>Áp dụng phương pháp ta thấy <em>Passenger 3</em> sẽ gần với <em>Passenger 1</em> hơn so với <em>Passenger 2</em> (Fig 1.2), và mô hình sẽ đưa ra dự đoán là $1$ tương ứng với <em>survival</em>.</p>
+<h1 id="quantum-squared-distance-classifier-a-name2a">Quantum Squared-Distance Classifier <a name="2"></a></h1>
+<p>Giờ hãy xử lý bài toàn này bằng phương pháp &lsquo;quantum&rsquo;.</p>
+<h2 id="bước-1-data-preprocessing-and-encoding">Bước 1: Data preprocessing and Encoding</h2>
+<p>Đầu tiên chúng ta sẽ đi tới một câu hỏi kinh điển &ldquo;Làm sao có thể biểu diễn dữ liệu trên máy tính lượng tử?&rdquo;. Nếu như trên máy tính truyền thống các thông tin như ảnh sẽ thường được biển diễn trên không gian RBG có giá trị từ 0 đến 255, hay chúng ta có <a href="https://en.wikipedia.org/wiki/Word_embedding" target="_blank" rel="noopener">Word Embedding</a> để biểu thông tin dạng văn bản thành các véc-tơ, thì vấn đề của các thuật toán lượng tử cũng như vậy. Thực chất, chủ đề về việc mã hóa thông tin trên không gian lượng tử (<em>Quantum Embedding</em>) vẫn đang được cộng đồng nghiên cứu quan tâm đặc biệt trong lĩnh vực Quantum Machine Learning. Nếu các bạn quan tâm đến chủ đề này có thể xem qua <a href="https://arxiv.org/abs/2001.03622" target="_blank" rel="noopener">paper</a> này để biết rõ hơn về các cách mã thông tin trong QML và sự quan trọng của nó. Mình sẽ làm một bài viết chi tiết hơn về chủ đề này trong tương lai.</p>
+<p>Quay lại với bài toán của chúng ta, mình sẽ áp dụng một phương pháp gọi là <em>Amplitude Embedding</em> - một phương pháp rất phố biến trong QML: Cho $X \in \mathbb{R}^N$ là một véc-tơ đơn nhất ($||X|| = 1$), ta có thể mã hóa $X$ bằng $n$ qubits dưới dạng:
+
+$$
+\ket{\psi_X} = \sum_{i=0}^{N-1}x_i \ket{i},
+$$
+
+trong đó $n = \log{N}$. Có thể thấy phương pháp này chỉ tốn $O(\log{N})$ qubits để biểu diễn một véc-tơ $N$ chiều. Hãy lấy ví dụ trong bài toán xử lý ngôn ngữ tự nhiên, giả sử bạn có một <em>text corpus</em> với 10000 từ thì nếu như cách thông thường ta sử dụng <a href="https://en.wikipedia.org/wiki/One-hot" target="_blank" rel="noopener">One-hot encoding</a> ta sẽ cần tới 10000 bits để mã hóa, nhưng điều này hoàn toán có thể giải quyết với 14 ($\lceil \log{10000} \rceil$) qubits với amplitude embedding.</p>
+<p>Từ đây, với mỗi đầu vào $\ket{\psi_{\bf\tilde{x}}}$ mới, bài toán sẽ được khởi tạo dưới dạng:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="" srcset="
+               /post/example-1/equation1_hu895413c6cafbee8ea8735175e11f8b65_165324_c12a5c7ac1ed347a463e9f71fb60f756.webp 400w,
+               /post/example-1/equation1_hu895413c6cafbee8ea8735175e11f8b65_165324_3f31152c28be40d0d2c5e116e940fd8b.webp 760w,
+               /post/example-1/equation1_hu895413c6cafbee8ea8735175e11f8b65_165324_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
+               src="/post/example-1/equation1_hu895413c6cafbee8ea8735175e11f8b65_165324_c12a5c7ac1ed347a463e9f71fb60f756.webp"
+               width="760"
+               height="202"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+<p>Trong đó $\ket{m}$ và $\ket{y^m}$ mã hóa cho số thứ tự và nhãn tương ứng của véc-tơ đầu vào thứ $m^{th}$. Tuy nhiên điều chú ý ở đây nằm ở <em>ancilla qubit</em> được kết nối với $\ket{\psi_{\bf\tilde{{x}}}}$ và $\ket{\psi_{\bf{x}^m}}$. Chú ý rằng khi ta thực hiện phép do trên một hoặc một hệ qubits thì qubit(s) sẽ bị <em>collapsed</em> hay <em>terminated</em>. Vậy khi ta chuyển phép đo của $\ket{\psi_{\bf\tilde{{x}}}}$ hay $\ket{\psi_{\bf{x}^m}}$ sang phép đo của một <em>ancilla qubit</em> được kết nối với chúng thì ta vẫn thu được kết quả cần thiết của $\ket{\psi_{\bf\tilde{{x}}}}$ và $\ket{\psi_{\bf{x}^m}}$ mà không cần chấm dứt (<em>terminate</em>) cả hệ thống. Kỹ thuật này rất hay sử dụng ở trong các thuật toán lượng tử và việc kết nối giữa <em>ancilla qubit</em> với hệ thống là chúng ta đang tạo ra <a href="https://en.wikipedia.org/wiki/Quantum_entanglement" target="_blank" rel="noopener"><em>entanglement</em></a> - một tính chất quan trọng khác trong lĩnh vực tính toán lượng tử.</p>
+<p>Như vậy với ví dụ Titanic trên ta có:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="" srcset="
+               /post/example-1/data_processing_hu8c90f3f68a6d31a7f4dad34dc8d04642_53301_06417e8dac8b40de76662264a3b79f5c.webp 400w,
+               /post/example-1/data_processing_hu8c90f3f68a6d31a7f4dad34dc8d04642_53301_a62954af2ee2bbe430771a386cb5b63b.webp 760w,
+               /post/example-1/data_processing_hu8c90f3f68a6d31a7f4dad34dc8d04642_53301_1200x1200_fit_q75_h2_lanczos.webp 1200w"
+               src="/post/example-1/data_processing_hu8c90f3f68a6d31a7f4dad34dc8d04642_53301_06417e8dac8b40de76662264a3b79f5c.webp"
+               width="760"
+               height="348"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+
+$$
+\ket{\mathcal{D}} = \frac{1}{\sqrt{4}} \Big\{\ket{0}[\ket{0}(0.866\ket{0}+0.5\ket{1})+\ket{1}(0.921\ket{0}+0.39\ket{1})]\ket{1}
+$$
+</p>
+
+$$
++ \ket{1}[\ket{0}(0.866\ket{0}+0.5\ket{1})+\ket{1}(0.141\ket{0}+0.99\ket{1})]\ket{0} \Big\}
+$$
+
+<h2 id="bước-2-áp-dụng-biến-đổi-hadamard">Bước 2: Áp dụng biến đổi Hadamard</h2>
+<p>Như mình đề cập tới bài viết trước, hầu hết các biến đổi trên máy tính lượng tử là tuyên tính nên việc thực hiện các phép biến đổi là các phép nhân với ma trận biểu diễn tương ứng. Ở đây, ma trận Hadamard có dạng:
+
+$$
+H = \frac{1}{\sqrt{2}}\left( \begin{array}{cc} 1 & 1 \\
+1 & -1 \end{array} \right)
+$$
+</p>
+<p>Như vậy, nếu ta áp dụng biến đổi Hadamard cho <em>ancilla qubit</em> ta có:</p>
+
+$$
+\ket{\mathcal{D}} \longrightarrow \frac{1}{\sqrt{2M}} \sum_{m=0}^{M-1} \ket{m}\Big(H\ket{0}\ket{\psi_{\bf\tilde{{x}}}} + H\ket{1}\ket{\psi_{\bf{x}^m}}\Big)\ket{y^m}
+$$
+
+<p>Với những bạn đã đọc qua <a href="/post/fair-coins">Bài 1</a> hoặc với một chút tính toán, chúng ta dễ dàng chứng minh được:
+
+$$
+H\ket{0} = \frac{1}{\sqrt{2}}(\ket{0}+\ket{1}), H\ket{1} = \frac{1}{\sqrt{2}}(\ket{0}-\ket{1}) 
+$$
+
+Áp dụng công thức trên, ta được:
+
+$$
+\ket{\mathcal{D}}\! \longrightarrow\! \frac{1}{2\sqrt{M}} \sum_{m=0}^{M-1} \ket{m}\Big(\ket{0}(\ket{\psi_{\bf\tilde{{x}}}}+\ket{\psi_{\bf{x}^m}}) + \ket{1}(\ket{\psi_{\bf\tilde{{x}}}}-\ket{\psi_{\bf{x}^m}})\Big)\ket{y^m}
+$$
+</p>
+<h2 id="bước-3-phép-đo">Bước 3: Phép đo</h2>
+<p>Ở đây ta sẽ cần sử dụng lần lượt 2 phép đo trên <em>ancilla qubit</em> và $\ket{y^m}$. Nhưng trước đó mình sẽ viết lại kết quả thu được sau bước 2:
+
+$$ 
+\frac{1}{2\sqrt{M}} \sum_{m=0}^{M-1} \ket{m}\Big(\ket{0}\sum_{i=0}^{N} ({\tilde{{\bf{x}}}}^m_i+{\bf{x}}^m_i)\ket{i} + \ket{1}\sum_{i=0}^{N} ({\tilde{{\bf{x}}}}^m_i-{\bf{x}}^m_i)\ket{i}\Big)\ket{y^m} 
+$$
+</p>
+<p><em>1. Phép đo trên ancilla qubit</em>: Ở phép đó này, ta sẽ có xác suất $p_0 = \Big(\frac{1}{2\sqrt{M}} \sum_{m=0}^{M-1}\sum_{i=0}^{N} ({\tilde{{\bf{x}}}}^m_i+{\bf{x}}^m_i)\Big)^2 = \frac{1}{4M}\sum_M|{\bf\tilde{x}}+{\bf x}^m|^2$ thu được kết quả là $0$ và tương tự ta thu được kết quả 1 từ <em>ancilla qubit</em> với xác suất $p_1=\frac{1}{4M}\sum_M|{\bf\tilde{x}}-{\bf x}^m|^2$. Tuy nhiên ở đây ta sẽ chỉ lấy kết quả thu được nếu <em>ancilla qubit</em> có giá trị là $0$, hay nói cách khác ta <em>terminate</em> nhánh mà <em>ancilla qubit</em> có trạng thái là $\ket{1}$, ta có:
+
+$$ 
+\frac{1}{2\sqrt{Mp_0}} \sum_{m=0}^{M-1} \ket{m}\Big(\ket{0}\sum_{i=0}^{N} ({\tilde{{\bf{x}}}}^m_i+{\bf{x}}^m_i)\ket{i} \Big)\ket{y^m} 
+$$
+</p>
+<p>Ta nhân $p_0$ ở đây để chắc chắn rằng hệ thống của chúng ta vẫn là đơn nhất (<em>unit length</em>).</p>
+<p><em>2. Phép đo trên $\ket{y^m}$</em>
+Ta có thể dễ dàng thấy xác suất thu được có giá trị bằng $0$ là:
+
+$$ 
+p(y=0) = \frac{1}{4Mp_0}\sum_{m|y^m=0}|{\tilde{{\bf{x}}}+{\bf{x}}^m}|^2
+$$
+</p>
+<p>Vì $\tilde{{\bf{x}}}$ hay ${{\bf{x}}}^m$ là đơn nhất nên ta hoàn toàn có thể chứng minh được:</p>
+
+$$ 
+\frac{1}{4Mp_0}\sum_{m|y^m=0}|{\tilde{{\bf{x}}}+{\bf{x}}^m}|^2 = 1 - \frac{1}{4Mp_0}\sum_{m|y^m=0}|{\tilde{{\bf{x}}}-{\bf{x}}^m}|^2
+$$
+
+<p>Bài toán sẽ được hoàn toàn đưa về giống với kết quả trường hợp trên máy tính truyền thống mà mình đề cập tới ở trên.</p>
+<p>Ta áp dụng bài toán của tập Titanic vào công thức trên ta được:
+
+$$ 
+p(y=0) = \frac{1}{4Mp_0}(|0.141+0.866|^2+|0.990+0.5|^2)  \approx 0.448, 
+$$
+</p>
+
+$$ 
+p(y=1) = \frac{1}{4Mp_0}(|0.921+0.866|^2+|0.390+0.5|^2)  \approx 0.552, 
+$$
+
+<p>Như vậy có thể thấy kết quả thu được từ thuật toán lượng tử này cũng cho ra kết quả rằng <em>Passenger 3</em> sẽ sống sót.</p>
+<h1 id="kết-luận-a-name3a">Kết luận <a name="3"></a></h1>
+<p>Có thể thấy chúng ta hoàn toàn có thể xây dựng một thuật toán lượng tử tương đương trong bài toán <em>distanced-based classifier</em>. Mặc dù ví dụ trên chưa cho chúng ta thấy được <em>quantum advantage</em> nhưng nó giúp mọi người hiểu được cấu trúc chung của một thuật toán lượng tử nói chung và mô hình trong QML nói riêng: Mã hóa (embedding) -&gt; Các phép biến đổi (Transformations) -&gt; Phép đo (Measurement).</p>
+<h1 id="source-code-a-name4a">Source Code <a name="4"></a></h1>
+<p>Mã nguồn trong bài này có thể được tìm thấy <a href="https://github.com/qmlvietnam/CodeforBlog/blob/main/classifier.ipynb" target="_blank" rel="noopener">tại đây</a>.</p>
+<script src="https://giscus.app/client.js"
+        data-repo="qmlvietnam/qmlvietnam.github.io"
+        data-repo-id="R_kgDOH833kg"
+        data-category="General"
+        data-category-id="DIC_kwDOH833ks4CRwGU"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light_high_contrast"
+        data-lang="vi"
+        crossorigin="anonymous"
+        async>
+</script><blockquote>
+</blockquote>
+
+    </div>
+
+    
+
+
+
+
+
+
+
+<div class="share-box">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://example.com/post/example-1/&amp;text=B%c3%a0i%202:%20Quantum%20Squared-Distance%20Classifier" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://example.com/post/example-1/&amp;t=B%c3%a0i%202:%20Quantum%20Squared-Distance%20Classifier" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=B%c3%a0i%202:%20Quantum%20Squared-Distance%20Classifier&amp;body=https://example.com/post/example-1/" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://example.com/post/example-1/&amp;title=B%c3%a0i%202:%20Quantum%20Squared-Distance%20Classifier" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=B%c3%a0i%202:%20Quantum%20Squared-Distance%20Classifier%20https://example.com/post/example-1/" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://example.com/post/example-1/&amp;title=B%c3%a0i%202:%20Quantum%20Squared-Distance%20Classifier" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+
+
+
+
+
+  
+  
+  
+
+  
+  
+    
+  
+  
+    
+  
+
+  
+
+  
+  <p class="powered-by copyright-license-text">
+    © 2022 Me. This work is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0" rel="noopener noreferrer" target="_blank">CC BY NC ND 4.0</a>
+  </p>
+  
+
+  <p class="powered-by footer-license-icons">
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0" rel="noopener noreferrer" target="_blank" aria-label="Creative Commons">
+      <i class="fab fa-creative-commons fa-2x" aria-hidden="true"></i>
+      <i class="fab fa-creative-commons-by fa-2x" aria-hidden="true"></i>
+      
+        <i class="fab fa-creative-commons-nc fa-2x" aria-hidden="true"></i>
+      
+      
+        <i class="fab fa-creative-commons-nd fa-2x" aria-hidden="true"></i>
+      
+    </a>
+  </p>
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-themes" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+
+
+<script src="/js/vendor-bundle.min.d26509351aa0ff874abbee824e982e9b.js"></script>
+
+
+
+
+  
+
+  
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script id="search-hit-fuse-template" type="text/x-template">
+    <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+    </div>
+  </script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/krisk/Fuse@v3.2.1/dist/fuse.min.js" integrity="sha512-o38bmzBGX+hD3JHWUFCDA09btWaqrNmoJ3RXLlrysA7PP01Kgs4UlE4MhelE1v5dJR3+cxlR4qQlotsW7jKsnw==" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/gh/julmot/mark.js@8.11.1/dist/jquery.mark.min.js" integrity="sha512-mhbv5DqBMgrWL+32MmsDOt/OAvqr/cHimk6B8y/bx/xS88MVkYGPiVv2ixKVrkywF2qHplNRUvFsAHUdxZ3Krg==" crossorigin="anonymous"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+<script id="page-data" type="application/json">{"use_headroom":true}</script>
+
+
+
+  <script src="/js/wowchemy-headroom.c251366b4128fd5e6b046d4c97a62a51.js" type="module"></script>
+
+
+
+
+
+
+
+
+  
+  
+
+
+<script src="/en/js/wowchemy.min.54dd6e4d8f2e4b1d098381b57f18dd83.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
