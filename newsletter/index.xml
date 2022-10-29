@@ -5,7 +5,7 @@
     <link>https://example.com/newsletter/</link>
       <atom:link href="https://example.com/newsletter/index.xml" rel="self" type="application/rss+xml" />
     <description>Newsletter</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sun, 13 Dec 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sat, 29 Oct 2022 14:54:53 +0700</lastBuildDate>
     <image>
       <url>https://example.com/media/icon_hu03ccfb93536ffaa14d5c51dca71785c3_35563_512x512_fill_lanczos_center_3.png</url>
       <title>Newsletter</title>
@@ -13,80 +13,109 @@
     </image>
     
     <item>
-      <title>Welcome to Wowchemy, the website builder for Hugo</title>
-      <link>https://example.com/newsletter/getting-started/</link>
-      <pubDate>Sun, 13 Dec 2020 00:00:00 +0000</pubDate>
-      <guid>https://example.com/newsletter/getting-started/</guid>
-      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+      <title>Octorber 2022</title>
+      <link>https://example.com/newsletter/octorber-2022/</link>
+      <pubDate>Sat, 29 Oct 2022 14:54:53 +0700</pubDate>
+      <guid>https://example.com/newsletter/octorber-2022/</guid>
+      <description>&lt;h1 id=&#34;news-&#34;&gt;News 📰&lt;/h1&gt;
 &lt;ol&gt;
-&lt;li&gt;The Wowchemy website builder for Hugo, along with its starter templates, is designed for professional creators, educators, and teams/organizations - although it can be used to create any kind of site&lt;/li&gt;
-&lt;li&gt;The template can be modified and customised to suit your needs. It&amp;rsquo;s a good platform for anyone looking to take control of their data and online identity whilst having the convenience to start off with a &lt;strong&gt;no-code solution (write in Markdown and customize with YAML parameters)&lt;/strong&gt; and having &lt;strong&gt;flexibility to later add even deeper personalization with HTML and CSS&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;You can work with all your favourite tools and apps with hundreds of plugins and integrations to speed up your workflows, interact with your readers, and much more&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.nature.com/articles/s41598-022-21607-4&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Determinable and interpretable network representation for link prediction&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://cloudblogs.microsoft.com/quantum/2022/10/20/azure-quantum-credits-program-propels-quantum-innovation-and-exploration-for-researchers-educators-and-students/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Azure Quantum Credits Program propels quantum innovation and exploration for researchers, educators, and students&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.eurekalert.org/news-releases/969327&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Penn State researchers to explore using quantum computers to design new drugs&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.einnews.com/pr_news/597582546/multiverse-computing-and-mila-join-forces-to-advance-artificial-intelligence-with-quantum-computing&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Multiverse Computing and Mila Join Forces to Advance Artificial Intelligence with Quantum Computing&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.tribuneindia.com/news/brand-connect/quantum-ai-elon-musk-review-scam-app-or-legit-444921&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Quantum AI Elon Musk Review / Scam App Or Legit?&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;a href=&#34;https://wowchemy.com&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-&lt;figure  &gt;
-  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
-    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://raw.githubusercontent.com/wowchemy/wowchemy-hugo-modules/main/starters/academic/preview.png&#34; alt=&#34;The template is mobile first with a responsive design to ensure that your site looks stunning on every device.&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
-  &lt;/div&gt;&lt;/figure&gt;
-&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&#34;get-started&#34;&gt;Get Started&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;👉 &lt;a href=&#34;https://wowchemy.com/templates/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Create a new site&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;📚 &lt;a href=&#34;https://wowchemy.com/docs/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Personalize your site&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;💬 &lt;a href=&#34;https://discord.gg/z8wNYzb&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Chat with the &lt;strong&gt;Wowchemy community&lt;/strong&gt;&lt;/a&gt; or &lt;a href=&#34;https://discourse.gohugo.io&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Hugo community&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;🐦 Twitter: &lt;a href=&#34;https://twitter.com/wowchemy&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;@wowchemy&lt;/a&gt; &lt;a href=&#34;https://twitter.com/GeorgeCushen&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;@GeorgeCushen&lt;/a&gt; &lt;a href=&#34;https://twitter.com/search?q=%23MadeWithWowchemy&amp;amp;src=typed_query&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;#MadeWithWowchemy&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;💡 &lt;a href=&#34;https://github.com/wowchemy/wowchemy-hugo-themes/issues&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Request a &lt;strong&gt;feature&lt;/strong&gt; or report a &lt;strong&gt;bug&lt;/strong&gt; for &lt;em&gt;Wowchemy&lt;/em&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;⬆️ &lt;strong&gt;Updating Wowchemy?&lt;/strong&gt; View the &lt;a href=&#34;https://wowchemy.com/docs/hugo-tutorials/update/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Update Tutorial&lt;/a&gt; and &lt;a href=&#34;https://wowchemy.com/updates/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Release Notes&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;crowd-funded-open-source-software&#34;&gt;Crowd-funded open-source software&lt;/h2&gt;
-&lt;p&gt;To help us develop this template and software sustainably under the MIT license, we ask all individuals and businesses that use it to help support its ongoing maintenance and development via sponsorship.&lt;/p&gt;
-&lt;h3 id=&#34;-click-here-to-become-a-sponsor-and-help-support-wowchemys-future-httpswowchemycomsponsor&#34;&gt;&lt;a href=&#34;https://wowchemy.com/sponsor/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;❤️ Click here to become a sponsor and help support Wowchemy&amp;rsquo;s future ❤️&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;As a token of appreciation for sponsoring, you can &lt;strong&gt;unlock &lt;a href=&#34;https://wowchemy.com/sponsor/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;these&lt;/a&gt; awesome rewards and extra features 🦄✨&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&#34;ecosystem&#34;&gt;Ecosystem&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://github.com/wowchemy/hugo-academic-cli&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Hugo Academic CLI&lt;/a&gt;:&lt;/strong&gt; Automatically import publications from BibTeX&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;inspiration&#34;&gt;Inspiration&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&#34;https://academic-demo.netlify.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Check out the latest &lt;strong&gt;demo&lt;/strong&gt;&lt;/a&gt; of what you&amp;rsquo;ll get in less than 10 minutes, or &lt;a href=&#34;https://wowchemy.com/user-stories/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;view the &lt;strong&gt;showcase&lt;/strong&gt;&lt;/a&gt; of personal, project, and business sites.&lt;/p&gt;
-&lt;h2 id=&#34;features&#34;&gt;Features&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Page builder&lt;/strong&gt; - Create &lt;em&gt;anything&lt;/em&gt; with &lt;a href=&#34;https://wowchemy.com/docs/page-builder/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;widgets&lt;/strong&gt;&lt;/a&gt; and &lt;a href=&#34;https://wowchemy.com/docs/content/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;elements&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Edit any type of content&lt;/strong&gt; - Blog posts, publications, talks, slides, projects, and more!&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Create content&lt;/strong&gt; in &lt;a href=&#34;https://wowchemy.com/docs/content/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Markdown&lt;/strong&gt;&lt;/a&gt;, &lt;a href=&#34;https://wowchemy.com/docs/import/jupyter/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Jupyter&lt;/strong&gt;&lt;/a&gt;, or &lt;a href=&#34;https://wowchemy.com/docs/install-locally/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;RStudio&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Plugin System&lt;/strong&gt; - Fully customizable &lt;a href=&#34;https://wowchemy.com/docs/customization/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;color&lt;/strong&gt; and &lt;strong&gt;font themes&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Display Code and Math&lt;/strong&gt; - Code highlighting and &lt;a href=&#34;https://en.wikibooks.org/wiki/LaTeX/Mathematics&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;LaTeX math&lt;/a&gt; supported&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Integrations&lt;/strong&gt; - &lt;a href=&#34;https://analytics.google.com&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Google Analytics&lt;/a&gt;, &lt;a href=&#34;https://disqus.com&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Disqus commenting&lt;/a&gt;, Maps, Contact Forms, and more!&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Beautiful Site&lt;/strong&gt; - Simple and refreshing one page design&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Industry-Leading SEO&lt;/strong&gt; - Help get your website found on search engines and social media&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Media Galleries&lt;/strong&gt; - Display your images and videos with captions in a customizable gallery&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Mobile Friendly&lt;/strong&gt; - Look amazing on every screen with a mobile friendly version of your site&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Multi-language&lt;/strong&gt; - 34+ language packs including English, 中文, and Português&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Multi-user&lt;/strong&gt; - Each author gets their own profile page&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Privacy Pack&lt;/strong&gt; - Assists with GDPR&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Stand Out&lt;/strong&gt; - Bring your site to life with animation, parallax backgrounds, and scroll effects&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;One-Click Deployment&lt;/strong&gt; - No servers. No databases. Only files.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;themes&#34;&gt;Themes&lt;/h2&gt;
-&lt;p&gt;Wowchemy and its templates come with &lt;strong&gt;automatic day (light) and night (dark) mode&lt;/strong&gt; built-in. Alternatively, visitors can choose their preferred mode - click the moon icon in the top right of the &lt;a href=&#34;https://academic-demo.netlify.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Demo&lt;/a&gt; to see it in action! Day/night mode can also be disabled by the site admin in &lt;code&gt;params.toml&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://wowchemy.com/docs/customization&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Choose a stunning &lt;strong&gt;theme&lt;/strong&gt; and &lt;strong&gt;font&lt;/strong&gt;&lt;/a&gt; for your site. Themes are fully customizable.&lt;/p&gt;
-&lt;h2 id=&#34;license&#34;&gt;License&lt;/h2&gt;
-&lt;p&gt;Copyright 2016-present &lt;a href=&#34;https://georgecushen.com&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;George Cushen&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Released under the &lt;a href=&#34;https://github.com/wowchemy/wowchemy-hugo-themes/blob/master/LICENSE.md&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;MIT&lt;/a&gt; license.&lt;/p&gt;
+&lt;h1 id=&#34;videos-&#34;&gt;Videos 📽️&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=NqHKr9CGWJ0&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Quantum Machine Learning Explained&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=gyU5tIppmIk&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Qiskit Falll Fest CIC-IPN Mexico 2022- Quantum Machine Learning&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=zqxCnDcGSgQ&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Quantum Machine Learning Neuroimaging for Alzheimer’s Disease&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=6Mo0EQ7bOpg&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;MLBBQ: Quantum Machine Learning by Pavel Popov&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=x6oLsJtxWzs&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Quantum Machine Learning: Opportunities and Challenges&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=2rJFsxcM0N4&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Hands-on quantum machine learning | Rodrigo Morales | ADC2022&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=CDCiQdtOhLY&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;“Reinforcement Learning for Quantum Technologies,” presented by Florian Marquardt&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;publications-&#34;&gt;Publications 📃&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/abs/2210.07980&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Representation Theory for Geometric Quantum Machine Learning&lt;/a&gt;
+&lt;details class=&#34;spoiler &#34;  id=&#34;spoiler-0&#34;&gt;
+  &lt;summary&gt;Abstract:&lt;/summary&gt;
+  &lt;p&gt;&lt;blockquote&gt;
+&lt;p&gt;Recent advances in classical machine learning have shown that creating models with inductive biases encoding the symmetries of a problem can greatly improve performance. Importation of these ideas, combined with an existing rich body of work at the nexus of quantum theory and symmetry, has given rise to the field of Geometric Quantum Machine Learning (GQML). Following the success of its classical counterpart, it is reasonable to expect that GQML will play a crucial role in developing problem-specific and quantum-aware models capable of achieving a computational advantage. Despite the simplicity of the main idea of GQML &amp;ndash; create architectures respecting the symmetries of the data &amp;ndash; its practical implementation requires a significant amount of knowledge of group representation theory. We present an introduction to representation theory tools from the optics of quantum learning, driven by key examples involving discrete and continuous groups. These examples are sewn together by an exposition outlining the formal capture of GQML symmetries via &amp;ldquo;label invariance under the action of a group representation&amp;rdquo;, a brief (but rigorous) tour through finite and compact Lie group representation theory, a reexamination of ubiquitous tools like Haar integration and twirling, and an overview of some successful strategies for detecting symmetries.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/p&gt;
+&lt;/details&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/abs/2210.08566&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Theory for Equivariant Quantum Neural Networks&lt;/a&gt;
+&lt;details class=&#34;spoiler &#34;  id=&#34;spoiler-1&#34;&gt;
+  &lt;summary&gt;Abstract:&lt;/summary&gt;
+  &lt;p&gt;&lt;blockquote&gt;
+&lt;p&gt;Most currently used quantum neural network architectures have little-to-no inductive biases, leading to trainability and generalization issues. Inspired by a similar problem, recent breakthroughs in classical machine learning address this crux by creating models encoding the symmetries of the learning task. This is materialized through the usage of equivariant neural networks whose action commutes with that of the symmetry. In this work, we import these ideas to the quantum realm by presenting a general theoretical framework to understand, classify, design and implement equivariant quantum neural networks. As a special implementation, we show how standard quantum convolutional neural networks (QCNN) can be generalized to group-equivariant QCNNs where both the convolutional and pooling layers are equivariant under the relevant symmetry group. Our framework can be readily applied to virtually all areas of quantum machine learning, and provides hope to alleviate central challenges such as barren plateaus, poor local minima, and sample complexity.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/p&gt;
+&lt;/details&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/abs/2210.09974&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Theoretical Guarantees for Permutation-Equivariant Quantum Neural Networks&lt;/a&gt;
+&lt;details class=&#34;spoiler &#34;  id=&#34;spoiler-2&#34;&gt;
+  &lt;summary&gt;Abstract:&lt;/summary&gt;
+  &lt;p&gt;&lt;blockquote&gt;
+&lt;p&gt;Despite the great promise of quantum machine learning models, there are several challenges one must overcome before unlocking their full potential. For instance, models based on quantum neural networks (QNNs) can suffer from excessive local minima and barren plateaus in their training landscapes. Recently, the nascent field of geometric quantum machine learning (GQML) has emerged as a potential solution to some of those issues. The key insight of GQML is that one should design architectures, such as equivariant QNNs, encoding the symmetries of the problem at hand. Here, we focus on problems with permutation symmetry (i.e., the group of symmetry Sn), and show how to build Sn-equivariant QNNs. We provide an analytical study of their performance, proving that they do not suffer from barren plateaus, quickly reach overparametrization, and can generalize well from small amounts of data. To verify our results, we perform numerical simulations for a graph state classification task. Our work provides the first theoretical guarantees for equivariant QNNs, thus indicating the extreme power and potential of GQML.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/p&gt;
+&lt;/details&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/pdf/2210.13442.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Protocols for classically training quantum generative models on probability distributions&lt;/a&gt;
+&lt;details class=&#34;spoiler &#34;  id=&#34;spoiler-3&#34;&gt;
+  &lt;summary&gt;Abstract:&lt;/summary&gt;
+  &lt;p&gt;&lt;blockquote&gt;
+&lt;p&gt;Quantum Generative Modelling (QGM) relies on preparing quantum states and generating samples from these states as hidden - or known - probability distributions. As distributions from some classes of quantum states (circuits) are inherently hard to sample classically, QGM represents an excellent testbed for quantum supremacy experiments. Furthermore, generative tasks are increasingly relevant for industrial machine learning applications, and thus QGM is a strong candidate for demonstrating a practical quantum advantage. However, this requires that quantum circuits are trained to represent industrially relevant distributions, and the corresponding training stage has an extensive training cost for current quantum hardware in practice. In this work, we propose protocols for classical training of QGMs based on circuits of the specific type that admit an efficient gradient computation, while remaining hard to sample. In particular, we consider Instantaneous Quantum Polynomial (IQP) circuits and their extensions. Showing their classical simulability in terms of the time complexity, sparsity and anti-concentration properties, we develop a classically tractable way of simulating their output probability distributions, allowing classical training to a target probability distribution. The corresponding quantum sampling from IQPs can be performed efficiently, unlike when using classical sampling. We numerically demonstrate the end-to-end training of IQP circuits using probability distributions for up to 30 qubits on a regular desktop computer. When applied to industrially relevant distributions this combination of classical training with quantum sampling represents an avenue for reaching advantage in the NISQ era.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/p&gt;
+&lt;/details&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/abs/2210.11850&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Universal algorithms for quantum data learning&lt;/a&gt;
+&lt;details class=&#34;spoiler &#34;  id=&#34;spoiler-4&#34;&gt;
+  &lt;summary&gt;Abstract:&lt;/summary&gt;
+  &lt;p&gt;&lt;blockquote&gt;
+&lt;p&gt;Operating quantum sensors and quantum computers would make data in the form of quantum states available for purely quantum processing, opening new avenues for studying physical processes and certifying quantum technologies. In this Perspective, we review a line of works dealing with measurements that reveal structural properties of quantum datasets given in the form of product states. These algorithms are universal, meaning that their performances do not depend on the reference frame in which the dataset is provided. Requiring the universality property implies a characterization of optimal measurements via group representation theory.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/p&gt;
+&lt;/details&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/abs/2209.05523&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Generalization despite overfitting in quantum machine learning models&lt;/a&gt;
+&lt;details class=&#34;spoiler &#34;  id=&#34;spoiler-5&#34;&gt;
+  &lt;summary&gt;Abstract:&lt;/summary&gt;
+  &lt;p&gt;&lt;blockquote&gt;
+&lt;p&gt;The widespread success of deep neural networks has revealed a surprise in classical machine learning: very complex models often generalize well while simultaneously overfitting training data. This phenomenon of benign overfitting has been studied for a variety of classical models with the goal of better understanding the mechanisms behind deep learning. Characterizing the phenomenon in the context of quantum machine learning might similarly improve our understanding of the relationship between overfitting, overparameterization, and generalization. In this work, we provide a characterization of benign overfitting in quantum models. To do this, we derive the behavior of a classical interpolating Fourier features models for regression on noisy signals, and show how a class of quantum models exhibits analogous features, thereby linking the structure of quantum circuits (such as data-encoding and state preparation operations) to overparameterization and overfitting in quantum models. We intuitively explain these features according to the ability of the quantum model to interpolate noisy data with locally &amp;ldquo;spiky&amp;rdquo; behavior and provide a concrete demonstration example of benign overfitting.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/p&gt;
+&lt;/details&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/abs/2209.14353&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Interpretable Quantum Advantage in Neural Sequence Learning&lt;/a&gt;
+&lt;details class=&#34;spoiler &#34;  id=&#34;spoiler-6&#34;&gt;
+  &lt;summary&gt;Abstract:&lt;/summary&gt;
+  &lt;p&gt;&lt;blockquote&gt;
+&lt;p&gt;Quantum neural networks have been widely studied in recent years, given their potential practical utility and recent results regarding their ability to efficiently express certain classical data. However, analytic results to date rely on assumptions and arguments from complexity theory. Due to this, there is little intuition as to the source of the expressive power of quantum neural networks or for which classes of classical data any advantage can be reasonably expected to hold. Here, we study the relative expressive power between a broad class of neural network sequence models and a class of recurrent models based on Gaussian operations with non-Gaussian measurements. We explicitly show that quantum contextuality is the source of an unconditional memory separation in the expressivity of the two model classes. Additionally, as we are able to pinpoint quantum contextuality as the source of this separation, we use this intuition to study the relative performance of our introduced model on a standard translation data set exhibiting linguistic contextuality. In doing so, we demonstrate that our introduced quantum models are able to outperform state of the art classical models even in practice.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/p&gt;
+&lt;/details&gt;&lt;/p&gt;
 </description>
     </item>
     
