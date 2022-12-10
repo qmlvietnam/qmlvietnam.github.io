@@ -1,0 +1,1648 @@
+<!DOCTYPE html><html lang="en-us" >
+
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.6.0 for Hugo" />
+  
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Cuối cùng trong bộ 3 bài viết về các subroutines của thuật toán lượng tử, mình muốn đề cập tới thuật toán Harrow-Hassidim-Lloyd (hay HHL) được đặt theo tên của ba tác giả đã giới thiệu thuật toán 1." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://example.com/post/important-subroutine-3/" />
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+    
+    <script src="/js/mathjax-config.js"></script>
+  
+
+  
+
+  <link rel="stylesheet" href="/css/vendor-bundle.min.c7b8d9abd591ba2253ea42747e3ac3f5.css" media="print" onload="this.media='all'">
+
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css" integrity="sha512-W0xM4mr6dEP9nREo7Z9z+9X70wytKvMGeDsj7ps2+xg5QPrEBXC8tAW1IFnzjR6eoJ90JmCnFzerQJTLzIEHjA==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.3495fc6150afdd177f1d04fbba9f5e2c.css" />
+
+  
+  
+  
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="/css/libs/chroma/github-light.min.css" title="hl-light" media="print" onload="this.media='all'" >
+    <link rel="stylesheet" href="/css/libs/chroma/dracula.min.css" title="hl-dark" media="print" onload="this.media='all'" disabled>
+  
+
+  
+  
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+  
+  
+
+  
+  
+
+  
+  
+    <link rel="manifest" href="/manifest.webmanifest" />
+  
+
+  
+  <link rel="icon" type="image/png" href="/media/icon_hu03ccfb93536ffaa14d5c51dca71785c3_35563_32x32_fill_lanczos_center_3.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu03ccfb93536ffaa14d5c51dca71785c3_35563_180x180_fill_lanczos_center_3.png" />
+
+  <link rel="canonical" href="https://example.com/post/important-subroutine-3/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+
+  
+  
+    
+    
+  
+  <meta property="twitter:card" content="summary_large_image" />
+  
+  <meta property="og:site_name" content="QML Vietnam" />
+  <meta property="og:url" content="https://example.com/post/important-subroutine-3/" />
+  <meta property="og:title" content="Bài 5: Important Subroutine 3 - HHL Algorithm | QML Vietnam" />
+  <meta property="og:description" content="Cuối cùng trong bộ 3 bài viết về các subroutines của thuật toán lượng tử, mình muốn đề cập tới thuật toán Harrow-Hassidim-Lloyd (hay HHL) được đặt theo tên của ba tác giả đã giới thiệu thuật toán 1." /><meta property="og:image" content="https://example.com/post/important-subroutine-3/featured.png" />
+    <meta property="twitter:image" content="https://example.com/post/important-subroutine-3/featured.png" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2022-12-09T10:15:40&#43;07:00"
+      />
+    
+    <meta property="article:modified_time" content="2022-12-09T10:15:40&#43;07:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.com/post/important-subroutine-3/"
+  },
+  "headline": "Bài 5: Important Subroutine 3 - HHL Algorithm",
+  
+  "image": [
+    "https://example.com/post/important-subroutine-3/featured.png"
+  ],
+  
+  "datePublished": "2022-12-09T10:15:40+07:00",
+  "dateModified": "2022-12-09T10:15:40+07:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Authors"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "QML Vietnam",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.com/media/icon_hu03ccfb93536ffaa14d5c51dca71785c3_35563_192x192_fill_lanczos_center_3.png"
+    }
+  },
+  "description": "Cuối cùng trong bộ 3 bài viết về các subroutines của thuật toán lượng tử, mình muốn đề cập tới thuật toán Harrow-Hassidim-Lloyd (hay HHL) được đặt theo tên của ba tác giả đã giới thiệu thuật toán 1."
+}
+</script>
+
+  
+
+  
+
+  
+
+
+  <title>Bài 5: Important Subroutine 3 - HHL Algorithm | QML Vietnam</title>
+
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="48744332ee7a2ee512d09a68251ae4f9" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.613040fe4f2c0f007b4dcb64404201cb.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<header class="header--fixed">
+  <nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+    <div class="container-xl">
+
+      
+      <div class="d-none d-lg-inline-flex">
+        <a class="navbar-brand" href="/">QML Vietnam</a>
+      </div>
+      
+
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+      <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+      
+      <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+        <a class="navbar-brand" href="/">QML Vietnam</a>
+      </div>
+      
+
+      
+      
+      <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+        
+        <ul class="navbar-nav d-md-inline-flex">
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#about"><span>Home</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#posts"><span>Blogs</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#newsletter"><span>Newsletter</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#contact"><span>Contact</span></a>
+          </li>
+
+          
+          
+
+        
+
+          
+        </ul>
+      </div>
+
+      <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+        
+        
+
+        
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+        
+        
+        <li class="nav-item dropdown theme-dropdown">
+          <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+            <i class="fas fa-moon" aria-hidden="true"></i>
+          </a>
+          <div class="dropdown-menu">
+            <a href="#" class="dropdown-item js-set-theme-light">
+              <span>Light</span>
+            </a>
+            <a href="#" class="dropdown-item js-set-theme-dark">
+              <span>Dark</span>
+            </a>
+            <a href="#" class="dropdown-item js-set-theme-auto">
+              <span>Automatic</span>
+            </a>
+          </div>
+        </li>
+        
+
+        
+        
+
+      </ul>
+
+    </div>
+  </nav>
+</header>
+
+
+  </div>
+
+  <div class="page-body">
+    
+    
+    
+
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<div class="article-container pt-3">
+  <h1>Bài 5: Important Subroutine 3 - HHL Algorithm</h1>
+
+  
+
+  
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Dec 9, 2022
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    15 min read
+  </span>
+  
+
+  
+  
+  
+  
+
+  
+  
+
+</div>
+
+  
+
+
+
+
+
+</div>
+
+
+<div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 424px; max-height: 102px;">
+  <div style="position: relative">
+    <img src="/post/important-subroutine-3/featured_hu9b20453f88e3ff4c1646073b97d28aa0_2670_720x2500_fit_q75_h2_lanczos_3.webp" width="424" height="102" alt="" class="featured-image">
+    
+  </div>
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <meta property="og:image" content="/post/important-subroutine-3/featured.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="200">
+<meta property="og:image:height" content="200">
+<p>Cuối cùng trong bộ 3 bài viết về các <em>subroutines</em> của thuật toán lượng tử, mình muốn đề cập tới thuật toán <em><strong>Harrow-Hassidim-Lloyd</strong></em> (hay HHL) được đặt theo tên của ba tác giả đã giới thiệu thuật toán <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>. Thuật toán HHL được phát triển nhằm giải quyết phương trình hoặc hệ phương trình tuyến tính bằng máy tính lượng tử, hay nói cách khác thuật toán sẽ giải phương trình:</p>
+
+$$
+Ax = b
+$$
+
+<p>Theo phương pháp truyền thống, phương trình trên có thể được giải bằng cách nghịch đảo ma trận $A$ và có kết quả là $x=A^{-1}b$. Tuy nhiên, việc tính toán ma trận nghịch đảo tốn rất nhiều tài nguyên khi ma trận $A$ lớn. Với một cách phố biến nhất như là <em><strong>Gaussian emilination</strong></em>, ta cần tới độ phức tạp $O(N^3)$ để nghịch đảo một ma trận $N\times N$; hay tiên tiến hơn với thuật toán <em><strong>conjugate gradient</strong></em> có độ phức tạp $O(Nsk \log{1/\epsilon})$, ở đó $s$ là tỷ lệ phấn tử có giá trị $0$ trong ma trận $A$ (<em>sparsity proportion</em>), $k$ là tỷ số giữa giá trị riêng lớn nhất và giá trị riêng nhỏ nhất, và cuối cùng là $\epsilon$ ký hiệu cho độ sai số của thuật toán. <strong>Nhưng với HHL, thuật toán có thể xử lý vẫn đề ma trận nghịch đảo với $O(\log{(N)}s^2k^2/\epsilon)$</strong>.</p>
+<p>Ở đây, mình sẽ cùng mọi người phân tích rõ hơn về thuật toán này.</p>
+<h1 id="nội-dung">Nội dung</h1>
+<ol>
+<li><a href="#1">Thuật toán HHL</a></li>
+<li><a href="#2">Source Code</a></li>
+</ol>
+<h1 id="thuật-toán-hhl-a-name1a">Thuật toán HHL <a name="1"></a></h1>
+<p>Thuật toán HHL đặc biệt quan trọng cho các bài toán của QML, vì như mọi người đã biết hầu hết các thuật toán machine learning đều đi học tham số $\theta$ theo phương trình $y = \theta^{T}x$. Do đó, ta hoàn toàn có thể áp dụng HHL trong việc tìm $\theta$ trong các bài toán của machine learning.</p>
+<p>Thực chất vấn đề lớn nhất của HHL là làm sao đưa ma trận $A$ của phương trình $Ax = b$ vào máy tính lượng tử. Như mình đã đề cập rất nhiều từ các bài viết trước, các phép biến đổi trong máy tính lượng tử phải từ ma trận đơn nhất (<em>unitary matrix</em>). Do đó, ta không thể trực tiếp dùng $A$ để biến đổi, nhưng may thay mọi ma trận đơn nhất đều có thể biểu diễn theo công thức tổng quát: $U = e^{iHt}$, trong đó $H$ là ma trận <a href="https://en.wikipedia.org/wiki/Hermitian_matrix" target="_blank" rel="noopener"><em>Hermitian</em></a>, và $t$ biểu thị thời gian (mọi người có thể xem chứng minh ở <strong>Box 1</strong>).</p>
+<div class="alert alert-note">
+  <div>
+    <p><strong>Box 1:</strong> Ma trận $H$ được gọi là Hermitian nếu $H = H^{\dagger}$ và $U$ là một ma trận đơn nhất khi $UU^{\dagger} = U^{\dagger}U = I$.</p>
+<p>Do đó, ta có: $UU^{\dagger} = e^{iHt}e^{-iH^{\dagger}t} = e^{iHt-iHt} = I$. Như vậy nếu $H$ là một ma trận Hermitian thì $U = e^{iHt}$ là một ma trận đơn nhất.</p>
+<p>Mọi người có thể đọc chi tiết hơn lý do hình thành của công thức trên ở Section 2.2.2 <a href="https://www.academia.edu/41154803/Quantum_Computation_and_Quantum_Information_by_Nielsen_and_Chuang" target="_blank" rel="noopener">Nielson &amp; Chuang</a>.</p>
+  </div>
+</div>
+<p>Như vậy, ta hoàn toàn có thể sử dụng một kỹ thuật nhỏ để biến $A$ thành một ma trận Hermitian, $\tilde{A}$, để có một ma trận đơn nhất $U = e^{i\tilde{A}t}$. Ở đây, mình có thể biểu diễn $\tilde{A}$ dưới dạng:</p>
+
+$$
+\tilde{A} = \left( \begin{array}{cc} 0 & A^{\dagger} \\
+A & 0 \end{array} \right) 
+$$
+
+<p>Dễ dàng có thể thấy $\tilde{A} =\tilde{A}^{\dagger}$ nên $\tilde{A}$ là một ma trận Hermitian. Như vậy thay vì trực tiếp giải $x = A^{-1}b$, mình sẽ đi giải quyết bài toán $\ket{x} = \tilde{A}^{-1}\ket{b}$</p>
+<p>Mặt khác, nếu ta phân rã trị riêng của $\tilde{A}$ ta được $V\Lambda V^{-1}$ trong đó $V$ gồm các véc-tơ cột là véc-tơ riêng của $\tilde{A}$ và $\Lambda$ có các phần tử đường chéo là các giá trị riêng của $\tilde{A}$. Mà $\tilde{A} = \tilde{A}^{\dagger}$ nên dễ dàng có thể thấy $VV^{\dagger} = I$ nên $V^{-1} = V^{\dagger}$. Do đó, ta có thể viết công thức phân rã trị riêng của $\tilde{A}$ như sau:
+
+$$
+\tilde{A} = \sum_{i} \lambda_i \ket{v_i}\bra{v_i} 
+$$
+</p>
+
+$$
+\Rightarrow \tilde{A}^{-1} = \sum_{i} \frac{1}{\lambda_i} \ket{v_i}\bra{v_i} \quad (1)
+$$
+
+<p>Ở đó, các véc-tơ riêng $\ket{v_i}$ tạo thành hệ cơ sở trực giao (<em>orthonormal basis</em>), hay $\left\langle v_i| v_i \right\rangle = 1$ và $\left\langle v_i| v_j \right\rangle = 0 $. Nên ta cũng có thể biểu diễn được $\ket{b}$ theo $\ket{v_i}$:
+
+$$
+\ket{b} = \sum_{i} \beta_i \ket{v_i} \quad (2)
+$$
+</p>
+<p>Thay (1) và (2) vào $\ket{x} = \tilde{A}^{-1}\ket{b}$, ta được:</p>
+<p>
+$$
+\ket{x} = \sum_{i} \frac{1}{\lambda_i} \ket{v_i}\bra{v_i} \sum_{i} \beta_i \ket{v_i} 
+$$
+
+
+$$
+= \sum_{i} \frac{\beta_i}{\lambda_i} \ket{v_i} \quad (3)
+$$
+</p>
+<p>Từ kết quả trên, có thể thấy nhiệm vụ của thuật toán HHL sẽ biến đổi đến trạng thái $\sum_{i} \frac{\beta_i}{\lambda_i} \ket{v_i}$. Sau đây, mình sẽ phân tích từng bước một trong những bước triển khai của HHL.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  id="figure-hình-1-cấu-trúc-mạch-của-thuật-toán-hhlhttpswwwgooglecomurlsaiurlhttps3a2f2fwwwresearchgatenet2ffigure2fhhl-algorithm-process_fig1_344506252psigaovvaw3zqinvyafhbdaa7w_vto9just1670659322793000sourceimagescdvfeved0cbeqjhxqfwotcicpq42j7pscfqaaaaadaaaaabaq">
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="[Hình 1: Cấu trúc mạch của thuật toán HHL](https://www.google.com/url?sa=i&amp;url=https%3A%2F%2Fwww.researchgate.net%2Ffigure%2FHHL-algorithm-process_fig1_344506252&amp;psig=AOvVaw3ZqINVyafhbdaA7W_vtO9j&amp;ust=1670659322793000&amp;source=images&amp;cd=vfe&amp;ved=0CBEQjhxqFwoTCICpq42J7PsCFQAAAAAdAAAAABAQ)" srcset="
+               /post/important-subroutine-3/circuit_hu61a04533ea5e0fb5c5a8a7eeffc6ee91_36739_95716748da28af513432a8421f6a384d.webp 400w,
+               /post/important-subroutine-3/circuit_hu61a04533ea5e0fb5c5a8a7eeffc6ee91_36739_77ef1a703d5596fd54e216977fd2378d.webp 760w,
+               /post/important-subroutine-3/circuit_hu61a04533ea5e0fb5c5a8a7eeffc6ee91_36739_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
+               src="/post/important-subroutine-3/circuit_hu61a04533ea5e0fb5c5a8a7eeffc6ee91_36739_95716748da28af513432a8421f6a384d.webp"
+               width="760"
+               height="329"
+               loading="lazy" data-zoomable /></div>
+  </div><figcaption>
+      <a href="https://www.google.com/url?sa=i&amp;url=https%3A%2F%2Fwww.researchgate.net%2Ffigure%2FHHL-algorithm-process_fig1_344506252&amp;psig=AOvVaw3ZqINVyafhbdaA7W_vtO9j&amp;ust=1670659322793000&amp;source=images&amp;cd=vfe&amp;ved=0CBEQjhxqFwoTCICpq42J7PsCFQAAAAAdAAAAABAQ" target="_blank" rel="noopener">Hình 1: Cấu trúc mạch của thuật toán HHL</a>
+    </figcaption></figure>
+<p><em><strong>Bước 1: Khởi tạo</strong></em>
+Như minh họa ở Hình 1, thuật toán HHL có đầu vào gốm có 3 thanh ghi:</p>
+<ul>
+<li>
+<p>Thanh ghi <em><strong>Ancilla</strong></em> gồm 1 qubit được khởi tạo bằng $\ket{0}_{ANC}$. Qubit này sẽ được sử dụng để hỗ trợ cho phép quay (<em>rotation</em>) từ $\lambda_i\ket{v_i}$ thành $\frac{1}{\lambda_i}\ket{v_i}$.</p>
+</li>
+<li>
+<p>Thanh ghi thứ hai sẽ chịu trách nhiệm lưu giữ thông tin về giá trị riêng từ kết quả của thuật toán <em><strong>Phase estimation - QPE</strong></em>. Và tương tự với <a href="/post/important-subroutine-2/">Bài 4</a>, số qubits được dùng ở thanh ghi này sẽ phụ thuộc vào sai số của thuật toán QPE. Các qubits ở đây cũng được khởi tạo với giá trị $\ket{0}_{W}$.</p>
+</li>
+<li>
+<p>Thanh ghi cuối cùng mã hóa giá trị của $\ket{b}$. Mọi biến đổi sau này mình sẽ giả sử $\ket{b}$ đã được chuẩn hóa để đơn giản trong quá trình trình bày các công thức. Trong trường hợp khác $\ket{b}$ hoàn toàn có thể chuẩn hóa theo: $\ket{b_{norm}} = \frac{\ket{b}}{\left\langle b| b \right\rangle^{1/2}}$</p>
+</li>
+</ul>
+<p>Như vậy, mình có thể suy ra trạng thái đầu vào của bài toán từ 3 thanh ghi trên có dạng:</p>
+
+$$
+\ket{\psi_0} = \ket{0}_{ANC} \otimes \ket{0}_{W} \otimes \ket{b} 
+$$
+
+<p><em><strong>Bước 2: Phase Estimation</strong></em></p>
+<p>Như mình trình bày ở <a href="/post/important-subroutine-2/">Bài 4</a>, thuật toán QPE sẽ giúp mình tìm được giá trị riêng, $\lambda_i$, của ma trận đơn nhất $U = e^{i\tilde{A}t}$ tương ứng với véc-tơ riêng cho trước $\ket{v_i}$. Tuy nhiên, vì ta chưa biết giá trị của các véc-tơ riêng $\ket{v_i}$ của $U$, nên thay vào đó ta có thể dùng véc-tơ $\ket{b} = \sum_{i} \beta_i \ket{v_i}$ cho thuật toán QPE.</p>
+<p>Xét ma trận $\tilde{A}$ có phân rã trị riêng bằng $\sum_{j}\lambda_j \ket{v_j}\bra{v_j}$, ta có phân rã trị riêng của $e^{i\tilde{A}t}$ là:
+
+$$
+e^{i\tilde{A}t} = \sum_j e^{i\lambda_j t} \ket{v_j}\bra{v_j} 
+$$
+</p>
+
+$$
+ = \sum_j e^{2\pi i (\frac{\lambda_j t}{2\pi})} \ket{v_j}\bra{v_j} \quad (*)
+$$
+
+<p>Do đó nếu mình áp dụng thuật toán QPE với ma trận đơn nhất $e^{i\tilde{A}t}$ trên véc-tơ $\ket{b}$, mình sẽ thu được trạng thái của $\tilde{\lambda} = \frac{\lambda_i t}{2\pi}$. Như vậy kết quả thu được sau khi sử dụng QPE là:
+
+$$
+\ket{\psi_0} \xrightarrow[]{QPE} \ket{\psi_1} = \ket{0}_{ANC} \otimes \sum_j \beta_j \ket{\tilde{\lambda_j}} \otimes \ket{v_j}
+$$
+</p>
+<p><em><strong>Bước 3: Nghịch đảo giá trị riêng (Eigenvalues Inversion)</strong></em></p>
+<p>Theo như công thức (3), mình cần tính nghịch đảo của $\lambda_i$. Ta có thể đạt được điều này bằng cách áp dụng phép quay của <em>ancilla qubit</em> ($\ket{0}_{ANC}$) theo trục $y$ với một góc $\theta_j$ phụ thuộc vào trạng thái của $\ket{\tilde{\lambda_j}}$. Ở đây,</p>
+<p>
+$$
+\theta_j = 2 \sin^{-1} \frac{C}{{\lambda_j}},
+$$
+
+trong đó $C$ là một hằng số bất kỳ. Do đó phép quay $R_y(\theta_j)$ được biểu diễn dưới dạng:</p>
+
+$$
+R_y(\theta_j) = \left( \begin{array}{cc} \cos(\frac{\theta_j}{2}) & -\sin(\frac{\theta_j}{2}) \\
+\sin(\frac{\theta_j}{2}) & \cos(\frac{\theta_j}{2}) \end{array} \right) 
+$$
+
+<p>Phép quay này sẽ biến đổi <em>ancilla qubit</em> ($\ket{0}_{ANC}$) thành:</p>
+
+$$
+R_y(\theta_j)\ket{0}_{ANC} = \left( \begin{array}{cc} \cos(\frac{\theta_j}{2}) & -\sin(\frac{\theta_j}{2}) \\
+\sin(\frac{\theta_j}{2}) & \cos(\frac{\theta_j}{2}) \end{array} \right)\left( \begin{array}{c} 1 \\
+0  \end{array} \right) = \left( \begin{array}{c} \cos(\frac{\theta_j}{2}) \\
+\sin(\frac{\theta_j}{2})  \end{array} \right) 
+$$
+
+
+$$
+= \cos(\frac{\theta_j}{2})\ket{0} + \sin(\frac{\theta_j}{2})\ket{1} \quad (4)
+$$
+
+<p>Mà $\theta_j = 2 \sin^{-1} \frac{C}{\lambda_j}$, nên $\sin(\frac{\theta_j}{2}) = \frac{C}{\lambda_j}$ và $\cos(\frac{\theta_j}{2}) = \sqrt{1 - \frac{C^2}{\lambda_j^2}}$. Thay kết quả này vào công thức (4), ta được:
+
+$$
+R_y(\theta_j)\ket{0}_{ANC} = \sqrt{1 - \frac{C^2}{{\lambda_j}^2}}\ket{0} + \frac{C}{\lambda_j}\ket{1}
+$$
+</p>
+<p>Như vậy sau bước 3, kết quả của cả ba thanh ghi là:</p>
+
+$$
+\ket{\psi_1} \longrightarrow \ket{\psi_2} = \sum_j (\sqrt{1 - \frac{C^2}{\lambda_j^2}}\ket{0}_{ANC} + \frac{C}{\lambda_j}\ket{1}_{ANC}) \otimes \beta_j \ket{\lambda_j} \otimes \ket{v_j}
+$$
+
+<p><em><strong>Bước 4: Reverse Phase Estimation</strong></em></p>
+<p>Vì mình đã đạt được $\frac{1}{\lambda_j}$, nên thực chất bài toán của chúng ta không còn cần tới $\ket{\lambda_j}$ ở thanh ghi thứ 2. Mình thực hiện phép nghịch đảo của thuật toán QPE. Các phép biến đổi trong máy tính lượng tử là từ các ma trận đơn nhất (<em>unitary matrix</em>) nên luôn tồn tại ma trận nghịch đảo của chúng. Do đó ta hoàn toàn có thể thiết kế phép biến đổi nghịch đảo $QPE^{-1}$ như Hình 1 bằng cách nghịch đảo các phép toán của QPE. Từ đó, mình thu được:</p>
+
+$$
+\ket{\psi_2} \rightarrow \ket{\psi_3} = \sum_j (\sqrt{1 - \frac{C^2}{\lambda_j^2}}\ket{0}_{ANC} + \frac{C}{\lambda_j}\ket{1}_{ANC}) \otimes \beta_j \ket{0}_W \otimes \ket{v_j}
+$$
+
+
+$$
+\Rightarrow \ket{\psi_3} = \ket{0}_W \otimes \sum_j (\sqrt{1 - \frac{C^2}{\lambda_j^2}}\ket{0}_{ANC} + \frac{C}{\lambda_j}\ket{1}_{ANC}) \otimes \beta_j \ket{v_j}
+$$
+
+<p>Vì các qubits ở thanh ghi thứ hai được đưa vê trạng thái khởi tạo ban đầu $\ket{0}_W$ nên mình hoàn toàn có thể bỏ qua thanh ghi này ở trong bài toán của chúng ta:</p>
+
+$$
+\Rightarrow \ket{\psi_3} = \sum_j  (\beta_j \sqrt{1 - \frac{C^2}{\lambda_j^2}}\ket{0}_{ANC} + \frac{C \beta_j}{\lambda_j}\ket{1}_{ANC}) \otimes \ket{v_j} \quad (5)
+$$ 
+
+<p><em><strong>Bước 5: Measurement</strong></em>
+Ở bước cuối cùng này, mình thực hiện phép đo trên <em>ancilla qubit</em> và chỉ lấy kết quả khi <em>ancilla qubit</em> có giá trị bằng $\ket{1}$. Khi đó, từ công thức (5) ta có thể thấy kết quả của thuật toán HHL là:
+
+$$
+\ket{\psi_{final}} = C \sum_{j} \frac{\beta_j}{\lambda_j} \ket{v_j}
+$$ 
+</p>
+<p>Từ đây, ta có thể đấy $\ket{\psi_{final}}$ chính là kết quả $\ket{x} = \sum_{j} \frac{\beta_j}{{\lambda_j}} \ket{v_j}$ mà chúng ta cần tìm kiếm, trong đó các hằng số $C$ và $t$ có thể tinh chỉnh sao cho $C=1$. Nghe có vẻ hơi mâu thuẫn nhưng thực chất để tính toán được $\lambda_j$ ta phần nhiều dựa vào kết quả của $\ket{\tilde{\lambda_j}}$, và chính nó phụ thuộc vào giá trị của $t$. Nên thay vì ngay từ đầu chọn $C = 1$, ta cần tinh chỉnh cả 2 giá trị $C$, $t$ để thu được kết quả chính xác nhất.</p>
+<p>Có thể thấy thuật toán HHL có rất nhiều triển vọng cho sự phát triển của QML, tuy nhiên khả năng tính toán vượt trội của HHL cũng là vấn đề của nó. Câu hỏi ở đây là làm thế nào để lấy được thông tin từ véc-tơ đầu ra $\ket{x}$. Phổ thông nhất có lẽ mọi người sẽ sử dụng phép đo (<em>measurement</em>) toàn bộ số qubits của $\ket{x}$, nhưng với bộ dữ liệu có số chiều lớn, việc thực hiện phép đo trên toàn bộ qubits sẽ tốn nhiều tài nguyên tính toán vì <a href="https://en.wikipedia.org/wiki/No-cloning_theorem#:~:text=In%20physics%2C%20the%20no%2Dcloning,of%20quantum%20computing%20among%20others." target="_blank" rel="noopener">No-cloning Theorem</a> trong máy tính lượng tử. Nên với mỗi lần thực hiện phép đo thuật toán lượng tự cần phải tạo lại các phép biến đổi từ đầu.</p>
+<p>Do đó người ta thường dùng thuật HHL theo 2 cách như sau mà vẫn giữ được khả năng tính toán vượt trội của nó:</p>
+<ul>
+<li>
+<p>Chiếu trạng thái của $\ket{x}$ trên một không gian nhỏ hơn và tính toán giá trị kỳ vọng (<em>expectation value</em>) của $\ket{x}$ trên không gian đó:
+
+$$
+\mathbb{E}_O(x) = \bra{x}O\ket{x}
+$$ 
+
+Trong đó $O$ được gọi là <em><strong>observable</strong></em> có dạng của một ma trận đơn nhất. Các <em>observables</em>, $O$, thường được dùng có thể kể đến như <a href="https://en.wikipedia.org/wiki/Quantum_logic_gate#Pauli_gates_%28X,Y,Z%29" target="_blank" rel="noopener">Pauli-X, Pauli-Y, và Pauli-Z</a> tương ứng với phép chiếu lên x-axis, y-axis, và z-axis của <a href="https://en.wikipedia.org/wiki/Bloch_sphere" target="_blank" rel="noopener">Bloch Sphere</a>.</p>
+</li>
+<li>
+<p>Sử dụng HHL nhưng một chương trình con <em>subroutine</em> cho các thuật toán khác nhằm tận dụng khả năng tính toán vượt trội của nó.</p>
+</li>
+</ul>
+<h1 id="source-code-a-name2a">Source Code <a name="2"></a></h1>
+<p>Đâu tiên ta có <em><strong>class HamiltonianSimulation</strong></em> sẽ tạo một trận đơn nhất $U$ từ ma trận Hermitian $\tilde{A}$.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">HamiltonianSimulation</span><span class="p">(</span><span class="n">cirq</span><span class="o">.</span><span class="n">EigenGate</span><span class="p">,</span> <span class="n">cirq</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">SingleQubitGate</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Class này sẽ tạo ma trận đơn nhất từ một ma trận Hermitian đầu vào _H_ và
+</span></span></span><span class="line"><span class="cl"><span class="s2">    thời gian t.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_H_</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">exponent</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cirq</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">SingleQubitGate</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cirq</span><span class="o">.</span><span class="n">EigenGate</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exponent</span><span class="o">=</span><span class="n">exponent</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">_H_</span> <span class="o">=</span> <span class="n">_H_</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">t</span> <span class="o">=</span> <span class="n">t</span>
+</span></span><span class="line"><span class="cl">        <span class="n">eigen_vals</span><span class="p">,</span> <span class="n">eigen_vecs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_H_</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">eigen_components</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">_lambda_</span><span class="p">,</span> <span class="n">vec</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">eigen_vals</span><span class="p">,</span> <span class="n">eigen_vecs</span><span class="o">.</span><span class="n">T</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">theta</span> <span class="o">=</span> <span class="o">-</span><span class="n">_lambda_</span><span class="o">*</span><span class="n">t</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+</span></span><span class="line"><span class="cl">            <span class="n">_proj_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">vec</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">vec</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">eigen_components</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">theta</span><span class="p">,</span> <span class="n">_proj_</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">_with_exponent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exponent</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">HamiltonianSimulation</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_H_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">exponent</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">_eigen_components</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">eigen_components</span>
+</span></span></code></pre></div><p>Ở đây, như mình đã đề cập ở công thức (*), hàm trên sẽ tính ma trận đơn nhất $U$ theo $e^{i\tilde{A}t}  = \sum_j e^{2\pi i (\frac{\lambda_j t}{2\pi})} \ket{v_j}\bra{v_j}$</p>
+<p>Tiếp đến, ta có mô-đun thứ hai là <em><strong>QuantumPhaseEstimation</strong></em>. Đoạn code dưới đây hầu hết sẽ giống với code của <a href="/post/important-subroutine-2/">Bài 4</a>, tuy nhiên nó được cải tiến để có thể hoạt động với ma trận $U$ bất kỳ.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">ControlledUnitary</span><span class="p">(</span><span class="n">cirq</span><span class="o">.</span><span class="n">Gate</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_qubits</span><span class="p">,</span> <span class="n">num_input_qubits</span><span class="p">,</span> <span class="n">U</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">_num_qubits</span> <span class="o">=</span> <span class="n">num_qubits</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">num_input_qubits</span> <span class="o">=</span> <span class="n">num_input_qubits</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">num_control_qubits</span> <span class="o">=</span> <span class="n">num_qubits</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_input_qubits</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">U</span> <span class="o">=</span> <span class="n">U</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">num_qubits</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_num_qubits</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">_decompose_</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qubits</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">qubits</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">input_state_qubit</span> <span class="o">=</span> <span class="n">qubits</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">num_input_qubits</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">control_qubits</span> <span class="o">=</span> <span class="n">qubits</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">num_input_qubits</span><span class="p">:]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">q</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">control_qubits</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">_pow_</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_control_qubits</span> <span class="o">-</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">#yield self.U(q, *input_state_qubit)**_pow_</span>
+</span></span><span class="line"><span class="cl">            <span class="k">yield</span> <span class="n">cirq</span><span class="o">.</span><span class="n">ControlledGate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">U</span><span class="o">**</span><span class="n">_pow_</span><span class="p">)(</span><span class="n">q</span><span class="p">,</span> <span class="o">*</span><span class="n">input_state_qubit</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">          
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">QuantumPhaseEstimation</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;&#39;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">    Class QuantumPhaseEstimation được cải tiến từ code bài 4 (https://github.com/qmlvietnam/CodeforBlog/blob/main/QPE%20(1).ipynb)
+</span></span></span><span class="line"><span class="cl"><span class="s1">    cho ma trận đơn nhất U bất kỳ.
+</span></span></span><span class="line"><span class="cl"><span class="s1">    &#39;&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                 <span class="n">U</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                 <span class="n">input_qubits</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                 <span class="n">num_output_qubits</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                 <span class="n">output_qubits</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">initial_circuit</span><span class="o">=</span><span class="p">[],</span><span class="n">measure_or_sim</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">U</span> <span class="o">=</span> <span class="n">U</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">input_qubits</span> <span class="o">=</span> <span class="n">input_qubits</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">num_input_qubits</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">input_qubits</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">initial_circuit</span> <span class="o">=</span> <span class="n">initial_circuit</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">measure_or_sim</span> <span class="o">=</span> <span class="n">measure_or_sim</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">output_qubits</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">output_qubits</span> <span class="o">=</span> <span class="n">output_qubits</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">num_output_qubits</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_qubits</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">        <span class="k">elif</span> <span class="n">num_output_qubits</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">num_output_qubits</span> <span class="o">=</span> <span class="n">num_output_qubits</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">output_qubits</span> <span class="o">=</span> <span class="p">[</span><span class="n">cirq</span><span class="o">.</span><span class="n">LineQubit</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> 
+</span></span><span class="line"><span class="cl">               <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_input_qubits</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">num_input_qubits</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">num_output_qubits</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&#34;Alteast one of num_output_qubits or output_qubits to be specified&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">num_qubits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_input_qubits</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">num_output_qubits</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">inv_qft</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">_qft_</span><span class="o">=</span> <span class="n">QFT</span><span class="p">(</span><span class="n">qubits</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">output_qubits</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">_qft_</span><span class="o">.</span><span class="n">qft_circuit</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;print&#39;</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">_qft_</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">QFT_inv_circuit</span> <span class="o">=</span>  <span class="bp">self</span><span class="o">.</span><span class="n">_qft_</span><span class="o">.</span><span class="n">inv_circuit</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">circuit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">circuit</span> <span class="o">=</span> <span class="n">cirq</span><span class="o">.</span><span class="n">Circuit</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">circuit</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cirq</span><span class="o">.</span><span class="n">H</span><span class="o">.</span><span class="n">on_each</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">output_qubits</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">circuit</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_qubits</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">input_qubits</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">output_qubits</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_qubits</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">qubits</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">input_qubits</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_qubits</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">circuit</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ControlledUnitary</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_qubits</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                         <span class="bp">self</span><span class="o">.</span><span class="n">num_input_qubits</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">U</span><span class="p">)(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">qubits</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">inv_qft</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">circuit</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">QFT_inv_circuit</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">initial_circuit</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">circuit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">initial_circuit</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">circuit</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">measure</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">circuit</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cirq</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">output_qubits</span><span class="p">,</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">simulate_circuit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">measure</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sim</span> <span class="o">=</span> <span class="n">cirq</span><span class="o">.</span><span class="n">Simulator</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">measure</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">result</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">simulate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">circuit</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">result</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">circuit</span><span class="p">,</span> <span class="n">repetitions</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> 
+</span></span></code></pre></div><p><em><strong>class EigenValueInversion</strong></em> triển khai phép nghịch đảo ở Bước 3. Ở đây, như mình đã đề cập giá trị $\theta_j$ bị ràng buộc bởi giá trị của $\ket{\tilde{\lambda_j}}$:
+
+$$
+\theta_j = 2 \sin^{-1} \frac{C}{{\lambda_j}},
+$$
+</p>
+<p>
+$$
+\Leftrightarrow \theta_j = 2 \sin^{-1} \frac{Ct}{{2\pi \tilde{\lambda_j}}},
+$$
+
+Từ đó, ta có thuật toán nghịch đảo giá trị riêng được triển khai như sau:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">EigenValueInversion</span><span class="p">(</span><span class="n">cirq</span><span class="o">.</span><span class="n">Gate</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Class EigenValueInversion sẽ nghịch đảo giá trị riêng. Ứng với mỗi giá trị riêng,
+</span></span></span><span class="line"><span class="cl"><span class="s2">    ta áp dụng phép xoay R_y tương ứng.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_qubits</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">super</span><span class="p">(</span><span class="n">EigenValueInversion</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">_num_qubits</span> <span class="o">=</span> <span class="n">num_qubits</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">C</span> <span class="o">=</span> <span class="n">C</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">t</span> <span class="o">=</span> <span class="n">t</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Tổng số các giá trị riêng self.N</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">N</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">num_qubits</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_num_qubits</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">_decompose_</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qubits</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">base_state</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">eig_val_state</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># Với mỗi véc-tơ cở sở của |\tilde{\lambda_j}&gt; ta tính phép xoay R_y(\theta_j) tương ứng </span>
+</span></span><span class="line"><span class="cl">            <span class="n">eig_val_gate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ancilla_rotation</span><span class="p">(</span><span class="n">eig_val_state</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1"># Xác định qubits của thanh ghi thứ 2 cho phép biến đổi Controlled-R_Y </span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">eig_val_state</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">                <span class="n">base_state</span> <span class="o">=</span> <span class="n">eig_val_state</span> <span class="o">-</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">            <span class="n">qubits_to_flip</span> <span class="o">=</span> <span class="n">eig_val_state</span> <span class="o">^</span> <span class="n">base_state</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">qubits</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">::</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="n">qubits_to_flip</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">yield</span> <span class="n">cirq</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="n">qubits_to_flip</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="c1"># Tạo phép biến đổi Controlled-R_Y </span>
+</span></span><span class="line"><span class="cl">                <span class="n">eig_val_gate</span> <span class="o">=</span> <span class="n">cirq</span><span class="o">.</span><span class="n">ControlledGate</span><span class="p">(</span><span class="n">eig_val_gate</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="k">yield</span> <span class="n">eig_val_gate</span><span class="p">(</span><span class="o">*</span><span class="n">qubits</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">_ancilla_rotation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eig_val_state</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">eig_val_state</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">eig_val_state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Tính \theta_j theo công thức mình đề cập ở trên</span>
+</span></span><span class="line"><span class="cl">        <span class="n">theta</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">asin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">C</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">t</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">eig_val_state</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">cirq</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+</span></span></code></pre></div><p>Từ 3 mô-dun trên, mình có để xây dựng thuật toán HHL một cách hoàn chỉnh</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">HHL</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hamiltonian</span><span class="p">,</span> <span class="n">initial_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">initial_state_transforms</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">qpe_register_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">        :param hamiltonian: ma trận Hermitan đầu vào 
+</span></span></span><span class="line"><span class="cl"><span class="s2">        :param C: C
+</span></span></span><span class="line"><span class="cl"><span class="s2">        :param t: t
+</span></span></span><span class="line"><span class="cl"><span class="s2">        :param initial_state: véc-tơ |b&gt; đầu vào
+</span></span></span><span class="line"><span class="cl"><span class="s2">        &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">hamiltonian</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">initial_state</span> <span class="o">=</span> <span class="n">initial_state</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">initial_state_transforms</span> <span class="o">=</span> <span class="n">initial_state_transforms</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">qpe_register_size</span> <span class="o">=</span> <span class="n">qpe_register_size</span> <span class="c1"># số qubit của thanh ghi số 2 cho thuật toán QPE</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">C</span> <span class="o">=</span> <span class="n">C</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">t</span> <span class="o">=</span> <span class="n">t</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">const</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">t</span> <span class="o">=</span> <span class="n">const</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">C</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">C</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">qpe_register_size</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">build_hhl_circuit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Khởi tạo cấu trúc mạch cho thuật toán QFT. </span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Về sau các phép biến đổi sẽ được thêm vào bằng circuit.append()</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">circuit</span> <span class="o">=</span> <span class="n">cirq</span><span class="o">.</span><span class="n">Circuit</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Khởi tạo Ancilla qubit = |0&gt; cho thanh ghi thứ nhất</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">ancilla_qubit</span> <span class="o">=</span> <span class="n">cirq</span><span class="o">.</span><span class="n">LineQubit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Khởi tạo các qubits của thanh ghi thứ 2 có giá trị |0&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">qpe_register</span> <span class="o">=</span> <span class="p">[</span><span class="n">cirq</span><span class="o">.</span><span class="n">LineQubit</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">qpe_register_size</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># khởi tạo các qubits mã hóa véc-tơ |b&gt;. Nếu initial_state_transforms = None,</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># véc-tơ |b&gt; được cho giá trị là |0&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">initial_state</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">initial_state_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hamiltonian</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">initial_state_size</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="bp">self</span><span class="o">.</span><span class="n">initial_state</span> <span class="o">=</span> <span class="p">[</span><span class="n">cirq</span><span class="o">.</span><span class="n">LineQubit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">qpe_register_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="bp">self</span><span class="o">.</span><span class="n">initial_state</span> <span class="o">=</span> <span class="p">[</span><span class="n">cirq</span><span class="o">.</span><span class="n">LineQubit</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">qpe_register_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                               <span class="bp">self</span><span class="o">.</span><span class="n">qpe_register_size</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">initial_state_size</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">op</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">initial_state_transforms</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="n">op</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">circuit</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">op</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">initial_state</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># Tạo ma trận đơn nhất</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">U</span> <span class="o">=</span> <span class="n">HamiltonianSimulation</span><span class="p">(</span><span class="n">_H_</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">hamiltonian</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Quantum Phase Estimation của ma trận U và véc-tơ |b&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">_qpe_</span> <span class="o">=</span> <span class="n">QuantumPhaseEstimation</span><span class="p">(</span><span class="n">input_qubits</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">initial_state</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                       <span class="n">output_qubits</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">qpe_register</span><span class="p">,</span> <span class="n">U</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">U</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">_qpe_</span><span class="o">.</span><span class="n">circuit</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="nb">dir</span><span class="p">(</span><span class="n">_qpe_</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;CIRCUIT&#39;</span><span class="p">,</span><span class="n">_qpe_</span><span class="o">.</span><span class="n">circuit</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">circuit</span> <span class="o">+=</span> <span class="n">_qpe_</span><span class="o">.</span><span class="n">circuit</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Nghịch đảo giá trị riêng bằng hàm EigenValueInversion</span>
+</span></span><span class="line"><span class="cl">        <span class="n">_eig_val_inv_</span> <span class="o">=</span> <span class="n">EigenValueInversion</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">qpe_register_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">C</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">circuit</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_eig_val_inv_</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">qpe_register</span> <span class="o">+</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ancilla_qubit</span><span class="p">])))</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">circuit</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Nghịch đảo các phép toán của QPE</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">circuit</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_qpe_</span><span class="o">.</span><span class="n">circuit</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Thực hiện phép đo trên ancilla qubit</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">circuit</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cirq</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ancilla_qubit</span><span class="p">,</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Thêm các observables để tính giá trị kỳ vọng</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">circuit</span><span class="o">.</span><span class="n">append</span><span class="p">([</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cirq</span><span class="o">.</span><span class="n">PhasedXPowGate</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">                <span class="n">exponent</span><span class="o">=</span><span class="n">sympy</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;exponent&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                <span class="n">phase_exponent</span><span class="o">=</span><span class="n">sympy</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;phase_exponent&#39;</span><span class="p">))(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">initial_state</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cirq</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">initial_state</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">simulate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">      <span class="c1"># # Mô phỏng chương trình trên máy tính lượng tử và in ra kết quả</span>
+</span></span><span class="line"><span class="cl">        <span class="n">simulator</span> <span class="o">=</span> <span class="n">cirq</span><span class="o">.</span><span class="n">Simulator</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># Khởi tạo các observables: Pauli-X, Pauli-Y, và Pauli-Z </span>
+</span></span><span class="line"><span class="cl">        <span class="n">params</span> <span class="o">=</span> <span class="p">[{</span>
+</span></span><span class="line"><span class="cl">            <span class="s1">&#39;exponent&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s1">&#39;phase_exponent&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.5</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="s1">&#39;exponent&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s1">&#39;phase_exponent&#39;</span><span class="p">:</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="s1">&#39;exponent&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s1">&#39;phase_exponent&#39;</span><span class="p">:</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">results</span> <span class="o">=</span> <span class="n">simulator</span><span class="o">.</span><span class="n">run_sweep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">circuit</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">repetitions</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">result</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">((</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s1">&#39;Z&#39;</span><span class="p">),</span> <span class="nb">list</span><span class="p">(</span><span class="n">results</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">expectation</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">                <span class="n">result</span><span class="o">.</span><span class="n">measurements</span><span class="p">[</span><span class="s1">&#39;m&#39;</span><span class="p">][</span><span class="n">result</span><span class="o">.</span><span class="n">measurements</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">expectation</span><span class="p">))</span>
+</span></span></code></pre></div><p>Để thí nghiệm thuật toán HHL này, mình sẽ lấy ví dụ các tham số như sau:
+
+$$
+\tilde{A}\! =\! \left( \begin{array}{cc} 4.302\! -\! 6.016\!\times\! 10^{-8}j & 0.235\! +\! 9.344\!\times\! 10^{-1}j\\
+0.235\! -\! 9.344\!\times\! 10^{-1}j & 0.584\! +\! 6.016\!\times\! 10^{-8}j \end{array} \right)
+$$
+
+
+$$
+\ket{b} = R_z(1.276359)R_x(1.276359)\ket{0}
+$$
+
+
+$$
+ t = 0.358166 \times \pi
+$$
+
+
+$$
+ n = 4
+$$
+
+
+$$
+C = \frac{ 2 \pi}{(2^nt )}
+$$
+</p>
+<p>Với các <em>observables</em>: Pauli-X, Pauli-Y, và Pauli-Z, thì mình mong chờ kết quả tương ứng thu được là: $(0.144130, 0.413217, -0.899154)$.</p>
+<p>So với kết quả thu được từ thuật toán HHL trên:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">X</span> <span class="o">=</span> <span class="mf">0.19298245614035092</span>
+</span></span><span class="line"><span class="cl"><span class="n">Y</span> <span class="o">=</span> <span class="mf">0.4145995747696669</span>
+</span></span><span class="line"><span class="cl"><span class="n">Z</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.8652207591014718</span>
+</span></span></code></pre></div><p>Ta thấy thuật toán HHL mang lại kết quả khá sát so với kết quả chúng ta mong đợi. Mọi người có thể thử tăng độ chính xác bằng cách tăng giá trị $n$ trên.</p>
+<p><strong>Toàn bộ code của thuật toán HHL ở <a href="https://github.com/qmlvietnam/CodeforBlog/blob/main/HHL.ipynb" target="_blank" rel="noopener">đây</a>.</strong></p>
+<p>Cảm ơn mọi người đã đọc bài.</p>
+<script src="https://giscus.app/client.js"
+        data-repo="qmlvietnam/qmlvietnam.github.io"
+        data-repo-id="R_kgDOH833kg"
+        data-category="General"
+        data-category-id="DIC_kwDOH833ks4CRwGU"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light_high_contrast"
+        data-lang="vi"
+        crossorigin="anonymous"
+        async>
+</script><blockquote>
+</blockquote>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Mọi người có thể đọc thêm bài báo gốc ở <a href="https://arxiv.org/abs/0811.3171" target="_blank" rel="noopener">đây</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+    </div>
+
+    
+
+
+
+
+
+
+
+<div class="share-box">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://example.com/post/important-subroutine-3/&amp;text=B%c3%a0i%205:%20Important%20Subroutine%203%20-%20HHL%20Algorithm" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://example.com/post/important-subroutine-3/&amp;t=B%c3%a0i%205:%20Important%20Subroutine%203%20-%20HHL%20Algorithm" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=B%c3%a0i%205:%20Important%20Subroutine%203%20-%20HHL%20Algorithm&amp;body=https://example.com/post/important-subroutine-3/" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://example.com/post/important-subroutine-3/&amp;title=B%c3%a0i%205:%20Important%20Subroutine%203%20-%20HHL%20Algorithm" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=B%c3%a0i%205:%20Important%20Subroutine%203%20-%20HHL%20Algorithm%20https://example.com/post/important-subroutine-3/" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://example.com/post/important-subroutine-3/&amp;title=B%c3%a0i%205:%20Important%20Subroutine%203%20-%20HHL%20Algorithm" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+
+
+
+
+
+  
+  
+  
+
+  
+  
+    
+  
+  
+    
+  
+
+  
+
+  
+  <p class="powered-by copyright-license-text">
+    © 2022 Me. This work is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0" rel="noopener noreferrer" target="_blank">CC BY NC ND 4.0</a>
+  </p>
+  
+
+  <p class="powered-by footer-license-icons">
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0" rel="noopener noreferrer" target="_blank" aria-label="Creative Commons">
+      <i class="fab fa-creative-commons fa-2x" aria-hidden="true"></i>
+      <i class="fab fa-creative-commons-by fa-2x" aria-hidden="true"></i>
+      
+        <i class="fab fa-creative-commons-nc fa-2x" aria-hidden="true"></i>
+      
+      
+        <i class="fab fa-creative-commons-nd fa-2x" aria-hidden="true"></i>
+      
+    </a>
+  </p>
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-themes" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+
+
+<script src="/js/vendor-bundle.min.d26509351aa0ff874abbee824e982e9b.js"></script>
+
+
+
+
+  
+
+  
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script id="search-hit-fuse-template" type="text/x-template">
+    <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+    </div>
+  </script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/krisk/Fuse@v3.2.1/dist/fuse.min.js" integrity="sha512-o38bmzBGX+hD3JHWUFCDA09btWaqrNmoJ3RXLlrysA7PP01Kgs4UlE4MhelE1v5dJR3+cxlR4qQlotsW7jKsnw==" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/gh/julmot/mark.js@8.11.1/dist/jquery.mark.min.js" integrity="sha512-mhbv5DqBMgrWL+32MmsDOt/OAvqr/cHimk6B8y/bx/xS88MVkYGPiVv2ixKVrkywF2qHplNRUvFsAHUdxZ3Krg==" crossorigin="anonymous"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+<script id="page-data" type="application/json">{"use_headroom":true}</script>
+
+
+
+  <script src="/js/wowchemy-headroom.c251366b4128fd5e6b046d4c97a62a51.js" type="module"></script>
+
+
+
+
+
+
+
+
+  
+  
+
+
+<script src="/en/js/wowchemy.min.54dd6e4d8f2e4b1d098381b57f18dd83.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

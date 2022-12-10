@@ -1,0 +1,1371 @@
+<!DOCTYPE html><html lang="en-us" >
+
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.6.0 for Hugo" />
+  
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Nằm thứ hai trong bộ ba bài viết về các *subroutines* quan trọng trong khoa học lượng tử nói chung và QML nói riêng, mình muốn giới thiệu mọi người về thuật toán ***Quantum Phase Estimation*** (QPE)." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://example.com/post/important-subroutine-2/" />
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+    
+    <script src="/js/mathjax-config.js"></script>
+  
+
+  
+
+  <link rel="stylesheet" href="/css/vendor-bundle.min.c7b8d9abd591ba2253ea42747e3ac3f5.css" media="print" onload="this.media='all'">
+
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css" integrity="sha512-W0xM4mr6dEP9nREo7Z9z+9X70wytKvMGeDsj7ps2+xg5QPrEBXC8tAW1IFnzjR6eoJ90JmCnFzerQJTLzIEHjA==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.3495fc6150afdd177f1d04fbba9f5e2c.css" />
+
+  
+  
+  
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="/css/libs/chroma/github-light.min.css" title="hl-light" media="print" onload="this.media='all'" >
+    <link rel="stylesheet" href="/css/libs/chroma/dracula.min.css" title="hl-dark" media="print" onload="this.media='all'" disabled>
+  
+
+  
+  
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+  
+  
+
+  
+  
+
+  
+  
+    <link rel="manifest" href="/manifest.webmanifest" />
+  
+
+  
+  <link rel="icon" type="image/png" href="/media/icon_hu03ccfb93536ffaa14d5c51dca71785c3_35563_32x32_fill_lanczos_center_3.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu03ccfb93536ffaa14d5c51dca71785c3_35563_180x180_fill_lanczos_center_3.png" />
+
+  <link rel="canonical" href="https://example.com/post/important-subroutine-2/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+
+  
+  
+    
+    
+  
+  <meta property="twitter:card" content="summary_large_image" />
+  
+  <meta property="og:site_name" content="QML Vietnam" />
+  <meta property="og:url" content="https://example.com/post/important-subroutine-2/" />
+  <meta property="og:title" content="Bài 4: Important Subroutine 2 - Quantum Phase Estimation | QML Vietnam" />
+  <meta property="og:description" content="Nằm thứ hai trong bộ ba bài viết về các *subroutines* quan trọng trong khoa học lượng tử nói chung và QML nói riêng, mình muốn giới thiệu mọi người về thuật toán ***Quantum Phase Estimation*** (QPE)." /><meta property="og:image" content="https://example.com/post/important-subroutine-2/featured.jpg" />
+    <meta property="twitter:image" content="https://example.com/post/important-subroutine-2/featured.jpg" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2022-12-08T10:06:45&#43;07:00"
+      />
+    
+    <meta property="article:modified_time" content="2022-12-08T10:06:45&#43;07:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.com/post/important-subroutine-2/"
+  },
+  "headline": "Bài 4: Important Subroutine 2 - Quantum Phase Estimation",
+  
+  "image": [
+    "https://example.com/post/important-subroutine-2/featured.jpg"
+  ],
+  
+  "datePublished": "2022-12-08T10:06:45+07:00",
+  "dateModified": "2022-12-08T10:06:45+07:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Authors"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "QML Vietnam",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.com/media/icon_hu03ccfb93536ffaa14d5c51dca71785c3_35563_192x192_fill_lanczos_center_3.png"
+    }
+  },
+  "description": "Nằm thứ hai trong bộ ba bài viết về các *subroutines* quan trọng trong khoa học lượng tử nói chung và QML nói riêng, mình muốn giới thiệu mọi người về thuật toán ***Quantum Phase Estimation*** (QPE)."
+}
+</script>
+
+  
+
+  
+
+  
+
+
+  <title>Bài 4: Important Subroutine 2 - Quantum Phase Estimation | QML Vietnam</title>
+
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="8f9aa04c83051c3138aba4dca40b3435" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.613040fe4f2c0f007b4dcb64404201cb.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<header class="header--fixed">
+  <nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+    <div class="container-xl">
+
+      
+      <div class="d-none d-lg-inline-flex">
+        <a class="navbar-brand" href="/">QML Vietnam</a>
+      </div>
+      
+
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+      <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+      
+      <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+        <a class="navbar-brand" href="/">QML Vietnam</a>
+      </div>
+      
+
+      
+      
+      <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+        
+        <ul class="navbar-nav d-md-inline-flex">
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#about"><span>Home</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#posts"><span>Blogs</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#newsletter"><span>Newsletter</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#contact"><span>Contact</span></a>
+          </li>
+
+          
+          
+
+        
+
+          
+        </ul>
+      </div>
+
+      <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+        
+        
+
+        
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+        
+        
+        <li class="nav-item dropdown theme-dropdown">
+          <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+            <i class="fas fa-moon" aria-hidden="true"></i>
+          </a>
+          <div class="dropdown-menu">
+            <a href="#" class="dropdown-item js-set-theme-light">
+              <span>Light</span>
+            </a>
+            <a href="#" class="dropdown-item js-set-theme-dark">
+              <span>Dark</span>
+            </a>
+            <a href="#" class="dropdown-item js-set-theme-auto">
+              <span>Automatic</span>
+            </a>
+          </div>
+        </li>
+        
+
+        
+        
+
+      </ul>
+
+    </div>
+  </nav>
+</header>
+
+
+  </div>
+
+  <div class="page-body">
+    
+    
+    
+
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<div class="article-container pt-3">
+  <h1>Bài 4: Important Subroutine 2 - Quantum Phase Estimation</h1>
+
+  
+
+  
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Dec 8, 2022
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    8 min read
+  </span>
+  
+
+  
+  
+  
+  
+
+  
+  
+
+</div>
+
+  
+
+
+
+
+
+</div>
+
+
+<div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 720px; max-height: 405px;">
+  <div style="position: relative">
+    <img src="/post/important-subroutine-2/featured_hu4732a29bd2d95e34e78c930f892e83c1_34288_720x2500_fit_q75_h2_lanczos.webp" width="720" height="405" alt="" class="featured-image">
+    
+  </div>
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <meta property="og:image" content="/post/important-subroutine-2/featured.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="200">
+<meta property="og:image:height" content="200">
+Nằm thứ hai trong bộ ba bài viết về các *subroutines* quan trọng trong khoa học lượng tử nói chung và QML nói riêng, mình muốn giới thiệu mọi người về thuật toán ***Quantum Phase Estimation*** (QPE). Chính sự xuất hiện của thuật toán này đã tạo tiền đề cho nhưng ứng dụng của máy tính lượng tử cho các bài toán phức tạp dường như không thể xử lý trên máy tính truyền thống như: *period finding* hay *factoring numbers*. Do đó, mình sẽ cùng mọi người phân tích rõ hơn về thuật toán này.
+<h1 id="nội-dung">Nội dung</h1>
+<ol>
+<li><a href="#1">Quantum Phase Estimation</a></li>
+<li><a href="#2">Độ phức tạp của QPE</a></li>
+<li><a href="#3">Source Code</a></li>
+</ol>
+<h1 id="quantum-phase-estimation-a-name1a">Quantum Phase Estimation <a name="1"></a></h1>
+<p>Cho một ma trận đơn nhất (<em>unitary matrix</em>), $\mathcal{U}$, ta cần phải tìm giá trị riêng tương ứng với véc-tơ riêng $\ket{\psi}$ của ma trận $\mathcal{U}$. Vì $\mathcal{U}$ là một ma trận đơn nhất nên khá dễ dàng cho mình chứng minh được các giá trị riêng $\lambda$ của $\mathcal{U}$ có độ lớn là $1$ (mọi người có thể xem chứng minh ở <strong>Box 1</strong>). Do đó, $\lambda$ hoàn toàn có thể viết dưới dạng $e^{2\pi i \phi}$, $0\leq \phi &lt; 1$, vì $\lambda^{*} \lambda = e^{-2\pi i \phi + 2\pi i \phi} = e^0 = 1$. Như vậy, thuật toán <em>Quantum Phase Estimation</em> (hay QPE) thực chất sẽ đi tính $\phi$ cho giá trị riêng $\lambda$.</p>
+<div class="alert alert-note">
+  <div>
+    <strong>Box 1:</strong> Ta có $ \mathcal{U} \ket{\psi}=\lambda \ket{\psi}$ và $\mathcal{U}^{\dagger}\mathcal{U} = I$ (vì $\mathcal{U}$ là ma trận đơn nhất), nên:
+$\left\langle \psi| \psi \right\rangle = \left\langle \psi| \mathcal{U}^{\dagger} \mathcal{U} |\psi \right\rangle = \bra{\psi} \lambda^{*} \lambda \ket{\psi} = |\lambda|^2\left\langle \psi| \psi \right\rangle $. Do đó, $|\lambda|^2 = 1$
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  id="figure-hình-1-cấu-trúc-mạch-của-thuật-toán-qpehttpsenwikipediaorgwikiquantum_phase_estimation_algorithm">
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="[Hình 1: Cấu trúc mạch của thuật toán QPE](https://en.wikipedia.org/wiki/Quantum_phase_estimation_algorithm)" srcset="
+               /post/important-subroutine-2/circuit_huc47373d4e794d44fd5d3937ab331d6cf_50019_e3d96adbcc7732115428a8fd72b34728.webp 400w,
+               /post/important-subroutine-2/circuit_huc47373d4e794d44fd5d3937ab331d6cf_50019_b72b67cafa57ac3352e62736c7bfc2c7.webp 760w,
+               /post/important-subroutine-2/circuit_huc47373d4e794d44fd5d3937ab331d6cf_50019_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
+               src="/post/important-subroutine-2/circuit_huc47373d4e794d44fd5d3937ab331d6cf_50019_e3d96adbcc7732115428a8fd72b34728.webp"
+               width="760"
+               height="313"
+               loading="lazy" data-zoomable /></div>
+  </div><figcaption>
+      <a href="https://en.wikipedia.org/wiki/Quantum_phase_estimation_algorithm" target="_blank" rel="noopener">Hình 1: Cấu trúc mạch của thuật toán QPE</a>
+    </figcaption></figure>
+<p>Cấu trúc mạch của thuật toán QPE được minh họa ở Hình 1. Thuật toán sẽ có 2 thành phần chính: với thanh ghi đầu tiên, gồm $n$ qubits được khởi tạo ban đầu bằng $\ket{0}$, chịu trách nhiệm giữ nhưng thông tin về $\phi$ sau khi thuật toán kết thúc; còn thanh ghi thứ 2 mã hóa giá trị của véc-tơ riêng $\ket{\psi}$. Vì giá trị của $\phi$ bất định trong khoảng $[0,1)$ nên có thể thấy rằng giá trị của $n$ dùng để giải mã $\phi$ sẽ linh hoạt tùy thuộc độ chính xác mà chúng ta mong muốn (mọi người có thể xem giải thích ở <strong>Box 2</strong>).</p>
+<div class="alert alert-note">
+  <div>
+    <p><strong>Box 2:</strong> Ta có $\phi \in [0,1)$, tương tự với thuật toán QFT ở <a href="/post/important-subroutine-1/">Bài 3</a>, mình có thể biểu diễn dưới dạng nhị phân như sau:</p>
+<p>$$
+\phi = 0.\phi_1\phi_2&hellip;\phi_k\phi_{k+1}&hellip;
+$$</p>
+<p>Vì $\phi$ chưa xác định nên giả sử ta dùng $n$ qubit để giải mã $\phi$ thì luôn tồn tại giá trị $\epsilon \geq 0$ sao cho</p>
+<p>$$
+\phi = 0.\phi_1\phi_2&hellip;\phi_n + \epsilon
+$$</p>
+<p>Trong đó $\epsilon = 0$ khi và chỉ khi $\phi$ có thể biểu diễn chính xác với $n$ qubits. Do đó độ chính xác của thuật toán QPE sẽ phù thuộc vào mọi người tinh chỉnh giá trị $n$.</p>
+  </div>
+</div>
+<p>Như mọi người có thể thấy ở Hình 1, thuật toán QPE gồm có 3 bước:</p>
+<p><em><strong>Bước 1:</strong></em> Sử dụng cổng Hadamard lên các qubits  ở thanh ghi đầu tiên. Vì các qubits được khởi tạo bằng véc-tơ $\ket{0}$ nên:
+
+$$
+\ket{q^1} = H^{\otimes n} \ket{0}^{\otimes n} = \frac{1}{2^{n/2}} (\ket{0}+\ket{1})(\ket{0}+\ket{1})...(\ket{0}+\ket{1})  
+$$
+
+
+$$
+ = \frac{1}{2^{n/2}} \sum_{k=0}^{2^n-1}\ket{k}
+$$
+
+<em><strong>Bước 2:</strong></em> Lần lượt biến đổi qubits ở thanh ghi thứ hai với ma trận $\mathcal{U}^{2^{n-m}}$; ở đó, phép biến đổi này sẽ phụ thuộc vào qubit thứ $m$ của thanh ghi đầu tiên, $\ket{q^1_m}$. Nếu $\ket{q^1_m} = \ket{0}$, phép biến đổi sẽ giữ nguyên giá trị của $\ket{\psi}$ ở thanh ghi thứ hai, và nó chỉ thực hiện biến đổi với ma trận $\mathcal{U}^{n-m}$ khi $\ket{q^1_m} = \ket{1}$. Do đó, mình có thể ký hiệu phép đổi này là <em>controlled- $\mathcal{U}^{2^{n-m}}$</em> (hay $C-U^{2^{n-m}}$ như Hình 1). Như vậy, cổng $C-U^{2^{n-m}}$ sẽ biến đổi bài toán của chúng ta như sau:
+
+$$
+(C-U^{2^{n-m}}) \ket{\psi} \frac{1}{\sqrt{2}} (\ket{0}+\ket{1}) =  \frac{1}{\sqrt{2}} (\ket{\psi}\ket{0}+\mathcal{U}^{2^{n-m}}\ket{\psi}\ket{1})
+$$
+
+
+$$
+ = \frac{1}{\sqrt{2}} (\ket{\psi}\ket{0}+\lambda^{2^{n-m}}\ket{\psi}\ket{1}) = \frac{1}{\sqrt{2}} (\ket{\psi}\ket{0}+e^{2\pi i \phi 2^{n-m}}\ket{\psi}\ket{1})
+$$
+
+
+$$
+ = \ket{\psi} \otimes \frac{1}{\sqrt{2}} (\ket{0}+e^{2\pi i \phi 2^{n-m}}\ket{1})
+$$
+
+Có thể thấy, phép biến đổi <em>controlled- $\mathcal{U}^{2^{n-m}}$</em> thực chất không thay đổi trạng thái của thanh ghi thứ hai, $\ket{\psi}$, mà nó sẽ thay đổi trạng thái của qubit $\ket{q^1_m}$. Từ đây bài toán đưa ta về vấn đề giống với thuật toán QFT ở <a href="/post/important-subroutine-1/">Bài 3</a>.</p>
+<p>Giả sử, $\phi$ được biểu diễn dưới dạng nhị phân:
+
+$$
+\phi = 0.\phi_1\phi_2...\phi_n=\phi_1 2^{-1}+\phi_2 2^{-2}+...+\phi_n 2^{-n}
+$$
+
+Với m = 1, ta có:
+
+$$
+\phi 2^{n-1} =\phi_1 2^{n-2}+\phi_2 2^{n-3}+...+\phi_n 2^{-1}
+$$
+
+
+$$
+\Rightarrow e^{2\pi i \phi 2^{n-1}} =e^{2\pi i \phi_1 2^{n-2}}e^{2\pi i \phi_2 2^{n-3}}...e^{2\pi i\phi_n 2^{-1}}
+$$
+
+Mặt khác, mình có thể thấy $e^{2\pi i} = 1$ nên $e^{2\pi ik} = 1 \forall k \in \mathbb{Z}$. Từ đó có thể dễ dàng suy ra tất cả các phần tử trong công thức trên đều bằng 1 trừ $e^{2\pi i \phi_n 2^{-1}}$, nên
+
+$$
+e^{2\pi i \phi 2^{n-1}} = 1.1.1...e^{2\pi i \phi_n 2^{-1}} = e^{2\pi i 0.\phi_n}
+$$
+
+Tương tự ta cũng có thể suy ra:
+
+$$
+e^{2\pi i \phi 2^{n-2}} = e^{2\pi i 0.\phi_{n-1}\phi_n}
+$$
+
+
+$$
+...
+$$
+
+
+$$
+e^{2\pi i \phi 2^{0}} = e^{2\pi i 0.\phi_1\phi_2...\phi_{n-1}\phi_n} 
+$$
+
+Như vậy nếu mình tổng hợp những kết quả này ta có trạng thái ở các qubits của $\ket{q^1}$ là:
+
+$$
+\ket{q^1}\!=\!\frac{1}{2^{\frac{n}{2}}}\!(\!\ket{0}\!+\!e^{2\pi i 0.\phi_n}\ket{1}\!)\!(\!\ket{0}\!+\!e^{2\pi i 0.\phi_{n-1}\phi_n}\ket{1}\!)\!...\!(\!\ket{0}\!+\!e^{2\pi i 0.\phi_1\phi_2...\phi_n} \ket{1}\!)\!
+$$
+
+Như mình đã chứng minh ở <a href="/post/important-subroutine-1/">Bài 3</a>, kết quả trên bằng với $\frac{1}{2^{n/2}} \sum_{k=0}^{2^n-1} e^{\frac{2\pi ik\phi}{2^n}} \ket{k}$, và nó chính là kết quả của phép biến đổi Fourier từ $\phi$.</p>
+<p><em><strong>Bước 3:</strong></em> Áp dụng thuật toán nghịch đảo của QFT để biến đổi:<br>
+
+$$
+\frac{1}{2^{n/2}} \sum_{k=0}^{2^n-1} e^{\frac{2\pi ik\phi}{2^n}} \ket{k} \longrightarrow \ket{\phi}
+$$
+
+Thực chất các phép biến đổi trong máy tính lượng tử là từ các ma trận đơn nhất (<em>unitary matrix</em>) nên luôn tồn tại ma trận nghịch đảo của chúng. Do đó ta hoàn toàn có thể thiết kế phép biến đổi nghịch đảo $QFT^{-1}$ như Hình 1 bằng cách nghịch đảo các phép toán của QFT.</p>
+<h1 id="độ-phức-tạp-của-qpea-name2a">Độ phức tạp của QPE<a name="2"></a></h1>
+<p>Như Hình 1, ta có thể thấy thuật toán gồm có $n$ cổng Hadamard, $n$ cổng từ phép biến đổi <em>controlled- $\mathcal{U}^{2^{n-m}}$</em>, và cuối cùng là $O(n^2)$ phép toán từ $QFT^{-1}$. Do đó, thuật toán QPE có độ phức tạp là $O(n^2)$.</p>
+<p>Tuy nhiên đó là trong trường hợp lý tưởng khi $\phi$ có thể được biểu diễn với chính xác $n$ qubits. Với sai số $\epsilon$ rất nhỏ, người ta đã chỉ ra rằng thuật toán QPE cần $n \propto O(\log{1/\epsilon})$ qubit và $O(1/\epsilon)$ phép biến <em>controlled- $\mathcal{U}$</em>. Chi tiết về kết luận này mọi người có thể tìm hiểu rõ hơn ở Section 5.2.1 <a href="https://www.academia.edu/41154803/Quantum_Computation_and_Quantum_Information_by_Nielsen_and_Chuang" target="_blank" rel="noopener">Nielson &amp; Chuang</a></p>
+<h1 id="source-codea-name3a">Source Code<a name="3"></a></h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">QPE</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_input_state_qubits</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                 <span class="n">num_ancillia_qubits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                 <span class="n">unitary_transform</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                 <span class="n">U</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                 <span class="n">input_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># Số qubits của thanh ghi đầu tiên như mình đề cập ở trên</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">num_ancillia_qubits</span> <span class="o">=</span> <span class="n">num_ancillia_qubits</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1"># khởi tạo qubits có giá trị bằng |0&gt; ở thanh ghi thứ nhất</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">output_qubits</span> <span class="o">=</span> <span class="p">[</span><span class="n">cirq</span><span class="o">.</span><span class="n">LineQubit</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_ancillia_qubits</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1"># Khởi tạo cấu trúc mạch cho thuật toán. </span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Về sau các phép biến đổi sẽ được thêm vào bằng circuit.append()</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">input_circuit</span> <span class="o">=</span> <span class="n">cirq</span><span class="o">.</span><span class="n">Circuit</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># véc-tơ riêng |\psi&gt; đầu vào</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">input_state</span> <span class="o">=</span>  <span class="n">input_state</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_state</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">num_input_qubits</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">input_state</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">num_input_qubits</span> <span class="o">=</span> <span class="n">num_input_state_qubits</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1"># khởi tạo qubits để mã hóa véc-tơ |\psi&gt; đầu vào</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">input_qubits</span> <span class="o">=</span> <span class="p">[</span><span class="n">cirq</span><span class="o">.</span><span class="n">LineQubit</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span>
+</span></span><span class="line"><span class="cl">                             <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_ancillia_qubits</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                   <span class="bp">self</span><span class="o">.</span><span class="n">num_ancillia_qubits</span> <span class="o">+</span> <span class="n">num_input_state_qubits</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># Mã hóa |\psi&gt; theo các giá trị của input_state</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_state</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">input_state</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                    <span class="bp">self</span><span class="o">.</span><span class="n">input_circuit</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cirq</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">input_qubits</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1"># Ma trận đơn nhất U đầu vào.</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Ở đây mọi người có thể tùy ý chọn một ma trận đơn nhất bất kỳ cho tham số U,</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># ngoài ra ở đây mình đưa ra một vài ví dụ cho U: cổng Identity, X, và Z.</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">unitary_transform</span> <span class="o">=</span> <span class="n">unitary_transform</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">unitary_transform</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">U</span> <span class="o">=</span> <span class="n">cirq</span><span class="o">.</span><span class="n">I</span>
+</span></span><span class="line"><span class="cl">        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">unitary_transform</span> <span class="o">==</span> <span class="s1">&#39;custom&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">U</span> <span class="o">=</span> <span class="n">U</span>
+</span></span><span class="line"><span class="cl">        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">unitary_transform</span> <span class="o">==</span> <span class="s1">&#39;Z&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">U</span> <span class="o">=</span> <span class="n">cirq</span><span class="o">.</span><span class="n">CZ</span>
+</span></span><span class="line"><span class="cl">        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">unitary_transform</span> <span class="o">==</span> <span class="s1">&#39;X&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">U</span> <span class="o">=</span> <span class="n">cirq</span><span class="o">.</span><span class="n">CX</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;self.unitary transform not Implemented&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">circuit</span> <span class="o">=</span> <span class="n">cirq</span><span class="o">.</span><span class="n">Circuit</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">phase_1_create_circuit_iter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Triển khai Bước 1 và Bước 2 như mình đã đề cập ở trên</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Bước 1: Các ancilla qubits bị theo đổi theo cổng Hadamard (cirq.H)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Bước 2: Áp dụng phép biến đổi C-U^{2^m} trên input_qubits và bị ràng buộc bới các output_qubits     </span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_ancillia_qubits</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">circuit</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cirq</span><span class="o">.</span><span class="n">H</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_qubits</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl">            <span class="n">_pow_</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_ancillia_qubits</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">#_pow_ = 2 ** (i)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_input_qubits</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">U</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="bp">self</span><span class="o">.</span><span class="n">circuit</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">U</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_qubits</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_qubits</span><span class="p">[</span><span class="n">k</span><span class="p">])</span><span class="o">**</span><span class="n">_pow_</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">inv_qft</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">      <span class="c1"># Phép nghịch đảo của thuật toán QFT.</span>
+</span></span><span class="line"><span class="cl">      <span class="c1"># Mình sẽ lấy code của bài trước, mọi người có thể xem qua ở https://github.com/qmlvietnam/CodeforBlog/blob/main/QFT.ipynb</span>
+</span></span><span class="line"><span class="cl">      <span class="c1"># để đọc rõ hơn các tính nghịch đảo của QFT. </span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">_qft_</span> <span class="o">=</span> <span class="n">QFT</span><span class="p">(</span><span class="n">qubits</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">output_qubits</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">_qft_</span><span class="o">.</span><span class="n">qft_circuit</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">simulate_circuit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">circ</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">      <span class="c1"># Chạy mô phỏng máy tính lượng tử cho thuật toán</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sim</span> <span class="o">=</span> <span class="n">cirq</span><span class="o">.</span><span class="n">Simulator</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">result</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">simulate</span><span class="p">(</span><span class="n">circ</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">result</span>
+</span></span></code></pre></div><p>Giờ mình sẽ chạy chương trình với cổng $Z$ có dạng  
+$\left( \begin{array}{cc} 1 & 0 \\ 
+
+0 & -1 \end{array} \right)$
+. Có thể ma trận trên có 2 giá trị riêng là $1$ và $-1$ tương ứng với 2 véc-tơ riêng $\ket{0}$ và $\ket{1}$. Nếu mình chạy chương trình trên với véc-tơ riêng $\ket{\psi} = \ket{1}$, chúng ta mong chờ kết quả $e^{2\pi i \phi} = -1 \Leftrightarrow \phi=0.5$.</p>
+<p>Với trường hợp trên, mình sẽ dùng 2 qubits cho thanh ghi đầu tiền và 1 qubit để mã hóa véc-tơ riêng $\psi$. Kết quả của chương trình như sau:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">qubits</span><span class="p">:</span> <span class="p">(</span><span class="n">cirq</span><span class="o">.</span><span class="n">LineQubit</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">cirq</span><span class="o">.</span><span class="n">LineQubit</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">cirq</span><span class="o">.</span><span class="n">LineQubit</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">output</span> <span class="n">vector</span><span class="p">:</span> <span class="o">|</span><span class="mi">101</span><span class="err">⟩</span>
+</span></span></code></pre></div><p>Trong đó ta thấy qubit cuối cùng tương ứng với giá trị của véc-tơ riêng $\psi$ đầu vào. Do đó ta có trạng thái của 2 qubit ở thanh ghi đầu tiên $\ket{q_1q_2}$ là $\ket{10}$ tương ứng cho giá trị của $\phi = 0.q_1q_2 = 1\times2^{-1} + 0\times 2^{-2} = 0.5$. Kết quả này hoàn toàn đúng như những gì ta tìm kiếm.</p>
+<p><em><strong>Mọi người có thể xem toàn bộ code của chương trình trên ở <a href="https://github.com/qmlvietnam/CodeforBlog/blob/main/QPE%20%281%29.ipynb" target="_blank" rel="noopener">đây</a>.</strong></em></p>
+<p>Cảm ơn mọi người đã đọc bài.</p>
+<script src="https://giscus.app/client.js"
+        data-repo="qmlvietnam/qmlvietnam.github.io"
+        data-repo-id="R_kgDOH833kg"
+        data-category="General"
+        data-category-id="DIC_kwDOH833ks4CRwGU"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light_high_contrast"
+        data-lang="vi"
+        crossorigin="anonymous"
+        async>
+</script><blockquote>
+</blockquote>
+
+    </div>
+
+    
+
+
+
+
+
+
+
+<div class="share-box">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://example.com/post/important-subroutine-2/&amp;text=B%c3%a0i%204:%20Important%20Subroutine%202%20-%20Quantum%20Phase%20Estimation" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://example.com/post/important-subroutine-2/&amp;t=B%c3%a0i%204:%20Important%20Subroutine%202%20-%20Quantum%20Phase%20Estimation" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=B%c3%a0i%204:%20Important%20Subroutine%202%20-%20Quantum%20Phase%20Estimation&amp;body=https://example.com/post/important-subroutine-2/" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://example.com/post/important-subroutine-2/&amp;title=B%c3%a0i%204:%20Important%20Subroutine%202%20-%20Quantum%20Phase%20Estimation" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=B%c3%a0i%204:%20Important%20Subroutine%202%20-%20Quantum%20Phase%20Estimation%20https://example.com/post/important-subroutine-2/" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://example.com/post/important-subroutine-2/&amp;title=B%c3%a0i%204:%20Important%20Subroutine%202%20-%20Quantum%20Phase%20Estimation" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+
+
+
+
+
+  
+  
+  
+
+  
+  
+    
+  
+  
+    
+  
+
+  
+
+  
+  <p class="powered-by copyright-license-text">
+    © 2022 Me. This work is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0" rel="noopener noreferrer" target="_blank">CC BY NC ND 4.0</a>
+  </p>
+  
+
+  <p class="powered-by footer-license-icons">
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0" rel="noopener noreferrer" target="_blank" aria-label="Creative Commons">
+      <i class="fab fa-creative-commons fa-2x" aria-hidden="true"></i>
+      <i class="fab fa-creative-commons-by fa-2x" aria-hidden="true"></i>
+      
+        <i class="fab fa-creative-commons-nc fa-2x" aria-hidden="true"></i>
+      
+      
+        <i class="fab fa-creative-commons-nd fa-2x" aria-hidden="true"></i>
+      
+    </a>
+  </p>
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-themes" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+
+
+<script src="/js/vendor-bundle.min.d26509351aa0ff874abbee824e982e9b.js"></script>
+
+
+
+
+  
+
+  
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script id="search-hit-fuse-template" type="text/x-template">
+    <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+    </div>
+  </script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/krisk/Fuse@v3.2.1/dist/fuse.min.js" integrity="sha512-o38bmzBGX+hD3JHWUFCDA09btWaqrNmoJ3RXLlrysA7PP01Kgs4UlE4MhelE1v5dJR3+cxlR4qQlotsW7jKsnw==" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/gh/julmot/mark.js@8.11.1/dist/jquery.mark.min.js" integrity="sha512-mhbv5DqBMgrWL+32MmsDOt/OAvqr/cHimk6B8y/bx/xS88MVkYGPiVv2ixKVrkywF2qHplNRUvFsAHUdxZ3Krg==" crossorigin="anonymous"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+<script id="page-data" type="application/json">{"use_headroom":true}</script>
+
+
+
+  <script src="/js/wowchemy-headroom.c251366b4128fd5e6b046d4c97a62a51.js" type="module"></script>
+
+
+
+
+
+
+
+
+  
+  
+
+
+<script src="/en/js/wowchemy.min.54dd6e4d8f2e4b1d098381b57f18dd83.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

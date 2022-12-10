@@ -4,15 +4,21 @@
   
   
   <url>
+    <loc>https://example.com/post/important-subroutine-3/</loc><lastmod>2022-12-09T10:15:40+07:00</lastmod><changefreq>weekly</changefreq></url>
+  <url>
+    <loc>https://example.com/post/</loc><lastmod>2022-12-09T10:15:40+07:00</lastmod><changefreq>weekly</changefreq></url>
+  <url>
+    <loc>https://example.com/</loc><lastmod>2022-12-09T10:15:40+07:00</lastmod><changefreq>weekly</changefreq></url>
+  <url>
+    <loc>https://example.com/post/important-subroutine-2/</loc><lastmod>2022-12-08T10:06:45+07:00</lastmod><changefreq>weekly</changefreq></url>
+  <url>
+    <loc>https://example.com/post/important-subroutine-1/</loc><lastmod>2022-11-27T14:06:05+07:00</lastmod><changefreq>weekly</changefreq></url>
+  <url>
     <loc>https://example.com/newsletter/</loc><lastmod>2022-10-29T14:54:53+07:00</lastmod><changefreq>weekly</changefreq></url>
   <url>
-    <loc>https://example.com/newsletter/octorber-2022/</loc><lastmod>2022-10-29T14:54:53+07:00</lastmod><changefreq>weekly</changefreq></url>
-  <url>
-    <loc>https://example.com/</loc><lastmod>2022-10-29T14:54:53+07:00</lastmod><changefreq>weekly</changefreq></url>
+    <loc>https://example.com/newsletter/october-2022/</loc><lastmod>2022-10-29T14:54:53+07:00</lastmod><changefreq>weekly</changefreq></url>
   <url>
     <loc>https://example.com/post/example-1/</loc><lastmod>2022-10-11T23:25:52+07:00</lastmod><changefreq>weekly</changefreq></url>
-  <url>
-    <loc>https://example.com/post/</loc><lastmod>2022-10-11T23:25:52+07:00</lastmod><changefreq>weekly</changefreq></url>
   <url>
     <loc>https://example.com/post/fair-coins/</loc><lastmod>2022-10-09T14:41:26+07:00</lastmod><changefreq>weekly</changefreq></url>
   <url>
