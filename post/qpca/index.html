@@ -1,0 +1,1345 @@
+<!DOCTYPE html><html lang="en-us" >
+
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.6.0 for Hugo" />
+  
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="QML Vietnam" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Nội dung Giới thiệu Quantum PCA Giới thiệu Thuật toán Principal Component Analysis (hay PCA) là một trong những kỹ thuật quan trọng trong Machine Learning để giảm chiều dữ liệu (Dimensionality Reduction)." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://example.com/post/qpca/" />
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+    
+    <script src="/js/mathjax-config.js"></script>
+  
+
+  
+
+  <link rel="stylesheet" href="/css/vendor-bundle.min.c7b8d9abd591ba2253ea42747e3ac3f5.css" media="print" onload="this.media='all'">
+
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css" integrity="sha512-W0xM4mr6dEP9nREo7Z9z+9X70wytKvMGeDsj7ps2+xg5QPrEBXC8tAW1IFnzjR6eoJ90JmCnFzerQJTLzIEHjA==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.3495fc6150afdd177f1d04fbba9f5e2c.css" />
+
+  
+  
+  
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="/css/libs/chroma/github-light.min.css" title="hl-light" media="print" onload="this.media='all'" >
+    <link rel="stylesheet" href="/css/libs/chroma/dracula.min.css" title="hl-dark" media="print" onload="this.media='all'" disabled>
+  
+
+  
+  
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+  
+  
+
+  
+  
+
+  
+  
+    <link rel="manifest" href="/manifest.webmanifest" />
+  
+
+  
+  <link rel="icon" type="image/png" href="/media/icon_hu03ccfb93536ffaa14d5c51dca71785c3_35563_32x32_fill_lanczos_center_3.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu03ccfb93536ffaa14d5c51dca71785c3_35563_180x180_fill_lanczos_center_3.png" />
+
+  <link rel="canonical" href="https://example.com/post/qpca/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+
+  
+  
+    
+    
+  
+  <meta property="twitter:card" content="summary_large_image" />
+  
+  <meta property="og:site_name" content="QML Vietnam" />
+  <meta property="og:url" content="https://example.com/post/qpca/" />
+  <meta property="og:title" content="Bài 6: Quantum Principal Component Analysis | QML Vietnam" />
+  <meta property="og:description" content="Nội dung Giới thiệu Quantum PCA Giới thiệu Thuật toán Principal Component Analysis (hay PCA) là một trong những kỹ thuật quan trọng trong Machine Learning để giảm chiều dữ liệu (Dimensionality Reduction)." /><meta property="og:image" content="https://example.com/post/qpca/featured.jpg" />
+    <meta property="twitter:image" content="https://example.com/post/qpca/featured.jpg" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2022-12-19T13:51:26&#43;07:00"
+      />
+    
+    <meta property="article:modified_time" content="2022-12-19T13:51:26&#43;07:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.com/post/qpca/"
+  },
+  "headline": "Bài 6: Quantum Principal Component Analysis",
+  
+  "image": [
+    "https://example.com/post/qpca/featured.jpg"
+  ],
+  
+  "datePublished": "2022-12-19T13:51:26+07:00",
+  "dateModified": "2022-12-19T13:51:26+07:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "QML Vietnam"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "QML Vietnam",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.com/media/icon_hu03ccfb93536ffaa14d5c51dca71785c3_35563_192x192_fill_lanczos_center_3.png"
+    }
+  },
+  "description": "Nội dung Giới thiệu Quantum PCA Giới thiệu Thuật toán Principal Component Analysis (hay PCA) là một trong những kỹ thuật quan trọng trong Machine Learning để giảm chiều dữ liệu (Dimensionality Reduction)."
+}
+</script>
+
+  
+
+  
+
+  
+
+
+  <title>Bài 6: Quantum Principal Component Analysis | QML Vietnam</title>
+
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="57c6d9e773abe9de2b4d829ef55276bb" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.613040fe4f2c0f007b4dcb64404201cb.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<header class="header--fixed">
+  <nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+    <div class="container-xl">
+
+      
+      <div class="d-none d-lg-inline-flex">
+        <a class="navbar-brand" href="/">QML Vietnam</a>
+      </div>
+      
+
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+      <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+      
+      <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+        <a class="navbar-brand" href="/">QML Vietnam</a>
+      </div>
+      
+
+      
+      
+      <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+        
+        <ul class="navbar-nav d-md-inline-flex">
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#about"><span>Home</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#posts"><span>Blogs</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#newsletter"><span>Newsletter</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#contact"><span>Contact</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/donate_me/"><span>Donate me</span></a>
+          </li>
+
+          
+          
+
+        
+
+          
+        </ul>
+      </div>
+
+      <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+        
+        
+          
+        
+
+        
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+        
+        
+        <li class="nav-item dropdown theme-dropdown">
+          <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+            <i class="fas fa-moon" aria-hidden="true"></i>
+          </a>
+          <div class="dropdown-menu">
+            <a href="#" class="dropdown-item js-set-theme-light">
+              <span>Light</span>
+            </a>
+            <a href="#" class="dropdown-item js-set-theme-dark">
+              <span>Dark</span>
+            </a>
+            <a href="#" class="dropdown-item js-set-theme-auto">
+              <span>Automatic</span>
+            </a>
+          </div>
+        </li>
+        
+
+        
+        
+
+      </ul>
+
+    </div>
+  </nav>
+</header>
+
+
+  </div>
+
+  <div class="page-body">
+    
+    
+    
+
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<div class="article-container pt-3">
+  <h1>Bài 6: Quantum Principal Component Analysis</h1>
+
+  
+
+  
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Dec 19, 2022
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    6 min read
+  </span>
+  
+
+  
+  
+  
+  
+
+  
+  
+
+</div>
+
+  
+
+
+
+
+
+</div>
+
+
+<div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 720px; max-height: 399px;">
+  <div style="position: relative">
+    <img src="/post/qpca/featured_hub33698e41656cd250d48bd022ccd9805_79094_720x2500_fit_q75_h2_lanczos.webp" width="720" height="399" alt="" class="featured-image">
+    
+  </div>
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <h1 id="nội-dung">Nội dung</h1>
+<ol>
+<li><a href="#1">Giới thiệu</a></li>
+<li><a href="#2">Quantum PCA</a></li>
+</ol>
+<h1 id="giới-thiệu-a-name1a">Giới thiệu <a name="1"></a></h1>
+<p>Thuật toán <a href="https://en.wikipedia.org/wiki/Principal_component_analysis" target="_blank" rel="noopener">Principal Component Analysis</a> (hay PCA) là một trong những kỹ thuật quan trọng trong Machine Learning để giảm chiều dữ liệu (Dimensionality Reduction). Thông thường <em>data</em> hay các <em>feature vectors</em> được biểu diễn trên không gian đa chiều, thậm chí số chiều có thể lên tới vài nghìn. Việc tính toán cũng như lưu trữ trên bộ dữ liệu như vậy sẽ gặp rất nhiều khó khăn. Do đó, việc giảm chiều dữ liệu là một bước quan trọng trong nhiều bài toán, và điển hình ở đây mình sẽ đề cập tới thuật toán PCA.</p>
+<p>Thuật toán PCA được phát triển dựa theo mô hình tuyến tính để giữ lại $\mathcal{K}$ phần tử quan trọng nhất sao cho $\mathcal{K} &lt; \mathcal{D}$ (số chiều của dữ liệu). Trong đó, tầm quan trọng của các phần tử được đánh giá dựa trên giá trị riêng (<em>eigenvalues</em>) của ma trận phương sai (<em>covariance matrix</em>) của dữ liệu. Nhưng với các bộ dữ liệu lớn, việc tính toán ma trận phương sai hay phân rã trị riêng cũng là một thách thức. Thực tế, với một bộ dữ liệu gồm $\mathcal{N}$ véc-tơ và mỗi véc-tơ được biển diễn trên không gian $\mathcal{D}$ chiều thì ta cần $O(\mathcal{D}^2\mathcal{N})$ để tính ma trận phương sai và $O(\mathcal{D}^3)$ cho việc phân rã trị riêng. Như vậy, độ phức tạp của thuật toán PCA sẽ là $O(\mathcal{D}^2\mathcal{N}+\mathcal{D}^3)$.</p>
+<p>Trong bài viết này, mình sẽ giới thiệu một phương pháp lượng tử để giải quyết bài toán trên với độ phức tạp $O(\mathcal{D}poly(\log{\mathcal{D}}))$ nhờ vào khả năng tính toán vượt trội của máy tính lượng tử: <em><a href="https://www.nature.com/articles/nphys3029" target="_blank" rel="noopener">Quantum Principal Component Analysis</a></em> (hay qPCA).</p>
+<h1 id="quantum-pca-a-name2a">Quantum PCA <a name="2"></a></h1>
+<p>Xét tập dữ liệu $\mathbb{X}$ gồm $\mathcal{N}$ véc-tơ. Giống với thuật toán PCA thông thường, qPCA cũng có bước chuẩn hóa dữ liệu sao cho kỳ vọng của dữ liệu là 0:</p>
+
+$$
+x_i \rightarrow \frac{x_i - \frac{1}{\mathcal{N}}\sum_{i=1}^{\mathcal{N}}x_i}{||x_i||_2} .
+$$
+
+<p>Từ đây ta hoàn toàn có thể biểu diễn dữ liệu trong máy tính lượng tử sử dụng phương pháp <em>Amplitude Embedding</em> như mình đã đề cập ở <a href="/post/example-1">Bài 2</a>:</p>
+
+$$
+\ket{x_i} = \sum_{k=0}^{\mathcal{D}-1}x_{ik}\ket{k}.
+$$
+
+<p>Giả sử ta gọi $\rho_i = \ket{x_i}\bra{x_i}$ là <em>outer product</em> của véc-tơ $\ket{x_i}$.
+
+$$
+\rho_i = \sum_{k=0}^{\mathcal{D}-1}\sum_{m=0}^{\mathcal{D}-1}x_{ik}x_{im}\ket{k}\bra{m},
+$$
+
+Do đó ta xét trên toàn bộ tập dữ liệu $\mathcal{N}$ véc-tơ, ta có:
+
+$$
+\rho = \frac{1}{\mathcal{N}}\sum_{i=1}^{\mathcal{N}}\rho_i = \frac{1}{\mathcal{N}}\sum_{i=1}^{\mathcal{N}}\sum_{k=0}^{\mathcal{D}-1}\sum_{m=0}^{\mathcal{D}-1}x_{ik}x_{im}\ket{k}\bra{m},
+$$
+</p>
+<p>Như mọi người có thể thấy thì <em>amplitude</em> của $\rho$ chính là các phần tử tương ứng của ma trận hiệp phương sai tại vị trí $(k,m)$.</p>
+<p>Như vậy việc còn lại của chúng ta cần phải làm là tìm các trị riêng và véc-tơ riêng tương ứng của $\rho$. Từ đó, bài toán đưa ta tới với thuật toán <em><a href="https://en.wikipedia.org/wiki/Quantum_phase_estimation_algorithm" target="_blank" rel="noopener">Quantum Phase Estimation</a></em> (hay QPE), như mình để cập ở <a href="/post/important-subroutine-2/">Bài 4</a>. Trong thuật toán QPE, cho một ma trận đơn nhất $U$ và một trong những véc-tơ riêng của nó thì ta luôn tính được giá trị riêng tương ứng của véc-tơ đó. Tuy nhiên, $\rho$ không là ma trận đơn nhất (<em>unitary matrix</em>), nên mình cần dùng một kỹ thuật khác để biến đổi: $\rho \longrightarrow U$. Vì $\rho$ là một ma trận Hermitian (chứng mính ở <strong>Box 1</strong>), giống nhưng cách ở <a href="/post/important-subroutine-3/">Bài 5</a>, mình có thể chọn ma trận đơn nhất $U = e^{i\rho t}$.</p>
+<div class="alert alert-note">
+  <div>
+    <p><strong>Box 1:</strong> Ma trận $H$ được gọi là Hermitian nếu $H = H^{\dagger}$.
+Ta có:</p>
+<p>$$
+\rho = \frac{1}{\mathcal{N}}\sum_{i=1}^{\mathcal{N}}\sum_{k=0}^{\mathcal{D}-1}\sum_{m=0}^{\mathcal{D}-1}x_{ik}x_{im}\ket{k}\bra{m},
+$$</p>
+<p>Dễ thấy $\rho$ đối xứng, và:</p>
+<p>$$
+\rho^{\dagger} = \frac{1}{\mathcal{N}}\sum_{i=1}^{\mathcal{N}}\sum_{k=0}^{\mathcal{D}-1}\sum_{m=0}^{\mathcal{D}-1}x_{ik}^{*}x_{im}^{*}\ket{k}\bra{m}
+$$</p>
+<p>Trong đó, $x_{ik}^{*}$ là số liên hợp của $x_{ik}$. Tuy nhiên, ở đây ta xét véc-tơ $\overrightarrow{x} \in R$ nên $x_{ik}^{*} = x_{ik}$. Do đó, $\rho = \rho^{\dagger}$</p>
+  </div>
+</div>
+<p>Xét ma trận Hermitian $\rho = \sum_{j} \lambda_j \ket{\phi_j}\bra{\phi_j}$ (theo phân tích phổ - <em><a href="https://en.wikipedia.org/wiki/Spectral_theorem" target="_blank" rel="noopener">spectral decomposition</a></em>), trong đó $\ket{\phi_j}$ và $\lambda_j$ là véc-tơ riêng và giá trị riêng tương ứng của $\rho$, ta có:
+
+$$
+U = e^{i\rho t} = \sum_{j} e^{i\lambda_j t} \ket{\phi_j}\bra{\phi_j} = \sum_{j} e^{2\pi i\frac{\lambda_j t}{2\pi}} \ket{\phi_j}\bra{\phi_j} 
+$$
+
+Mình đặt $\tilde{\lambda_j} = \frac{\lambda_j t}{2\pi}$, thì bài toán sẽ được đưa về khuôn mẫu của thuật toán QPE. Tuy nhiên thuật toán QPE yêu cầu ta biết trước véc-tơ riêng $\ket{\phi_j}$ nên thay vào đó ta có thể dùng một điểm dữ liệu bất kỳ $x_i=\sum_{j} \alpha_{ij} \ket{\phi_j}$, trong đó $\alpha_{ij} = \left\langle \phi_j \vert x_i \right\rangle$. Do đó ta có thể biểu diễn thuật toán QPE như sau:
+
+$$
+\text{QPE:} \ket{0}^{\otimes n} \ket{x_i} \rightarrow \sum_{j}^{\mathcal{D}} \alpha_{ij} \ket{\tilde{\lambda_j}} \ket{\phi_j}
+$$
+<br>
+Không mất tính tông quát, ta thay $\ket{x_i}$ bằng $\ket{x_i}\bra{x_i}$, ta được:
+
+$$
+\text{QPE:} \ket{0}^{\otimes n} \otimes \rho_i \rightarrow \sum_{j}^{\mathcal{D}} |\alpha_{ij}|^2 \ket{\tilde{\lambda_j}}\bra{\tilde{\lambda_j}} \otimes \ket{\phi_j}\bra{\phi_j} 
+$$
+<br>
+hay,
+
+$$
+\text{QPE:} \ket{0}^{\otimes n} \otimes \rho \rightarrow \frac{1}{\mathcal{N}}\sum_{i=1}^{\mathcal{N}} \sum_{j}^{\mathcal{D}} |\alpha_{ij}|^2 \ket{\tilde{\lambda_j}}\bra{\tilde{\lambda_j}} \otimes \ket{\phi_j}\bra{\phi_j}. 
+$$
+</p>
+<p>Mặt khác, ta có:
+
+$$
+\frac{1}{\mathcal{N}}\sum_{i=1}^{\mathcal{N}} |\alpha_{ij}|^2 = \frac{1}{\mathcal{N}}\sum_{i=1}^{\mathcal{N}} \left\langle \phi_j \vert x_i \right\rangle \left\langle x_i \vert \phi_j \right\rangle
+$$
+
+
+$$
+ = \bra{\phi_j} (\frac{1}{\mathcal{N}}\sum_{i=1}^{\mathcal{N}} \ket{x_i}\bra{x_i}) \ket{\phi_j} = \bra{\phi_j} \rho \ket{\phi_j}.
+$$
+
+Mà $\ket{\phi_j}$ là véc-tơ riêng của $\rho$ nên ta luôn có $\bra{\phi_j} \rho \ket{\phi_j} = \tilde{\lambda_j} \left\langle \phi_j \vert \phi_j \right\rangle = \tilde{\lambda_j}$.
+Thay vào kết quả trên ta được:
+
+$$
+\text{QPE:} \ket{0}^{\otimes n} \otimes \rho \rightarrow \sum_{j}^{\mathcal{D}} \tilde{\lambda_j}\ket{\tilde{\lambda_j}}\bra{\tilde{\lambda_j}} \otimes \ket{\phi_j}\bra{\phi_j}. 
+$$
+
+Như vậy, thông qua phép đo của kết quả từ thuật toán QPE trên ta sẽ thu được véc-tơ riêng và giá trị riêng của ma trận hiệp phương sai $\rho$.</p>
+<p>Giờ chúng ta hãy đi kỹ hơn vào độ phức tạp của thuật toán qPCA.</p>
+<p>(1) Đầu tiên, ta cần độ phức tạp $O(\log{\mathcal{D}})$ để có được ma trận hiệp phương sai $\rho$, vì với <em>Amplitude Embedding</em> ta cần $\log{\mathcal{D}}$ qubits để mã hóa véc-tơ $\ket{x_i}$</p>
+<p>(2) Với thuật toán tìm giá trị riêng và véc-tơ riêng - QPE, ta cần độ phức tạp $O(poly(\log{\mathcal{D}}))$ (như mình đã trình bày ở <a href="/post/important-subroutine-2/">Bài 4</a>) để thu được một cặp $(\lambda_j, \phi_j)$. Tuy nhiên bài toán yêu cầu ta tìm được $\mathcal{T}$ cặp có giá trị riêng lớn nhất, do đó trong trường hợp ma trận <em>full rank</em> $\rho$, độ phức tạp bài toán lên tới $O(\mathcal{D}poly(\log{\mathcal{D}}))$.</p>
+<p>Từ (1) và (2), thuật toán qPCA sẽ có độ phức tạp $O(\mathcal{D}poly(\log{\mathcal{D}}))$. Nếu so với sánh với thuật toán PCA trên máy tính truyền thống có độ phức tạp $O(\mathcal{D}^2\mathcal{N}+\mathcal{D}^3)$, ta thấy rằng qPCA mang lại sự cải thiện đáng kể trong việc tính toán cũng như tối ưu được tài nguyên sử dụng đặc biệt trong các bài toán yêu cầu số chiều của dữ liệu lớn.</p>
+<p>Cảm ơn mọi người đã đọc bài.</p>
+<script src="https://giscus.app/client.js"
+        data-repo="qmlvietnam/qmlvietnam.github.io"
+        data-repo-id="R_kgDOH833kg"
+        data-category="General"
+        data-category-id="DIC_kwDOH833ks4CRwGU"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light_high_contrast"
+        data-lang="vi"
+        crossorigin="anonymous"
+        async>
+</script><blockquote>
+</blockquote>
+
+    </div>
+
+    
+
+
+
+
+
+
+
+<div class="share-box">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://example.com/post/qpca/&amp;text=B%c3%a0i%206:%20Quantum%20Principal%20Component%20Analysis" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://example.com/post/qpca/&amp;t=B%c3%a0i%206:%20Quantum%20Principal%20Component%20Analysis" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=B%c3%a0i%206:%20Quantum%20Principal%20Component%20Analysis&amp;body=https://example.com/post/qpca/" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://example.com/post/qpca/&amp;title=B%c3%a0i%206:%20Quantum%20Principal%20Component%20Analysis" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=B%c3%a0i%206:%20Quantum%20Principal%20Component%20Analysis%20https://example.com/post/qpca/" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://example.com/post/qpca/&amp;title=B%c3%a0i%206:%20Quantum%20Principal%20Component%20Analysis" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="/authors/intro/"><img class="avatar mr-3 avatar-circle" src="/authors/intro/avatar_hu03ccfb93536ffaa14d5c51dca71785c3_35563_270x270_fill_lanczos_center_3.png" alt="QML Vietnam"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="/authors/intro/">QML Vietnam</a></h5>
+      <h6 class="card-subtitle">Prepare for the Future</h6>
+      
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/qmlvietnam" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.facebook.com/profile.php?id=100087187246829" target="_blank" rel="noopener">
+        <i class="fab fa-facebook"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+
+
+
+
+
+  
+  
+  
+
+  
+  
+    
+  
+  
+    
+  
+
+  
+
+  
+  <p class="powered-by copyright-license-text">
+    © 2022 Me. This work is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0" rel="noopener noreferrer" target="_blank">CC BY NC ND 4.0</a>
+  </p>
+  
+
+  <p class="powered-by footer-license-icons">
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0" rel="noopener noreferrer" target="_blank" aria-label="Creative Commons">
+      <i class="fab fa-creative-commons fa-2x" aria-hidden="true"></i>
+      <i class="fab fa-creative-commons-by fa-2x" aria-hidden="true"></i>
+      
+        <i class="fab fa-creative-commons-nc fa-2x" aria-hidden="true"></i>
+      
+      
+        <i class="fab fa-creative-commons-nd fa-2x" aria-hidden="true"></i>
+      
+    </a>
+  </p>
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-themes" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+
+
+<script src="/js/vendor-bundle.min.d26509351aa0ff874abbee824e982e9b.js"></script>
+
+
+
+
+  
+
+  
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script id="search-hit-fuse-template" type="text/x-template">
+    <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+    </div>
+  </script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/krisk/Fuse@v3.2.1/dist/fuse.min.js" integrity="sha512-o38bmzBGX+hD3JHWUFCDA09btWaqrNmoJ3RXLlrysA7PP01Kgs4UlE4MhelE1v5dJR3+cxlR4qQlotsW7jKsnw==" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/gh/julmot/mark.js@8.11.1/dist/jquery.mark.min.js" integrity="sha512-mhbv5DqBMgrWL+32MmsDOt/OAvqr/cHimk6B8y/bx/xS88MVkYGPiVv2ixKVrkywF2qHplNRUvFsAHUdxZ3Krg==" crossorigin="anonymous"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+<script id="page-data" type="application/json">{"use_headroom":true}</script>
+
+
+
+  <script src="/js/wowchemy-headroom.c251366b4128fd5e6b046d4c97a62a51.js" type="module"></script>
+
+
+
+
+
+
+
+
+  
+  
+
+
+<script src="/en/js/wowchemy.min.54dd6e4d8f2e4b1d098381b57f18dd83.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

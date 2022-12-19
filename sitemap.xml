@@ -4,15 +4,17 @@
   
   
   <url>
+    <loc>https://example.com/post/qpca/</loc><lastmod>2022-12-19T13:51:26+07:00</lastmod><changefreq>weekly</changefreq></url>
+  <url>
+    <loc>https://example.com/post/</loc><lastmod>2022-12-19T13:51:26+07:00</lastmod><changefreq>weekly</changefreq></url>
+  <url>
+    <loc>https://example.com/</loc><lastmod>2022-12-19T13:51:26+07:00</lastmod><changefreq>weekly</changefreq></url>
+  <url>
     <loc>https://example.com/newsletter/</loc><lastmod>2022-12-10T19:53:10+07:00</lastmod><changefreq>weekly</changefreq></url>
   <url>
     <loc>https://example.com/newsletter/november-2022/</loc><lastmod>2022-12-10T19:53:10+07:00</lastmod><changefreq>weekly</changefreq></url>
   <url>
-    <loc>https://example.com/</loc><lastmod>2022-12-10T19:53:10+07:00</lastmod><changefreq>weekly</changefreq></url>
-  <url>
     <loc>https://example.com/post/important-subroutine-3/</loc><lastmod>2022-12-09T10:15:40+07:00</lastmod><changefreq>weekly</changefreq></url>
-  <url>
-    <loc>https://example.com/post/</loc><lastmod>2022-12-09T10:15:40+07:00</lastmod><changefreq>weekly</changefreq></url>
   <url>
     <loc>https://example.com/post/important-subroutine-2/</loc><lastmod>2022-12-08T10:06:45+07:00</lastmod><changefreq>weekly</changefreq></url>
   <url>

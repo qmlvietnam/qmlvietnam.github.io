@@ -5,12 +5,134 @@
     <link>https://example.com/</link>
       <atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
     <description>QML Vietnam</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sat, 10 Dec 2022 19:53:10 +0700</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 19 Dec 2022 13:51:26 +0700</lastBuildDate>
     <image>
       <url>https://example.com/media/icon_hu03ccfb93536ffaa14d5c51dca71785c3_35563_512x512_fill_lanczos_center_3.png</url>
       <title>QML Vietnam</title>
       <link>https://example.com/</link>
     </image>
+    
+    <item>
+      <title>Bài 6: Quantum Principal Component Analysis</title>
+      <link>https://example.com/post/qpca/</link>
+      <pubDate>Mon, 19 Dec 2022 13:51:26 +0700</pubDate>
+      <guid>https://example.com/post/qpca/</guid>
+      <description>&lt;h1 id=&#34;nội-dung&#34;&gt;Nội dung&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#1&#34;&gt;Giới thiệu&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2&#34;&gt;Quantum PCA&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;giới-thiệu-a-name1a&#34;&gt;Giới thiệu &lt;a name=&#34;1&#34;&gt;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Thuật toán &lt;a href=&#34;https://en.wikipedia.org/wiki/Principal_component_analysis&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Principal Component Analysis&lt;/a&gt; (hay PCA) là một trong những kỹ thuật quan trọng trong Machine Learning để giảm chiều dữ liệu (Dimensionality Reduction). Thông thường &lt;em&gt;data&lt;/em&gt; hay các &lt;em&gt;feature vectors&lt;/em&gt; được biểu diễn trên không gian đa chiều, thậm chí số chiều có thể lên tới vài nghìn. Việc tính toán cũng như lưu trữ trên bộ dữ liệu như vậy sẽ gặp rất nhiều khó khăn. Do đó, việc giảm chiều dữ liệu là một bước quan trọng trong nhiều bài toán, và điển hình ở đây mình sẽ đề cập tới thuật toán PCA.&lt;/p&gt;
+&lt;p&gt;Thuật toán PCA được phát triển dựa theo mô hình tuyến tính để giữ lại $\mathcal{K}$ phần tử quan trọng nhất sao cho $\mathcal{K} &amp;lt; \mathcal{D}$ (số chiều của dữ liệu). Trong đó, tầm quan trọng của các phần tử được đánh giá dựa trên giá trị riêng (&lt;em&gt;eigenvalues&lt;/em&gt;) của ma trận phương sai (&lt;em&gt;covariance matrix&lt;/em&gt;) của dữ liệu. Nhưng với các bộ dữ liệu lớn, việc tính toán ma trận phương sai hay phân rã trị riêng cũng là một thách thức. Thực tế, với một bộ dữ liệu gồm $\mathcal{N}$ véc-tơ và mỗi véc-tơ được biển diễn trên không gian $\mathcal{D}$ chiều thì ta cần $O(\mathcal{D}^2\mathcal{N})$ để tính ma trận phương sai và $O(\mathcal{D}^3)$ cho việc phân rã trị riêng. Như vậy, độ phức tạp của thuật toán PCA sẽ là $O(\mathcal{D}^2\mathcal{N}+\mathcal{D}^3)$.&lt;/p&gt;
+&lt;p&gt;Trong bài viết này, mình sẽ giới thiệu một phương pháp lượng tử để giải quyết bài toán trên với độ phức tạp $O(\mathcal{D}poly(\log{\mathcal{D}}))$ nhờ vào khả năng tính toán vượt trội của máy tính lượng tử: &lt;em&gt;&lt;a href=&#34;https://www.nature.com/articles/nphys3029&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Quantum Principal Component Analysis&lt;/a&gt;&lt;/em&gt; (hay qPCA).&lt;/p&gt;
+&lt;h1 id=&#34;quantum-pca-a-name2a&#34;&gt;Quantum PCA &lt;a name=&#34;2&#34;&gt;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Xét tập dữ liệu $\mathbb{X}$ gồm $\mathcal{N}$ véc-tơ. Giống với thuật toán PCA thông thường, qPCA cũng có bước chuẩn hóa dữ liệu sao cho kỳ vọng của dữ liệu là 0:&lt;/p&gt;
+
+$$
+x_i \rightarrow \frac{x_i - \frac{1}{\mathcal{N}}\sum_{i=1}^{\mathcal{N}}x_i}{||x_i||_2} .
+$$
+
+&lt;p&gt;Từ đây ta hoàn toàn có thể biểu diễn dữ liệu trong máy tính lượng tử sử dụng phương pháp &lt;em&gt;Amplitude Embedding&lt;/em&gt; như mình đã đề cập ở &lt;a href=&#34;https://example.com/post/example-1&#34;&gt;Bài 2&lt;/a&gt;:&lt;/p&gt;
+
+$$
+\ket{x_i} = \sum_{k=0}^{\mathcal{D}-1}x_{ik}\ket{k}.
+$$
+
+&lt;p&gt;Giả sử ta gọi $\rho_i = \ket{x_i}\bra{x_i}$ là &lt;em&gt;outer product&lt;/em&gt; của véc-tơ $\ket{x_i}$.
+
+$$
+\rho_i = \sum_{k=0}^{\mathcal{D}-1}\sum_{m=0}^{\mathcal{D}-1}x_{ik}x_{im}\ket{k}\bra{m},
+$$
+
+Do đó ta xét trên toàn bộ tập dữ liệu $\mathcal{N}$ véc-tơ, ta có:
+
+$$
+\rho = \frac{1}{\mathcal{N}}\sum_{i=1}^{\mathcal{N}}\rho_i = \frac{1}{\mathcal{N}}\sum_{i=1}^{\mathcal{N}}\sum_{k=0}^{\mathcal{D}-1}\sum_{m=0}^{\mathcal{D}-1}x_{ik}x_{im}\ket{k}\bra{m},
+$$
+&lt;/p&gt;
+&lt;p&gt;Như mọi người có thể thấy thì &lt;em&gt;amplitude&lt;/em&gt; của $\rho$ chính là các phần tử tương ứng của ma trận hiệp phương sai tại vị trí $(k,m)$.&lt;/p&gt;
+&lt;p&gt;Như vậy việc còn lại của chúng ta cần phải làm là tìm các trị riêng và véc-tơ riêng tương ứng của $\rho$. Từ đó, bài toán đưa ta tới với thuật toán &lt;em&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Quantum_phase_estimation_algorithm&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Quantum Phase Estimation&lt;/a&gt;&lt;/em&gt; (hay QPE), như mình để cập ở &lt;a href=&#34;https://example.com/post/important-subroutine-2/&#34;&gt;Bài 4&lt;/a&gt;. Trong thuật toán QPE, cho một ma trận đơn nhất $U$ và một trong những véc-tơ riêng của nó thì ta luôn tính được giá trị riêng tương ứng của véc-tơ đó. Tuy nhiên, $\rho$ không là ma trận đơn nhất (&lt;em&gt;unitary matrix&lt;/em&gt;), nên mình cần dùng một kỹ thuật khác để biến đổi: $\rho \longrightarrow U$. Vì $\rho$ là một ma trận Hermitian (chứng mính ở &lt;strong&gt;Box 1&lt;/strong&gt;), giống nhưng cách ở &lt;a href=&#34;https://example.com/post/important-subroutine-3/&#34;&gt;Bài 5&lt;/a&gt;, mình có thể chọn ma trận đơn nhất $U = e^{i\rho t}$.&lt;/p&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    &lt;p&gt;&lt;strong&gt;Box 1:&lt;/strong&gt; Ma trận $H$ được gọi là Hermitian nếu $H = H^{\dagger}$.
+Ta có:&lt;/p&gt;
+&lt;p&gt;$$
+\rho = \frac{1}{\mathcal{N}}\sum_{i=1}^{\mathcal{N}}\sum_{k=0}^{\mathcal{D}-1}\sum_{m=0}^{\mathcal{D}-1}x_{ik}x_{im}\ket{k}\bra{m},
+$$&lt;/p&gt;
+&lt;p&gt;Dễ thấy $\rho$ đối xứng, và:&lt;/p&gt;
+&lt;p&gt;$$
+\rho^{\dagger} = \frac{1}{\mathcal{N}}\sum_{i=1}^{\mathcal{N}}\sum_{k=0}^{\mathcal{D}-1}\sum_{m=0}^{\mathcal{D}-1}x_{ik}^{*}x_{im}^{*}\ket{k}\bra{m}
+$$&lt;/p&gt;
+&lt;p&gt;Trong đó, $x_{ik}^{*}$ là số liên hợp của $x_{ik}$. Tuy nhiên, ở đây ta xét véc-tơ $\overrightarrow{x} \in R$ nên $x_{ik}^{*} = x_{ik}$. Do đó, $\rho = \rho^{\dagger}$&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Xét ma trận Hermitian $\rho = \sum_{j} \lambda_j \ket{\phi_j}\bra{\phi_j}$ (theo phân tích phổ - &lt;em&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Spectral_theorem&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;spectral decomposition&lt;/a&gt;&lt;/em&gt;), trong đó $\ket{\phi_j}$ và $\lambda_j$ là véc-tơ riêng và giá trị riêng tương ứng của $\rho$, ta có:
+
+$$
+U = e^{i\rho t} = \sum_{j} e^{i\lambda_j t} \ket{\phi_j}\bra{\phi_j} = \sum_{j} e^{2\pi i\frac{\lambda_j t}{2\pi}} \ket{\phi_j}\bra{\phi_j} 
+$$
+
+Mình đặt $\tilde{\lambda_j} = \frac{\lambda_j t}{2\pi}$, thì bài toán sẽ được đưa về khuôn mẫu của thuật toán QPE. Tuy nhiên thuật toán QPE yêu cầu ta biết trước véc-tơ riêng $\ket{\phi_j}$ nên thay vào đó ta có thể dùng một điểm dữ liệu bất kỳ $x_i=\sum_{j} \alpha_{ij} \ket{\phi_j}$, trong đó $\alpha_{ij} = \left\langle \phi_j \vert x_i \right\rangle$. Do đó ta có thể biểu diễn thuật toán QPE như sau:
+
+$$
+\text{QPE:} \ket{0}^{\otimes n} \ket{x_i} \rightarrow \sum_{j}^{\mathcal{D}} \alpha_{ij} \ket{\tilde{\lambda_j}} \ket{\phi_j}
+$$
+&lt;br&gt;
+Không mất tính tông quát, ta thay $\ket{x_i}$ bằng $\ket{x_i}\bra{x_i}$, ta được:
+
+$$
+\text{QPE:} \ket{0}^{\otimes n} \otimes \rho_i \rightarrow \sum_{j}^{\mathcal{D}} |\alpha_{ij}|^2 \ket{\tilde{\lambda_j}}\bra{\tilde{\lambda_j}} \otimes \ket{\phi_j}\bra{\phi_j} 
+$$
+&lt;br&gt;
+hay,
+
+$$
+\text{QPE:} \ket{0}^{\otimes n} \otimes \rho \rightarrow \frac{1}{\mathcal{N}}\sum_{i=1}^{\mathcal{N}} \sum_{j}^{\mathcal{D}} |\alpha_{ij}|^2 \ket{\tilde{\lambda_j}}\bra{\tilde{\lambda_j}} \otimes \ket{\phi_j}\bra{\phi_j}. 
+$$
+&lt;/p&gt;
+&lt;p&gt;Mặt khác, ta có:
+
+$$
+\frac{1}{\mathcal{N}}\sum_{i=1}^{\mathcal{N}} |\alpha_{ij}|^2 = \frac{1}{\mathcal{N}}\sum_{i=1}^{\mathcal{N}} \left\langle \phi_j \vert x_i \right\rangle \left\langle x_i \vert \phi_j \right\rangle
+$$
+
+
+$$
+ = \bra{\phi_j} (\frac{1}{\mathcal{N}}\sum_{i=1}^{\mathcal{N}} \ket{x_i}\bra{x_i}) \ket{\phi_j} = \bra{\phi_j} \rho \ket{\phi_j}.
+$$
+
+Mà $\ket{\phi_j}$ là véc-tơ riêng của $\rho$ nên ta luôn có $\bra{\phi_j} \rho \ket{\phi_j} = \tilde{\lambda_j} \left\langle \phi_j \vert \phi_j \right\rangle = \tilde{\lambda_j}$.
+Thay vào kết quả trên ta được:
+
+$$
+\text{QPE:} \ket{0}^{\otimes n} \otimes \rho \rightarrow \sum_{j}^{\mathcal{D}} \tilde{\lambda_j}\ket{\tilde{\lambda_j}}\bra{\tilde{\lambda_j}} \otimes \ket{\phi_j}\bra{\phi_j}. 
+$$
+
+Như vậy, thông qua phép đo của kết quả từ thuật toán QPE trên ta sẽ thu được véc-tơ riêng và giá trị riêng của ma trận hiệp phương sai $\rho$.&lt;/p&gt;
+&lt;p&gt;Giờ chúng ta hãy đi kỹ hơn vào độ phức tạp của thuật toán qPCA.&lt;/p&gt;
+&lt;p&gt;(1) Đầu tiên, ta cần độ phức tạp $O(\log{\mathcal{D}})$ để có được ma trận hiệp phương sai $\rho$, vì với &lt;em&gt;Amplitude Embedding&lt;/em&gt; ta cần $\log{\mathcal{D}}$ qubits để mã hóa véc-tơ $\ket{x_i}$&lt;/p&gt;
+&lt;p&gt;(2) Với thuật toán tìm giá trị riêng và véc-tơ riêng - QPE, ta cần độ phức tạp $O(poly(\log{\mathcal{D}}))$ (như mình đã trình bày ở &lt;a href=&#34;https://example.com/post/important-subroutine-2/&#34;&gt;Bài 4&lt;/a&gt;) để thu được một cặp $(\lambda_j, \phi_j)$. Tuy nhiên bài toán yêu cầu ta tìm được $\mathcal{T}$ cặp có giá trị riêng lớn nhất, do đó trong trường hợp ma trận &lt;em&gt;full rank&lt;/em&gt; $\rho$, độ phức tạp bài toán lên tới $O(\mathcal{D}poly(\log{\mathcal{D}}))$.&lt;/p&gt;
+&lt;p&gt;Từ (1) và (2), thuật toán qPCA sẽ có độ phức tạp $O(\mathcal{D}poly(\log{\mathcal{D}}))$. Nếu so với sánh với thuật toán PCA trên máy tính truyền thống có độ phức tạp $O(\mathcal{D}^2\mathcal{N}+\mathcal{D}^3)$, ta thấy rằng qPCA mang lại sự cải thiện đáng kể trong việc tính toán cũng như tối ưu được tài nguyên sử dụng đặc biệt trong các bài toán yêu cầu số chiều của dữ liệu lớn.&lt;/p&gt;
+&lt;p&gt;Cảm ơn mọi người đã đọc bài.&lt;/p&gt;
+&lt;script src=&#34;https://giscus.app/client.js&#34;
+        data-repo=&#34;qmlvietnam/qmlvietnam.github.io&#34;
+        data-repo-id=&#34;R_kgDOH833kg&#34;
+        data-category=&#34;General&#34;
+        data-category-id=&#34;DIC_kwDOH833ks4CRwGU&#34;
+        data-mapping=&#34;pathname&#34;
+        data-strict=&#34;0&#34;
+        data-reactions-enabled=&#34;1&#34;
+        data-emit-metadata=&#34;0&#34;
+        data-input-position=&#34;bottom&#34;
+        data-theme=&#34;light_high_contrast&#34;
+        data-lang=&#34;vi&#34;
+        crossorigin=&#34;anonymous&#34;
+        async&gt;
+&lt;/script&gt;&lt;blockquote&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
     
     <item>
       <title>November 2022</title>
