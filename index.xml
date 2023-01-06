@@ -5,12 +5,353 @@
     <link>https://example.com/</link>
       <atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
     <description>QML Vietnam</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 19 Dec 2022 13:51:26 +0700</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Fri, 06 Jan 2023 20:09:00 +0700</lastBuildDate>
     <image>
       <url>https://example.com/media/icon_hu03ccfb93536ffaa14d5c51dca71785c3_35563_512x512_fill_lanczos_center_3.png</url>
       <title>QML Vietnam</title>
       <link>https://example.com/</link>
     </image>
+    
+    <item>
+      <title>December 2022</title>
+      <link>https://example.com/newsletter/december-2022/</link>
+      <pubDate>Fri, 06 Jan 2023 20:09:00 +0700</pubDate>
+      <guid>https://example.com/newsletter/december-2022/</guid>
+      <description>&lt;h1 id=&#34;news-&#34;&gt;News 📰&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://thequantuminsider.com/2022/12/30/hybrid-quantum-classical-algorithm-shows-promise-for-unraveling-the-protein-folding-problem/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Hybrid Quantum-Classical Algorithm Shows Promise for Unraveling the Protein Folding Problem&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://thequantuminsider.com/2022/12/01/qubit-pharmaceuticals-works-with-nvidia-to-create-hybrid-computing-platform-to-accelerate-drug-discovery-with-nvidia/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Qubit Pharmaceuticals Works With NVIDIA to Create Hybrid Computing Platform to Accelerate Drug Discovery with NVIDIA&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://thequantuminsider.com/2022/12/07/ionq-and-hyundai-motors-expand-quantum-computing-partnership-continuing-pursuit-of-automotive-innovation/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;IonQ and Hyundai Motors Expand Quantum Computing Partnership, Continuing Pursuit of Automotive Innovation&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;videos-&#34;&gt;Videos 📽️&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.youtube.com/playlist?list=PLnK6MrIqGXsJfcBdppW3CKJ858zR8P4eP&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Introduction to Quantum Computing: From Layperson to Programmer in 30 Steps&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;publications-&#34;&gt;Publications 📃&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/abs/2301.01851&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Quantum Machine Learning: from physics to software engineering&lt;/a&gt;
+&lt;details class=&#34;spoiler &#34;  id=&#34;spoiler-0&#34;&gt;
+  &lt;summary&gt;Abstract:&lt;/summary&gt;
+  &lt;p&gt;&lt;blockquote&gt;
+&lt;p&gt;Quantum machine learning (QML) is a new, rapidly growing, and fascinating area of research where quantum information science and quantum technologies meet novel machine learning and artificial intelligent facilities. A comprehensive analysis of the main directions of current QML methods and approaches is performed in this review. The aim of our work is twofold. First, we show how classical machine learning approach can help improve the facilities of quantum computers and simulators available today. It is most important due to the modern noisy intermediate-scale quantum (NISQ) era of quantum technologies. In particular, the classical machine learning approach allows optimizing quantum hardware for achieving desired quantum states by implementing quantum devices. Second, we discuss how quantum algorithms and quantum computers may be useful for solving keystone classical machine learning tasks. Currently, quantum-inspired algorithms, which use a quantum approach to classical information processing, represent a powerful tool in software engineering for improving classical computation capacities. In this work, we discuss various quantum neural network capabilities that can be implemented in quantum-classical training algorithms for variational circuits. It is expected that quantum computers will be involved in routine machine learning procedures. In this sense, we are showing how it is essential to elucidate the speedup problem for random walks on arbitrary graphs, which are used in both classical and quantum algorithms. Quantum technologies enhanced by machine learning in fundamental and applied quantum physics, as well as quantum tomography and photonic quantum computing, are also covered.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/p&gt;
+&lt;/details&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/abs/2301.01597&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Demystify Problem-Dependent Power of Quantum Neural Networks on Multi-Class Classification&lt;/a&gt;
+&lt;details class=&#34;spoiler &#34;  id=&#34;spoiler-1&#34;&gt;
+  &lt;summary&gt;Abstract:&lt;/summary&gt;
+  &lt;p&gt;&lt;blockquote&gt;
+&lt;p&gt;Quantum neural networks (QNNs) have become an important tool for understanding the physical world, but their advantages and limitations are not fully understood. Some QNNs with specific encoding methods can be efficiently simulated by classical surrogates, while others with quantum memory may perform better than classical classifiers. Here we systematically investigate the problem-dependent power of quantum neural classifiers (QCs) on multi-class classification tasks. Through the analysis of expected risk, a measure that weighs the training loss and the generalization error of a classifier jointly, we identify two key findings: first, the training loss dominates the power rather than the generalization ability; second, QCs undergo a U-shaped risk curve, in contrast to the double-descent risk curve of deep neural classifiers. We also reveal the intrinsic connection between optimal QCs and the Helstrom bound and the equiangular tight frame. Using these findings, we propose a method that uses loss dynamics to probe whether a QC may be more effective than a classical classifier on a particular learning task. Numerical results demonstrate the effectiveness of our approach to explain the superiority of QCs over multilayer Perceptron on parity datasets and their limitations over convolutional neural networks on image datasets. Our work sheds light on the problem-dependent power of QNNs and offers a practical tool for evaluating their potential merit.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/p&gt;
+&lt;/details&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/abs/2212.14810&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;On Machine Learning Knowledge Representation In The Form Of Partially Unitary Operator. Knowledge Generalizing Operator&lt;/a&gt;
+&lt;details class=&#34;spoiler &#34;  id=&#34;spoiler-2&#34;&gt;
+  &lt;summary&gt;Abstract:&lt;/summary&gt;
+  &lt;p&gt;&lt;blockquote&gt;
+&lt;p&gt;A new form of ML knowledge representation with high generalization power is developed and implemented numerically. Initial IN attributes and OUT class label are transformed into the corresponding Hilbert spaces by considering localized wavefunctions. A partially unitary operator optimally converting a state from IN Hilbert space into OUT Hilbert space is then built from an optimization problem of transferring maximal possible probability from IN to OUT, this leads to the formulation of a new algebraic problem. Constructed Knowledge Generalizing Operator U can be considered as a IN to OUT quantum channel; it is a partially unitary rectangular matrix of the dimension dim(OUT)×dim(IN) transforming operators as AOUT=UAINU†. Whereas only operator U projections squared are observable ⟨OUT|U|IN⟩2 (probabilities), the fundamental equation is formulated for the operator U itself. This is the reason of high generalizing power of the approach; the situation is the same as for the Schrödinger equation: we can only measure ψ2, but the equation is written for ψ itself.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/p&gt;
+&lt;/details&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/abs/2212.14807&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Improving Convergence for Quantum Variational Classifiers using Weight Re-Mapping&lt;/a&gt;
+&lt;details class=&#34;spoiler &#34;  id=&#34;spoiler-3&#34;&gt;
+  &lt;summary&gt;Abstract:&lt;/summary&gt;
+  &lt;p&gt;&lt;blockquote&gt;
+&lt;p&gt;Constrained combinatorial optimization problems abound in industry, from portfolio optimization to logistics. One of the major roadblocks in solving these problems is the presence of non-trivial hard constraints which limit the valid search space. In some heuristic solvers, these are typically addressed by introducing certain Lagrange multipliers in the cost function, by relaxing them in some way, or worse yet, by generating many samples and only keeping valid ones, which leads to very expensive and inefficient searches. In this work, we encode arbitrary integer-valued equality constraints of the form Ax=b, directly into U(1) symmetric tensor networks (TNs) and leverage their applicability as quantum-inspired generative models to assist in the search of solutions to combinatorial optimization problems. This allows us to exploit the generalization capabilities of TN generative models while constraining them so that they only output valid samples. Our constrained TN generative model efficiently captures the constraints by reducing number of parameters and computational costs. We find that at tasks with constraints given by arbitrary equalities, symmetric Matrix Product States outperform their standard unconstrained counterparts at finding novel and better solutions to combinatorial optimization problems.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/p&gt;
+&lt;/details&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://pubs.rsc.org/en/content/articlepdf/2022/cs/d2cs00203e?fbclid=IwAR2eE5dU82cOhsJbreGrpkdqXokbg0UpBSEFVt9q7fCloipeljnxb91UMQQ&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Quantum machine learning for chemistry and physics&lt;/a&gt;
+&lt;details class=&#34;spoiler &#34;  id=&#34;spoiler-4&#34;&gt;
+  &lt;summary&gt;Abstract:&lt;/summary&gt;
+  &lt;p&gt;&lt;blockquote&gt;
+&lt;p&gt;In recent years, quantum machine learning has seen a substantial increase in the use of variational quantum circuits (VQCs). VQCs are inspired by artificial neural networks, which achieve extraordinary performance in a wide range of AI tasks as massively parameterized function approximators. VQCs have already demonstrated promising results, for example, in generalization and the requirement for fewer parameters to train, by utilizing the more robust algorithmic toolbox available in quantum computing. A VQCs&amp;rsquo; trainable parameters or weights are usually used as angles in rotational gates and current gradient-based training methods do not account for that. We introduce weight re-mapping for VQCs, to unambiguously map the weights to an interval of length 2π, drawing inspiration from traditional ML, where data rescaling, or normalization techniques have demonstrated tremendous benefits in many circumstances. We employ a set of five functions and evaluate them on the Iris and Wine datasets using variational classifiers as an example. Our experiments show that weight re-mapping can improve convergence in all tested settings. Additionally, we were able to demonstrate that weight re-mapping increased test accuracy for the Wine dataset by 10% over using unmodified weights.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/p&gt;
+&lt;/details&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Bài 7: Quantum Support Vector Machine</title>
+      <link>https://example.com/post/qsvm/</link>
+      <pubDate>Wed, 28 Dec 2022 15:11:21 +0700</pubDate>
+      <guid>https://example.com/post/qsvm/</guid>
+      <description>&lt;h2 id=&#34;nội-dung&#34;&gt;Nội dung&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#1&#34;&gt;Giới thiệu&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2&#34;&gt;Quantum Support Vector Machine&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3&#34;&gt;Code&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;giới-thiệu-a-name1a&#34;&gt;Giới thiệu &lt;a name=&#34;1&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Support Vector Machine, hay thường được gọi là SVM, có lẽ là một trong những thuật toán học máy có giám sát phổ biến nhất. Về cơ bản, trong bài toán phân loại hai classes (&lt;em&gt;binary classification problem&lt;/em&gt;), chúng sẽ cần đi tìm một siêu phẳng phân chia chính xác hai classes đó. Tuy nhiên tồn tại rất nhiều mặt phẳng như vậy (Hình 1). Thuật toán SVM sẽ giúp chúng ta đi tìm mặt phẳng tối ưu nhất. Về chi tiết về SVM, bạn có thể tham khảo ở &lt;a href=&#34;https://machinelearningcoban.com/2017/04/09/smv/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;đây&lt;/a&gt;&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-hình-1-sourcehttpsmachinelearningcobancom20170409smv&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;[Hình 1: Source](https://machinelearningcoban.com/2017/04/09/smv/)&#34; srcset=&#34;
+               /post/qsvm/svm1_hua66151d383e5395872923dd9b9836688_45095_fb0a70f5d3a3ff7c6363442dfaed8f11.webp 400w,
+               /post/qsvm/svm1_hua66151d383e5395872923dd9b9836688_45095_cf3902f79fc599a2da0c672ad98e9de8.webp 760w,
+               /post/qsvm/svm1_hua66151d383e5395872923dd9b9836688_45095_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;https://example.com/post/qsvm/svm1_hua66151d383e5395872923dd9b9836688_45095_fb0a70f5d3a3ff7c6363442dfaed8f11.webp&#34;
+               width=&#34;760&#34;
+               height=&#34;507&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      &lt;a href=&#34;https://machinelearningcoban.com/2017/04/09/smv/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Hình 1: Source&lt;/a&gt;
+    &lt;/figcaption&gt;&lt;/figure&gt;
+&lt;p&gt;Cho véc-tơ $x_i \in \mathcal{R}^{N}$ với nhãn $y_i = \{1,-1\}$ tương ứng, với $i = 1,&amp;hellip;,M$ và $M$ là số điểm dữ liệu cho trước. Từ đó thuật toán SVM sẽ tìm một mặt siêu phẳng sao khoảng cách giữa các đường biên của từng class tương ứng là lớn nhất, như Hình 2.&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-hình-2&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;Hình 2&#34; srcset=&#34;
+               /post/qsvm/svm2_huc015f6bb82c62f3c92474d6200730cf8_66259_15d716164309fdf52e91ac7951fea207.webp 400w,
+               /post/qsvm/svm2_huc015f6bb82c62f3c92474d6200730cf8_66259_20b0a72be3e038255f5faa11cf25fd25.webp 760w,
+               /post/qsvm/svm2_huc015f6bb82c62f3c92474d6200730cf8_66259_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;https://example.com/post/qsvm/svm2_huc015f6bb82c62f3c92474d6200730cf8_66259_15d716164309fdf52e91ac7951fea207.webp&#34;
+               width=&#34;675&#34;
+               height=&#34;498&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      Hình 2
+    &lt;/figcaption&gt;&lt;/figure&gt;
+&lt;p&gt;Giả sử mặt siêu phẳng được biểu diễn bằng một véc-tơ tham số $\overrightarrow{\theta} \in \mathcal{R}^n$ và $b$, thì mình có véc-tơ $\overrightarrow{x} \in \mathcal{R}^n$ nằm trên mặt siêu phẳng này sẽ được biểu diễn dưới dạng:
+
+$$
+\theta^{T}x - b = 0
+$$
+
+Từ đây, thuật toán SVM sẽ tìm $\overrightarrow{\theta}$ và $b$ sao cho khoảng cách $\frac{2}{||\theta ||_2}$ lớn nhất và tách riêng được hai đường biên theo:
+
+$$
+ \left\{ \begin{array}{rcl}
+\theta^{T}x - b \geq 1 &amp; \forall y = 1 \\ \theta^{T}x - b \leq 1 &amp; \forall y = -1
+\end{array}\right.
+$$
+
+
+$$
+\longrightarrow y(\theta^{T}x - b) \geq 1 
+$$
+
+Như vậy, bài toán tối ưu của chúng ta sẽ được triển khai như sau:&lt;/p&gt;
+&lt;p&gt;
+$$
+\min_{\theta} \frac{1}{2} \|\theta \|_2 \quad (1)
+$$
+
+sao cho
+
+$$
+ \quad y_i(\theta^{T}x_i - b) - 1 \geq 0; \forall i= \{1,2,...,M \}
+$$
+
+Đến đây chúng ta thường đơn giản hóa bài toán tối ưu này theo dạng &lt;a href=&#34;https://en.wikipedia.org/wiki/Support_vector_machine#Computing_the_SVM_classifier:~:text=the%20primal%20problem.-,Dual,-%5Bedit%5D&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;em&gt;dual&lt;/em&gt;&lt;/a&gt; rồi áp dụng &lt;a href=&#34;https://en.wikipedia.org/wiki/Support_vector_machine#Computing_the_SVM_classifier:~:text=Kernel%20trick,-%5Bedit%5D&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;em&gt;kernel method&lt;/em&gt;&lt;/a&gt; để giải. Tuy nhiên, cách trên lại dường như không thể áp dụng trên một thuật toán lượng tử vì độ phức tạp của chúng (mọi người có thể đọc rõ hơn về phần này ở &lt;a href=&#34;https://link.springer.com/book/10.1007/978-1-4842-6522-2&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Chapter 5 Santanu Pattanayak et.al.&lt;/a&gt;). Mặt khác, một dạng biến đổi khác được gọi là &lt;em&gt;least square SVM&lt;/em&gt; có thể giải quyết được vấn đề này trong máy tính lượng tử và từ đó phát triển lên thành thuật toán QSVM như hiện tại.&lt;/p&gt;
+&lt;h2 id=&#34;quantum-support-vector-machine-a-name2a&#34;&gt;Quantum Support Vector Machine &lt;a name=&#34;2&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Khác với &lt;em&gt;dual form&lt;/em&gt; của SVM, dạng &lt;em&gt;least square SVM&lt;/em&gt; biến đổi ràng buộc $y_i(\theta^T x_i -b) \geq 1$ thành:
+
+$$
+y_i(\theta^T x_i -b) = 1-e_i
+$$
+
+trong đó sai số $e_i \geq 0$ với mỗi điểm dữ liệu tương ứng $(x_i, y_i)$. Ở dưới dạng biến đổi này, ngoài việc tìm min của $\frac{1}{2} ||\theta||_2$ như ở công thức (1), thì trong bài toán tối ưu, mình cũng cần giảm thiểu sai số, $e_i$. Do đó bài toán tối ưu mới của &lt;em&gt;least square SVM&lt;/em&gt; tương đương:&lt;/p&gt;
+&lt;p&gt;
+$$
+\min_{\theta} \frac{1}{2} \|\theta \|_2 + \frac{\gamma}{2}\sum_{i=1}^{M} e_i^2 \quad (2)
+
+$$
+
+sao cho
+
+$$
+ y_i(\theta^{T}x_i - b) = 1 - e_i; \forall i= \{1,2,...,M \}; e_i \geq 0  \quad (*)
+$$
+&lt;/p&gt;
+&lt;p&gt;Vì $y_i \in \{1, -1\}$, nên $y_i^2 = 1$, thay vào (*), ta có
+
+$$
+ y_i^2(\theta^{T}x_i - b) = y_i - y_ie_i
+$$
+
+
+$$
+\Leftrightarrow \theta^{T}x_i - b = y_i - y_ie_i
+$$
+
+
+$$
+\Leftrightarrow y_i - (\theta^{T}x_i - b) = y_ie_i
+$$
+
+Mà $y_i \in \{1, -1\}$, nên $y_ie_i = e_i$ hoặc $-e_i$. Do đó mình hoàn toàn xóa bỏ ràng buộc $e_i \geq 0$ trong (*) để có ràng buộc mới&lt;br&gt;
+
+$$
+ y_i - (\theta^{T}x_i - b) = e_i ; \forall i= \{1,2,...,M \} \quad (**)
+$$
+&lt;/p&gt;
+&lt;p&gt;Từ đây để giải bài toán tối ưu trên, mình sử dụng phương pháp nhân tử Lagrange (&lt;a href=&#34;https://en.wikipedia.org/wiki/Lagrange_multiplier&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Lagrange multipliers&lt;/a&gt;):
+
+$$
+\min L(\theta, b, \alpha, e) = \frac{1}{2} \|\theta \|_2 + \frac{\gamma}{2}\sum_{i=1}^{M} e_i^2 - \sum_{i=1}^{M}\alpha_i[(\theta^Tx_i-b)-y_i+e_i] 
+$$
+
+trong đó $\alpha_i$ là các nhân tử Lagrange. Giải bài toàn tìm min trên ta được:
+
+$$
+ \left\{ \begin{array}{rcl}
+\nabla_{\theta} L = 0 \\
+\frac{\partial L}{\partial b} = 0 \\
+\nabla_{e} L = 0 \\   
+\frac{\partial L}{\partial \alpha_i} = 0
+\end{array}\right.
+$$
+
+
+$$
+\Leftrightarrow \left\{ \begin{array}{rcl}
+\theta - \sum_{i=1}^{M}\alpha_ix_i = 0  \quad (3)\\
+\sum_{i=1}^{M}\alpha_ix_i = 0  \quad (4)\\
+\gamma e - \alpha = 0  \quad (5) \\   
+(\theta^Tx_i-b)-y_i+e_i = 0  \quad (6)
+\end{array}\right.
+$$
+
+Thay giá trị của $\theta$ và $e$ ở (3) và (5) vào (6), ta có:
+
+$$
+y_i = (\sum_{j=1}^{M}\alpha_jx_j)x_i-b - \alpha_i \gamma^{-1} \quad (7)
+$$
+
+Gọi $K$ mà một ma trận $M\times M$ với các phần tử $K_{ij} = x_i x_j$. Ta có thể biến đổi công thức (4) và (7) dưới dạng phương trình:
+
+$$
+\left[ \begin{array}{cc} 0 &amp; \mathbb{1}^T \\
+\mathbb{1} &amp; K + \gamma^{-1} \end{array} \right] \left[ \begin{array}{c} -b \\ \alpha \end{array} \right] = \left[ \begin{array}{c} 0 \\ Y \end{array} \right]
+
+$$
+
+$Y$ là một ma trận cột với các phân tử tương ứng là nhãn $y_i$.&lt;/p&gt;
+&lt;p&gt;Từ đây mình đẫ biến đổi bài toán SVM thành một dạng của phương trình $Ax = b$, do đó thuật toán HHL của &lt;a href=&#34;https://example.com/post/important-subroutine-3&#34;&gt;Bài 5&lt;/a&gt; sẽ được sử dụng để hoàn thành thuật toán QSVM của chúng ta.&lt;/p&gt;
+&lt;h2 id=&#34;code-a-name3a&#34;&gt;Code &lt;a name=&#34;3&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Với thuật toán QSVM, mình có thể triển khai nó một cách đơn giản với vài dòng code sử dụng &lt;a href=&#34;https://qiskit.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;IBM&amp;rsquo;s Qiskit&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Ở đây, mình sẽ dụng một bộ dư liệu thật của bài toán dư đoán ung thư vú (breast cancer). Để đơn giản hóa, mình sử dụng thuật toán PCA để giảm chiều dữ liệu về 2&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
+               /post/qsvm/data_hu778a4288589a01661333e2e0127bae5b_9294_a15143a7b74293d674ce6689c8040819.webp 400w,
+               /post/qsvm/data_hu778a4288589a01661333e2e0127bae5b_9294_07a839920a2d2a1b60b1a736a08480e9.webp 760w,
+               /post/qsvm/data_hu778a4288589a01661333e2e0127bae5b_9294_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;https://example.com/post/qsvm/data_hu778a4288589a01661333e2e0127bae5b_9294_a15143a7b74293d674ce6689c8040819.webp&#34;
+               width=&#34;380&#34;
+               height=&#34;264&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;p&gt;Bài toán QSVM có thể triển khai như sau:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Gọi các modules cần thiết&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;as&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;plt&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;numpy&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;as&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;np&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;qiskit&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;BasicAer&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;qiskit.circuit.library&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ZZFeatureMap&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;qiskit.aqua&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;QuantumInstance&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;aqua_globals&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;qiskit.aqua.algorithms&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;QSVM&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;qiskit.aqua.utils&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;split_dataset_to_data_and_labels&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;map_label_to_class_name&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Set seed cho chương trình&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;seed&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;10599&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;aqua_globals&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;random_seed&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;seed&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Ở đây, mình sẽ sử dụng một mạch có sẵn từ qiskit, được gọi là ZZFeatureMap, để mã hóa dữ liệu&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;feature_map&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ZZFeatureMap&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;feature_dimension&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;feature_dim&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;reps&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;entanglement&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;linear&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Khởi tạo thuật toán QSVM&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;qsvm&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;QSVM&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;feature_map&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;training_input&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;test_input&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Chạy mô phỏng bằng qiskit&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;backend&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;BasicAer&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get_backend&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;qasm_simulator&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;quantum_instance&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;QuantumInstance&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;backend&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;shots&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1024&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;seed_simulator&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;seed&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;seed_transpiler&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;seed&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;result&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;qsvm&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;run&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;quantum_instance&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;sa&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;Testing success ratio: &lt;/span&gt;&lt;span class=&#34;si&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;result&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;testing_accuracy&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Testing&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;success&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ratio&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;0.85&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Chạy chương trình trên, thuật toán QSVM mang cho chúng ta độ chính xác là 85%.&lt;/p&gt;
+&lt;p&gt;Source code cho phần này có thể được tìm thấy ở &lt;a href=&#34;https://github.com/qmlvietnam/CodeforBlog/blob/main/QSVM.ipynb&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;đây&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Để chứng thực kết quả trên, mình so sánh với thuật toán SVM của thư viện &lt;a href=&#34;https://scikit-learn.org/stable/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;em&gt;&lt;strong&gt;sklearn&lt;/strong&gt;&lt;/em&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;qiskit.aqua.algorithms&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;SklearnSVM&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;result&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;SklearnSVM&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;training_input&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;test_input&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;run&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;sa&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;Testing success ratio: &lt;/span&gt;&lt;span class=&#34;si&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;result&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;testing_accuracy&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Testing&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;success&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ratio&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;0.85&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Có thể thấy thuật toán QSVM mang lại kết quả có độ tính xác tương đương với SVM thông thường. Tuy nhiên, đây là kết quả từ một thí nghiệm mô phỏng và không có nhiễu (&lt;em&gt;noiseless environment&lt;/em&gt;). Trên thực tế, kết quả có thể bị ảnh hưởng bởi những tác động từ nhiễu trong máy tính lượng tử.&lt;/p&gt;
+&lt;p&gt;Cảm ơn mọi người đã đọc bài.&lt;/p&gt;
+&lt;script src=&#34;https://giscus.app/client.js&#34;
+        data-repo=&#34;qmlvietnam/qmlvietnam.github.io&#34;
+        data-repo-id=&#34;R_kgDOH833kg&#34;
+        data-category=&#34;General&#34;
+        data-category-id=&#34;DIC_kwDOH833ks4CRwGU&#34;
+        data-mapping=&#34;pathname&#34;
+        data-strict=&#34;0&#34;
+        data-reactions-enabled=&#34;1&#34;
+        data-emit-metadata=&#34;0&#34;
+        data-input-position=&#34;bottom&#34;
+        data-theme=&#34;light_high_contrast&#34;
+        data-lang=&#34;vi&#34;
+        crossorigin=&#34;anonymous&#34;
+        async&gt;
+&lt;/script&gt;&lt;blockquote&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
     
     <item>
       <title>Bài 6: Quantum Principal Component Analysis</title>

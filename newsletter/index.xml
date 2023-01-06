@@ -5,12 +5,77 @@
     <link>https://example.com/newsletter/</link>
       <atom:link href="https://example.com/newsletter/index.xml" rel="self" type="application/rss+xml" />
     <description>Newsletter</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sat, 10 Dec 2022 19:53:10 +0700</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Fri, 06 Jan 2023 20:09:00 +0700</lastBuildDate>
     <image>
       <url>https://example.com/media/icon_hu03ccfb93536ffaa14d5c51dca71785c3_35563_512x512_fill_lanczos_center_3.png</url>
       <title>Newsletter</title>
       <link>https://example.com/newsletter/</link>
     </image>
+    
+    <item>
+      <title>December 2022</title>
+      <link>https://example.com/newsletter/december-2022/</link>
+      <pubDate>Fri, 06 Jan 2023 20:09:00 +0700</pubDate>
+      <guid>https://example.com/newsletter/december-2022/</guid>
+      <description>&lt;h1 id=&#34;news-&#34;&gt;News 📰&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://thequantuminsider.com/2022/12/30/hybrid-quantum-classical-algorithm-shows-promise-for-unraveling-the-protein-folding-problem/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Hybrid Quantum-Classical Algorithm Shows Promise for Unraveling the Protein Folding Problem&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://thequantuminsider.com/2022/12/01/qubit-pharmaceuticals-works-with-nvidia-to-create-hybrid-computing-platform-to-accelerate-drug-discovery-with-nvidia/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Qubit Pharmaceuticals Works With NVIDIA to Create Hybrid Computing Platform to Accelerate Drug Discovery with NVIDIA&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://thequantuminsider.com/2022/12/07/ionq-and-hyundai-motors-expand-quantum-computing-partnership-continuing-pursuit-of-automotive-innovation/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;IonQ and Hyundai Motors Expand Quantum Computing Partnership, Continuing Pursuit of Automotive Innovation&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;videos-&#34;&gt;Videos 📽️&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.youtube.com/playlist?list=PLnK6MrIqGXsJfcBdppW3CKJ858zR8P4eP&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Introduction to Quantum Computing: From Layperson to Programmer in 30 Steps&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;publications-&#34;&gt;Publications 📃&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/abs/2301.01851&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Quantum Machine Learning: from physics to software engineering&lt;/a&gt;
+&lt;details class=&#34;spoiler &#34;  id=&#34;spoiler-0&#34;&gt;
+  &lt;summary&gt;Abstract:&lt;/summary&gt;
+  &lt;p&gt;&lt;blockquote&gt;
+&lt;p&gt;Quantum machine learning (QML) is a new, rapidly growing, and fascinating area of research where quantum information science and quantum technologies meet novel machine learning and artificial intelligent facilities. A comprehensive analysis of the main directions of current QML methods and approaches is performed in this review. The aim of our work is twofold. First, we show how classical machine learning approach can help improve the facilities of quantum computers and simulators available today. It is most important due to the modern noisy intermediate-scale quantum (NISQ) era of quantum technologies. In particular, the classical machine learning approach allows optimizing quantum hardware for achieving desired quantum states by implementing quantum devices. Second, we discuss how quantum algorithms and quantum computers may be useful for solving keystone classical machine learning tasks. Currently, quantum-inspired algorithms, which use a quantum approach to classical information processing, represent a powerful tool in software engineering for improving classical computation capacities. In this work, we discuss various quantum neural network capabilities that can be implemented in quantum-classical training algorithms for variational circuits. It is expected that quantum computers will be involved in routine machine learning procedures. In this sense, we are showing how it is essential to elucidate the speedup problem for random walks on arbitrary graphs, which are used in both classical and quantum algorithms. Quantum technologies enhanced by machine learning in fundamental and applied quantum physics, as well as quantum tomography and photonic quantum computing, are also covered.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/p&gt;
+&lt;/details&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/abs/2301.01597&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Demystify Problem-Dependent Power of Quantum Neural Networks on Multi-Class Classification&lt;/a&gt;
+&lt;details class=&#34;spoiler &#34;  id=&#34;spoiler-1&#34;&gt;
+  &lt;summary&gt;Abstract:&lt;/summary&gt;
+  &lt;p&gt;&lt;blockquote&gt;
+&lt;p&gt;Quantum neural networks (QNNs) have become an important tool for understanding the physical world, but their advantages and limitations are not fully understood. Some QNNs with specific encoding methods can be efficiently simulated by classical surrogates, while others with quantum memory may perform better than classical classifiers. Here we systematically investigate the problem-dependent power of quantum neural classifiers (QCs) on multi-class classification tasks. Through the analysis of expected risk, a measure that weighs the training loss and the generalization error of a classifier jointly, we identify two key findings: first, the training loss dominates the power rather than the generalization ability; second, QCs undergo a U-shaped risk curve, in contrast to the double-descent risk curve of deep neural classifiers. We also reveal the intrinsic connection between optimal QCs and the Helstrom bound and the equiangular tight frame. Using these findings, we propose a method that uses loss dynamics to probe whether a QC may be more effective than a classical classifier on a particular learning task. Numerical results demonstrate the effectiveness of our approach to explain the superiority of QCs over multilayer Perceptron on parity datasets and their limitations over convolutional neural networks on image datasets. Our work sheds light on the problem-dependent power of QNNs and offers a practical tool for evaluating their potential merit.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/p&gt;
+&lt;/details&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/abs/2212.14810&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;On Machine Learning Knowledge Representation In The Form Of Partially Unitary Operator. Knowledge Generalizing Operator&lt;/a&gt;
+&lt;details class=&#34;spoiler &#34;  id=&#34;spoiler-2&#34;&gt;
+  &lt;summary&gt;Abstract:&lt;/summary&gt;
+  &lt;p&gt;&lt;blockquote&gt;
+&lt;p&gt;A new form of ML knowledge representation with high generalization power is developed and implemented numerically. Initial IN attributes and OUT class label are transformed into the corresponding Hilbert spaces by considering localized wavefunctions. A partially unitary operator optimally converting a state from IN Hilbert space into OUT Hilbert space is then built from an optimization problem of transferring maximal possible probability from IN to OUT, this leads to the formulation of a new algebraic problem. Constructed Knowledge Generalizing Operator U can be considered as a IN to OUT quantum channel; it is a partially unitary rectangular matrix of the dimension dim(OUT)×dim(IN) transforming operators as AOUT=UAINU†. Whereas only operator U projections squared are observable ⟨OUT|U|IN⟩2 (probabilities), the fundamental equation is formulated for the operator U itself. This is the reason of high generalizing power of the approach; the situation is the same as for the Schrödinger equation: we can only measure ψ2, but the equation is written for ψ itself.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/p&gt;
+&lt;/details&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/abs/2212.14807&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Improving Convergence for Quantum Variational Classifiers using Weight Re-Mapping&lt;/a&gt;
+&lt;details class=&#34;spoiler &#34;  id=&#34;spoiler-3&#34;&gt;
+  &lt;summary&gt;Abstract:&lt;/summary&gt;
+  &lt;p&gt;&lt;blockquote&gt;
+&lt;p&gt;Constrained combinatorial optimization problems abound in industry, from portfolio optimization to logistics. One of the major roadblocks in solving these problems is the presence of non-trivial hard constraints which limit the valid search space. In some heuristic solvers, these are typically addressed by introducing certain Lagrange multipliers in the cost function, by relaxing them in some way, or worse yet, by generating many samples and only keeping valid ones, which leads to very expensive and inefficient searches. In this work, we encode arbitrary integer-valued equality constraints of the form Ax=b, directly into U(1) symmetric tensor networks (TNs) and leverage their applicability as quantum-inspired generative models to assist in the search of solutions to combinatorial optimization problems. This allows us to exploit the generalization capabilities of TN generative models while constraining them so that they only output valid samples. Our constrained TN generative model efficiently captures the constraints by reducing number of parameters and computational costs. We find that at tasks with constraints given by arbitrary equalities, symmetric Matrix Product States outperform their standard unconstrained counterparts at finding novel and better solutions to combinatorial optimization problems.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/p&gt;
+&lt;/details&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://pubs.rsc.org/en/content/articlepdf/2022/cs/d2cs00203e?fbclid=IwAR2eE5dU82cOhsJbreGrpkdqXokbg0UpBSEFVt9q7fCloipeljnxb91UMQQ&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Quantum machine learning for chemistry and physics&lt;/a&gt;
+&lt;details class=&#34;spoiler &#34;  id=&#34;spoiler-4&#34;&gt;
+  &lt;summary&gt;Abstract:&lt;/summary&gt;
+  &lt;p&gt;&lt;blockquote&gt;
+&lt;p&gt;In recent years, quantum machine learning has seen a substantial increase in the use of variational quantum circuits (VQCs). VQCs are inspired by artificial neural networks, which achieve extraordinary performance in a wide range of AI tasks as massively parameterized function approximators. VQCs have already demonstrated promising results, for example, in generalization and the requirement for fewer parameters to train, by utilizing the more robust algorithmic toolbox available in quantum computing. A VQCs&amp;rsquo; trainable parameters or weights are usually used as angles in rotational gates and current gradient-based training methods do not account for that. We introduce weight re-mapping for VQCs, to unambiguously map the weights to an interval of length 2π, drawing inspiration from traditional ML, where data rescaling, or normalization techniques have demonstrated tremendous benefits in many circumstances. We employ a set of five functions and evaluate them on the Iris and Wine datasets using variational classifiers as an example. Our experiments show that weight re-mapping can improve convergence in all tested settings. Additionally, we were able to demonstrate that weight re-mapping increased test accuracy for the Wine dataset by 10% over using unmodified weights.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/p&gt;
+&lt;/details&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>November 2022</title>

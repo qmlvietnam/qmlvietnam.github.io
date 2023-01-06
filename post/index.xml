@@ -5,12 +5,288 @@
     <link>https://example.com/post/</link>
       <atom:link href="https://example.com/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 19 Dec 2022 13:51:26 +0700</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Wed, 28 Dec 2022 15:11:21 +0700</lastBuildDate>
     <image>
       <url>https://example.com/media/icon_hu03ccfb93536ffaa14d5c51dca71785c3_35563_512x512_fill_lanczos_center_3.png</url>
       <title>Posts</title>
       <link>https://example.com/post/</link>
     </image>
+    
+    <item>
+      <title>Bài 7: Quantum Support Vector Machine</title>
+      <link>https://example.com/post/qsvm/</link>
+      <pubDate>Wed, 28 Dec 2022 15:11:21 +0700</pubDate>
+      <guid>https://example.com/post/qsvm/</guid>
+      <description>&lt;h2 id=&#34;nội-dung&#34;&gt;Nội dung&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#1&#34;&gt;Giới thiệu&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2&#34;&gt;Quantum Support Vector Machine&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3&#34;&gt;Code&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;giới-thiệu-a-name1a&#34;&gt;Giới thiệu &lt;a name=&#34;1&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Support Vector Machine, hay thường được gọi là SVM, có lẽ là một trong những thuật toán học máy có giám sát phổ biến nhất. Về cơ bản, trong bài toán phân loại hai classes (&lt;em&gt;binary classification problem&lt;/em&gt;), chúng sẽ cần đi tìm một siêu phẳng phân chia chính xác hai classes đó. Tuy nhiên tồn tại rất nhiều mặt phẳng như vậy (Hình 1). Thuật toán SVM sẽ giúp chúng ta đi tìm mặt phẳng tối ưu nhất. Về chi tiết về SVM, bạn có thể tham khảo ở &lt;a href=&#34;https://machinelearningcoban.com/2017/04/09/smv/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;đây&lt;/a&gt;&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-hình-1-sourcehttpsmachinelearningcobancom20170409smv&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;[Hình 1: Source](https://machinelearningcoban.com/2017/04/09/smv/)&#34; srcset=&#34;
+               /post/qsvm/svm1_hua66151d383e5395872923dd9b9836688_45095_fb0a70f5d3a3ff7c6363442dfaed8f11.webp 400w,
+               /post/qsvm/svm1_hua66151d383e5395872923dd9b9836688_45095_cf3902f79fc599a2da0c672ad98e9de8.webp 760w,
+               /post/qsvm/svm1_hua66151d383e5395872923dd9b9836688_45095_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;https://example.com/post/qsvm/svm1_hua66151d383e5395872923dd9b9836688_45095_fb0a70f5d3a3ff7c6363442dfaed8f11.webp&#34;
+               width=&#34;760&#34;
+               height=&#34;507&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      &lt;a href=&#34;https://machinelearningcoban.com/2017/04/09/smv/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Hình 1: Source&lt;/a&gt;
+    &lt;/figcaption&gt;&lt;/figure&gt;
+&lt;p&gt;Cho véc-tơ $x_i \in \mathcal{R}^{N}$ với nhãn $y_i = \{1,-1\}$ tương ứng, với $i = 1,&amp;hellip;,M$ và $M$ là số điểm dữ liệu cho trước. Từ đó thuật toán SVM sẽ tìm một mặt siêu phẳng sao khoảng cách giữa các đường biên của từng class tương ứng là lớn nhất, như Hình 2.&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-hình-2&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;Hình 2&#34; srcset=&#34;
+               /post/qsvm/svm2_huc015f6bb82c62f3c92474d6200730cf8_66259_15d716164309fdf52e91ac7951fea207.webp 400w,
+               /post/qsvm/svm2_huc015f6bb82c62f3c92474d6200730cf8_66259_20b0a72be3e038255f5faa11cf25fd25.webp 760w,
+               /post/qsvm/svm2_huc015f6bb82c62f3c92474d6200730cf8_66259_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;https://example.com/post/qsvm/svm2_huc015f6bb82c62f3c92474d6200730cf8_66259_15d716164309fdf52e91ac7951fea207.webp&#34;
+               width=&#34;675&#34;
+               height=&#34;498&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      Hình 2
+    &lt;/figcaption&gt;&lt;/figure&gt;
+&lt;p&gt;Giả sử mặt siêu phẳng được biểu diễn bằng một véc-tơ tham số $\overrightarrow{\theta} \in \mathcal{R}^n$ và $b$, thì mình có véc-tơ $\overrightarrow{x} \in \mathcal{R}^n$ nằm trên mặt siêu phẳng này sẽ được biểu diễn dưới dạng:
+
+$$
+\theta^{T}x - b = 0
+$$
+
+Từ đây, thuật toán SVM sẽ tìm $\overrightarrow{\theta}$ và $b$ sao cho khoảng cách $\frac{2}{||\theta ||_2}$ lớn nhất và tách riêng được hai đường biên theo:
+
+$$
+ \left\{ \begin{array}{rcl}
+\theta^{T}x - b \geq 1 &amp; \forall y = 1 \\ \theta^{T}x - b \leq 1 &amp; \forall y = -1
+\end{array}\right.
+$$
+
+
+$$
+\longrightarrow y(\theta^{T}x - b) \geq 1 
+$$
+
+Như vậy, bài toán tối ưu của chúng ta sẽ được triển khai như sau:&lt;/p&gt;
+&lt;p&gt;
+$$
+\min_{\theta} \frac{1}{2} \|\theta \|_2 \quad (1)
+$$
+
+sao cho
+
+$$
+ \quad y_i(\theta^{T}x_i - b) - 1 \geq 0; \forall i= \{1,2,...,M \}
+$$
+
+Đến đây chúng ta thường đơn giản hóa bài toán tối ưu này theo dạng &lt;a href=&#34;https://en.wikipedia.org/wiki/Support_vector_machine#Computing_the_SVM_classifier:~:text=the%20primal%20problem.-,Dual,-%5Bedit%5D&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;em&gt;dual&lt;/em&gt;&lt;/a&gt; rồi áp dụng &lt;a href=&#34;https://en.wikipedia.org/wiki/Support_vector_machine#Computing_the_SVM_classifier:~:text=Kernel%20trick,-%5Bedit%5D&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;em&gt;kernel method&lt;/em&gt;&lt;/a&gt; để giải. Tuy nhiên, cách trên lại dường như không thể áp dụng trên một thuật toán lượng tử vì độ phức tạp của chúng (mọi người có thể đọc rõ hơn về phần này ở &lt;a href=&#34;https://link.springer.com/book/10.1007/978-1-4842-6522-2&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Chapter 5 Santanu Pattanayak et.al.&lt;/a&gt;). Mặt khác, một dạng biến đổi khác được gọi là &lt;em&gt;least square SVM&lt;/em&gt; có thể giải quyết được vấn đề này trong máy tính lượng tử và từ đó phát triển lên thành thuật toán QSVM như hiện tại.&lt;/p&gt;
+&lt;h2 id=&#34;quantum-support-vector-machine-a-name2a&#34;&gt;Quantum Support Vector Machine &lt;a name=&#34;2&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Khác với &lt;em&gt;dual form&lt;/em&gt; của SVM, dạng &lt;em&gt;least square SVM&lt;/em&gt; biến đổi ràng buộc $y_i(\theta^T x_i -b) \geq 1$ thành:
+
+$$
+y_i(\theta^T x_i -b) = 1-e_i
+$$
+
+trong đó sai số $e_i \geq 0$ với mỗi điểm dữ liệu tương ứng $(x_i, y_i)$. Ở dưới dạng biến đổi này, ngoài việc tìm min của $\frac{1}{2} ||\theta||_2$ như ở công thức (1), thì trong bài toán tối ưu, mình cũng cần giảm thiểu sai số, $e_i$. Do đó bài toán tối ưu mới của &lt;em&gt;least square SVM&lt;/em&gt; tương đương:&lt;/p&gt;
+&lt;p&gt;
+$$
+\min_{\theta} \frac{1}{2} \|\theta \|_2 + \frac{\gamma}{2}\sum_{i=1}^{M} e_i^2 \quad (2)
+
+$$
+
+sao cho
+
+$$
+ y_i(\theta^{T}x_i - b) = 1 - e_i; \forall i= \{1,2,...,M \}; e_i \geq 0  \quad (*)
+$$
+&lt;/p&gt;
+&lt;p&gt;Vì $y_i \in \{1, -1\}$, nên $y_i^2 = 1$, thay vào (*), ta có
+
+$$
+ y_i^2(\theta^{T}x_i - b) = y_i - y_ie_i
+$$
+
+
+$$
+\Leftrightarrow \theta^{T}x_i - b = y_i - y_ie_i
+$$
+
+
+$$
+\Leftrightarrow y_i - (\theta^{T}x_i - b) = y_ie_i
+$$
+
+Mà $y_i \in \{1, -1\}$, nên $y_ie_i = e_i$ hoặc $-e_i$. Do đó mình hoàn toàn xóa bỏ ràng buộc $e_i \geq 0$ trong (*) để có ràng buộc mới&lt;br&gt;
+
+$$
+ y_i - (\theta^{T}x_i - b) = e_i ; \forall i= \{1,2,...,M \} \quad (**)
+$$
+&lt;/p&gt;
+&lt;p&gt;Từ đây để giải bài toán tối ưu trên, mình sử dụng phương pháp nhân tử Lagrange (&lt;a href=&#34;https://en.wikipedia.org/wiki/Lagrange_multiplier&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Lagrange multipliers&lt;/a&gt;):
+
+$$
+\min L(\theta, b, \alpha, e) = \frac{1}{2} \|\theta \|_2 + \frac{\gamma}{2}\sum_{i=1}^{M} e_i^2 - \sum_{i=1}^{M}\alpha_i[(\theta^Tx_i-b)-y_i+e_i] 
+$$
+
+trong đó $\alpha_i$ là các nhân tử Lagrange. Giải bài toàn tìm min trên ta được:
+
+$$
+ \left\{ \begin{array}{rcl}
+\nabla_{\theta} L = 0 \\
+\frac{\partial L}{\partial b} = 0 \\
+\nabla_{e} L = 0 \\   
+\frac{\partial L}{\partial \alpha_i} = 0
+\end{array}\right.
+$$
+
+
+$$
+\Leftrightarrow \left\{ \begin{array}{rcl}
+\theta - \sum_{i=1}^{M}\alpha_ix_i = 0  \quad (3)\\
+\sum_{i=1}^{M}\alpha_ix_i = 0  \quad (4)\\
+\gamma e - \alpha = 0  \quad (5) \\   
+(\theta^Tx_i-b)-y_i+e_i = 0  \quad (6)
+\end{array}\right.
+$$
+
+Thay giá trị của $\theta$ và $e$ ở (3) và (5) vào (6), ta có:
+
+$$
+y_i = (\sum_{j=1}^{M}\alpha_jx_j)x_i-b - \alpha_i \gamma^{-1} \quad (7)
+$$
+
+Gọi $K$ mà một ma trận $M\times M$ với các phần tử $K_{ij} = x_i x_j$. Ta có thể biến đổi công thức (4) và (7) dưới dạng phương trình:
+
+$$
+\left[ \begin{array}{cc} 0 &amp; \mathbb{1}^T \\
+\mathbb{1} &amp; K + \gamma^{-1} \end{array} \right] \left[ \begin{array}{c} -b \\ \alpha \end{array} \right] = \left[ \begin{array}{c} 0 \\ Y \end{array} \right]
+
+$$
+
+$Y$ là một ma trận cột với các phân tử tương ứng là nhãn $y_i$.&lt;/p&gt;
+&lt;p&gt;Từ đây mình đẫ biến đổi bài toán SVM thành một dạng của phương trình $Ax = b$, do đó thuật toán HHL của &lt;a href=&#34;https://example.com/post/important-subroutine-3&#34;&gt;Bài 5&lt;/a&gt; sẽ được sử dụng để hoàn thành thuật toán QSVM của chúng ta.&lt;/p&gt;
+&lt;h2 id=&#34;code-a-name3a&#34;&gt;Code &lt;a name=&#34;3&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Với thuật toán QSVM, mình có thể triển khai nó một cách đơn giản với vài dòng code sử dụng &lt;a href=&#34;https://qiskit.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;IBM&amp;rsquo;s Qiskit&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Ở đây, mình sẽ dụng một bộ dư liệu thật của bài toán dư đoán ung thư vú (breast cancer). Để đơn giản hóa, mình sử dụng thuật toán PCA để giảm chiều dữ liệu về 2&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
+               /post/qsvm/data_hu778a4288589a01661333e2e0127bae5b_9294_a15143a7b74293d674ce6689c8040819.webp 400w,
+               /post/qsvm/data_hu778a4288589a01661333e2e0127bae5b_9294_07a839920a2d2a1b60b1a736a08480e9.webp 760w,
+               /post/qsvm/data_hu778a4288589a01661333e2e0127bae5b_9294_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;https://example.com/post/qsvm/data_hu778a4288589a01661333e2e0127bae5b_9294_a15143a7b74293d674ce6689c8040819.webp&#34;
+               width=&#34;380&#34;
+               height=&#34;264&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;p&gt;Bài toán QSVM có thể triển khai như sau:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Gọi các modules cần thiết&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;as&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;plt&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;numpy&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;as&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;np&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;qiskit&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;BasicAer&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;qiskit.circuit.library&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ZZFeatureMap&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;qiskit.aqua&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;QuantumInstance&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;aqua_globals&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;qiskit.aqua.algorithms&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;QSVM&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;qiskit.aqua.utils&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;split_dataset_to_data_and_labels&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;map_label_to_class_name&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Set seed cho chương trình&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;seed&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;10599&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;aqua_globals&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;random_seed&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;seed&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Ở đây, mình sẽ sử dụng một mạch có sẵn từ qiskit, được gọi là ZZFeatureMap, để mã hóa dữ liệu&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;feature_map&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ZZFeatureMap&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;feature_dimension&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;feature_dim&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;reps&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;entanglement&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;linear&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Khởi tạo thuật toán QSVM&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;qsvm&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;QSVM&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;feature_map&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;training_input&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;test_input&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Chạy mô phỏng bằng qiskit&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;backend&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;BasicAer&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get_backend&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;qasm_simulator&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;quantum_instance&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;QuantumInstance&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;backend&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;shots&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1024&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;seed_simulator&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;seed&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;seed_transpiler&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;seed&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;result&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;qsvm&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;run&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;quantum_instance&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;sa&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;Testing success ratio: &lt;/span&gt;&lt;span class=&#34;si&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;result&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;testing_accuracy&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Testing&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;success&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ratio&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;0.85&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Chạy chương trình trên, thuật toán QSVM mang cho chúng ta độ chính xác là 85%.&lt;/p&gt;
+&lt;p&gt;Source code cho phần này có thể được tìm thấy ở &lt;a href=&#34;https://github.com/qmlvietnam/CodeforBlog/blob/main/QSVM.ipynb&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;đây&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Để chứng thực kết quả trên, mình so sánh với thuật toán SVM của thư viện &lt;a href=&#34;https://scikit-learn.org/stable/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;em&gt;&lt;strong&gt;sklearn&lt;/strong&gt;&lt;/em&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;qiskit.aqua.algorithms&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;SklearnSVM&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;result&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;SklearnSVM&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;training_input&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;test_input&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;run&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;sa&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;Testing success ratio: &lt;/span&gt;&lt;span class=&#34;si&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;result&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;testing_accuracy&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Testing&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;success&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ratio&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;0.85&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Có thể thấy thuật toán QSVM mang lại kết quả có độ tính xác tương đương với SVM thông thường. Tuy nhiên, đây là kết quả từ một thí nghiệm mô phỏng và không có nhiễu (&lt;em&gt;noiseless environment&lt;/em&gt;). Trên thực tế, kết quả có thể bị ảnh hưởng bởi những tác động từ nhiễu trong máy tính lượng tử.&lt;/p&gt;
+&lt;p&gt;Cảm ơn mọi người đã đọc bài.&lt;/p&gt;
+&lt;script src=&#34;https://giscus.app/client.js&#34;
+        data-repo=&#34;qmlvietnam/qmlvietnam.github.io&#34;
+        data-repo-id=&#34;R_kgDOH833kg&#34;
+        data-category=&#34;General&#34;
+        data-category-id=&#34;DIC_kwDOH833ks4CRwGU&#34;
+        data-mapping=&#34;pathname&#34;
+        data-strict=&#34;0&#34;
+        data-reactions-enabled=&#34;1&#34;
+        data-emit-metadata=&#34;0&#34;
+        data-input-position=&#34;bottom&#34;
+        data-theme=&#34;light_high_contrast&#34;
+        data-lang=&#34;vi&#34;
+        crossorigin=&#34;anonymous&#34;
+        async&gt;
+&lt;/script&gt;&lt;blockquote&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
     
     <item>
       <title>Bài 6: Quantum Principal Component Analysis</title>
