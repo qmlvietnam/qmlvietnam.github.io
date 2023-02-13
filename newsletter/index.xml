@@ -5,12 +5,91 @@
     <link>https://example.com/newsletter/</link>
       <atom:link href="https://example.com/newsletter/index.xml" rel="self" type="application/rss+xml" />
     <description>Newsletter</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Fri, 06 Jan 2023 20:09:00 +0700</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 13 Feb 2023 21:27:42 +0700</lastBuildDate>
     <image>
       <url>https://example.com/media/icon_hu03ccfb93536ffaa14d5c51dca71785c3_35563_512x512_fill_lanczos_center_3.png</url>
       <title>Newsletter</title>
       <link>https://example.com/newsletter/</link>
     </image>
+    
+    <item>
+      <title>January 2023</title>
+      <link>https://example.com/newsletter/january-2023/</link>
+      <pubDate>Mon, 13 Feb 2023 21:27:42 +0700</pubDate>
+      <guid>https://example.com/newsletter/january-2023/</guid>
+      <description>&lt;hr&gt;
+&lt;!-- # News 📰
+
+1. [Determinable and interpretable network representation for link prediction](https://www.nature.com/articles/s41598-022-21607-4)
+
+2. [Azure Quantum Credits Program propels quantum innovation and exploration for researchers, educators, and students](https://cloudblogs.microsoft.com/quantum/2022/10/20/azure-quantum-credits-program-propels-quantum-innovation-and-exploration-for-researchers-educators-and-students/)
+
+3. [Penn State researchers to explore using quantum computers to design new drugs](https://www.eurekalert.org/news-releases/969327)
+
+4. [Multiverse Computing and Mila Join Forces to Advance Artificial Intelligence with Quantum Computing](https://www.einnews.com/pr_news/597582546/multiverse-computing-and-mila-join-forces-to-advance-artificial-intelligence-with-quantum-computing)
+
+5. [Quantum AI Elon Musk Review / Scam App Or Legit?](https://www.tribuneindia.com/news/brand-connect/quantum-ai-elon-musk-review-scam-app-or-legit-444921) --&gt;
+&lt;h1 id=&#34;videos-&#34;&gt;Videos 📽️&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=D7jvk2WEEBs&amp;amp;list=PL3wgeHwlaZxkChm7mL0v-y4PNVvQjMKKu&amp;amp;t=16s&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;MIT iQuHACK 2023 workshop collection&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=Du_HfP0Crm8&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Osprey: The World&amp;rsquo;s Largest Quantum Computer&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;learning-resources-&#34;&gt;Learning Resources 🎓&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://careers.moodys.com/job/17660532/summer-internship-2023-quantum-computing-engineer-remote/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Summer Internship 2023– Quantum Computing Enginee&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://qc.ethz.ch/education/quantum-classes-at-eth-spring23.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Classes in Quantum Science and Technology at ETH&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;publications-&#34;&gt;Publications 📃&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://deepai.org/publication/asynchronous-training-of-quantum-reinforcement-learning&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Asynchronous training of quantum reinforcement learning&lt;/a&gt;
+&lt;details class=&#34;spoiler &#34;  id=&#34;spoiler-0&#34;&gt;
+  &lt;summary&gt;Abstract:&lt;/summary&gt;
+  &lt;p&gt;&lt;blockquote&gt;
+&lt;p&gt;The development of quantum machine learning (QML) has received a lot of interest recently thanks to developments in both quantum computing (QC) and machine learning (ML). One of the ML paradigms that can be utilized to address challenging sequential decision-making issues is reinforcement learning (RL). It has been demonstrated that classical RL can successfully complete many difficult tasks. A leading method of building quantum RL agents relies on the variational quantum circuits (VQC). However, training QRL algorithms with VQCs requires significant amount of computational resources. This issue hurdles the exploration of various QRL applications. In this paper, we approach this challenge through asynchronous training QRL agents. Specifically, we choose the asynchronous training of advantage actor-critic variational quantum policies. We demonstrate the results via numerical simulations that within the tasks considered, the asynchronous training of QRL agents can reach performance comparable to or superior than classical agents with similar model sizes and architectures.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/p&gt;
+&lt;/details&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/abs/2301.13295&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Quantum Boltzmann Machines: Applications in Quantitative Finance&lt;/a&gt;
+&lt;details class=&#34;spoiler &#34;  id=&#34;spoiler-1&#34;&gt;
+  &lt;summary&gt;Abstract:&lt;/summary&gt;
+  &lt;p&gt;&lt;blockquote&gt;
+&lt;p&gt;In this thesis we explore using the D-Wave Advantage 4.1 quantum annealer to sample from quantum Boltzmann distributions and train quantum Boltzmann machines (QBMs). We focus on the real-world problem of using QBMs as generative models to produce synthetic foreign exchange market data and analyze how the results stack up against classical models based on restricted Boltzmann machines (RBMs). Additionally, we study a small 12-qubit problem which we use to compare samples obtained from the Advantage 4.1 with theory, and in the process gain vital insights into how well the Advantage 4.1 can sample quantum Boltzmann random variables and be used to train QBMs. Through this, we are able to show that the Advantage 4.1 can sample classical Boltzmann random variables to some extent, but is limited in its ability to sample from quantum Boltzmann distributions. Our findings indicate that QBMs trained using the Advantage 4.1 are much noisier than those trained using simulations and struggle to perform at the same level as classical RBMs. However, there is the potential for QBMs to outperform classical RBMs if future generation annealers can generate samples closer to the desired theoretical distributions.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/p&gt;
+&lt;/details&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/abs/2301.13169&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Improved machine learning algorithm for predicting ground state properties&lt;/a&gt;
+&lt;details class=&#34;spoiler &#34;  id=&#34;spoiler-2&#34;&gt;
+  &lt;summary&gt;Abstract:&lt;/summary&gt;
+  &lt;p&gt;&lt;blockquote&gt;
+&lt;p&gt;Finding the ground state of a quantum many-body system is a fundamental problem in quantum physics. In this work, we give a classical machine learning (ML) algorithm for predicting ground state properties with an inductive bias encoding geometric locality. The proposed ML model can efficiently predict ground state properties of an n-qubit gapped local Hamiltonian after learning from only O(log(n)) data about other Hamiltonians in the same quantum phase of matter. This improves substantially upon previous results that require O(n^c) data for a large constant c. Furthermore, the training and prediction time of the proposed ML model scale as O(nlogn) in the number of qubits n. Numerical experiments on physical systems with up to 45 qubits confirm the favorable scaling in&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/p&gt;
+&lt;/details&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/abs/2301.12707&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Ensemble-learning variational shallow-circuit quantum classifiers&lt;/a&gt;
+&lt;details class=&#34;spoiler &#34;  id=&#34;spoiler-3&#34;&gt;
+  &lt;summary&gt;Abstract:&lt;/summary&gt;
+  &lt;p&gt;&lt;blockquote&gt;
+&lt;p&gt;Classification is one of the main applications of supervised learning. Recent advancement in developing quantum computers has opened a new possibility for machine learning on such machines. However, due to the noisy performance of near-term quantum computers, we desire an approach for solving classification problems with only shallow circuits. Here, we propose two ensemble-learning classification methods, namely bootstrap aggregating and adaptive boosting, which can significantly enhance the performance of variational quantum classifiers for both classical and quantum datasets. The idea is to combine several weak classifiers, each implemented on a shallow noisy quantum circuit, to make a strong one with high accuracy. While both of our protocols substantially outperform error-mitigated primitive classifiers, the adaptive boosting shows better performance than the bootstrap aggregating. In addition, its training error decays exponentially with the number of classifiers, leading to a favorable complexity for practical realization. The protocols have been exemplified for classical handwriting digits as well as quantum phase discrimination of a symmetry-protected topological Hamiltonian.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/p&gt;
+&lt;/details&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/abs/2301.12505&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Implementing a Hybrid Quantum-Classical Neural Network by Utilizing a Variational Quantum Circuit for Detection of Dementia&lt;/a&gt;
+&lt;details class=&#34;spoiler &#34;  id=&#34;spoiler-4&#34;&gt;
+  &lt;summary&gt;Abstract:&lt;/summary&gt;
+  &lt;p&gt;&lt;blockquote&gt;
+&lt;p&gt;Magnetic resonance imaging (MRI) is a common technique to scan brains for strokes, tumors, and other abnormalities that cause forms of dementia. However, correctly diagnosing forms of dementia from MRIs is difficult, as nearly 1 in 3 patients with Alzheimer&amp;rsquo;s were misdiagnosed in 2019, an issue neural networks can rectify. Quantum computing applications This proposed novel neural network architecture uses a fully-connected (FC) layer, which reduces the number of features to obtain an expectation value by implementing a variational quantum circuit (VQC). The VQC created in this study utilizes a layer of Hadamard gates, Rotation-Y gates that are parameterized by tanh(intensity) * (pi/2) of a pixel, controlled-not (CNOT) gates, and measurement operators to obtain the expected values. This study found that the proposed hybrid quantum-classical convolutional neural network (QCCNN) provided 97.5% and 95.1% testing and validation accuracies, respectively, which was considerably higher than the classical neural network (CNN) testing and validation accuracies of 91.5% and 89.2%. Additionally, using a testing set of 100 normal and 100 dementia MRI images, the QCCNN detected normal and demented images correctly 95% and 98% of the time, compared to the CNN accuracies of 89% and 91%. With hospitals like Massachusetts General Hospital beginning to adopt machine learning applications for biomedical image detection, this proposed architecture would approve accuracies and potentially save more lives. Furthermore, the proposed architecture is generally flexible, and can be used for transfer-learning tasks, saving time and resources.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/p&gt;
+&lt;/details&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>December 2022</title>
