@@ -4,17 +4,19 @@
   
   
   <url>
+    <loc>https://example.com/post/qnn/</loc><lastmod>2023-02-14T10:09:26+07:00</lastmod><changefreq>weekly</changefreq></url>
+  <url>
+    <loc>https://example.com/post/</loc><lastmod>2023-02-14T10:09:26+07:00</lastmod><changefreq>weekly</changefreq></url>
+  <url>
+    <loc>https://example.com/</loc><lastmod>2023-02-14T10:09:26+07:00</lastmod><changefreq>weekly</changefreq></url>
+  <url>
     <loc>https://example.com/newsletter/january-2023/</loc><lastmod>2023-02-13T21:27:42+07:00</lastmod><changefreq>weekly</changefreq></url>
   <url>
     <loc>https://example.com/newsletter/</loc><lastmod>2023-02-13T21:27:42+07:00</lastmod><changefreq>weekly</changefreq></url>
   <url>
-    <loc>https://example.com/</loc><lastmod>2023-02-13T21:27:42+07:00</lastmod><changefreq>weekly</changefreq></url>
-  <url>
     <loc>https://example.com/newsletter/december-2022/</loc><lastmod>2023-01-06T20:09:00+07:00</lastmod><changefreq>weekly</changefreq></url>
   <url>
     <loc>https://example.com/post/qsvm/</loc><lastmod>2022-12-28T15:11:21+07:00</lastmod><changefreq>weekly</changefreq></url>
-  <url>
-    <loc>https://example.com/post/</loc><lastmod>2022-12-28T15:11:21+07:00</lastmod><changefreq>weekly</changefreq></url>
   <url>
     <loc>https://example.com/post/qpca/</loc><lastmod>2022-12-19T13:51:26+07:00</lastmod><changefreq>weekly</changefreq></url>
   <url>

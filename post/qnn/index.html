@@ -1,0 +1,1558 @@
+<!DOCTYPE html><html lang="en-us" >
+
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.6.0 for Hugo" />
+  
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="QML Vietnam" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Nội dung Giới thiệu Quantum Neural Network Code Giới thiệu Từ những năm 90s, các nhà khoa học đã nghiên cứu sự liên quan của các hiện tượng lượng tử (quantum phenomena) với khả năng nhận thức của con người (&ldquo;Shadows of the Mind&rdquo;, Roger Penrose, 1994)." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://example.com/post/qnn/" />
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+    
+    <script src="/js/mathjax-config.js"></script>
+  
+
+  
+
+  <link rel="stylesheet" href="/css/vendor-bundle.min.c7b8d9abd591ba2253ea42747e3ac3f5.css" media="print" onload="this.media='all'">
+
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css" integrity="sha512-W0xM4mr6dEP9nREo7Z9z+9X70wytKvMGeDsj7ps2+xg5QPrEBXC8tAW1IFnzjR6eoJ90JmCnFzerQJTLzIEHjA==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.3495fc6150afdd177f1d04fbba9f5e2c.css" />
+
+  
+  
+  
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="/css/libs/chroma/github-light.min.css" title="hl-light" media="print" onload="this.media='all'" >
+    <link rel="stylesheet" href="/css/libs/chroma/dracula.min.css" title="hl-dark" media="print" onload="this.media='all'" disabled>
+  
+
+  
+  
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+  
+  
+
+  
+  
+
+  
+  
+    <link rel="manifest" href="/manifest.webmanifest" />
+  
+
+  
+  <link rel="icon" type="image/png" href="/media/icon_hu03ccfb93536ffaa14d5c51dca71785c3_35563_32x32_fill_lanczos_center_3.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu03ccfb93536ffaa14d5c51dca71785c3_35563_180x180_fill_lanczos_center_3.png" />
+
+  <link rel="canonical" href="https://example.com/post/qnn/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+
+  
+  
+    
+    
+  
+  <meta property="twitter:card" content="summary_large_image" />
+  
+  <meta property="og:site_name" content="QML Vietnam" />
+  <meta property="og:url" content="https://example.com/post/qnn/" />
+  <meta property="og:title" content="Bài 8: Quantum Neural Network | QML Vietnam" />
+  <meta property="og:description" content="Nội dung Giới thiệu Quantum Neural Network Code Giới thiệu Từ những năm 90s, các nhà khoa học đã nghiên cứu sự liên quan của các hiện tượng lượng tử (quantum phenomena) với khả năng nhận thức của con người (&ldquo;Shadows of the Mind&rdquo;, Roger Penrose, 1994)." /><meta property="og:image" content="https://example.com/post/qnn/featured.png" />
+    <meta property="twitter:image" content="https://example.com/post/qnn/featured.png" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2023-02-14T10:09:26&#43;07:00"
+      />
+    
+    <meta property="article:modified_time" content="2023-02-14T10:09:26&#43;07:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.com/post/qnn/"
+  },
+  "headline": "Bài 8: Quantum Neural Network",
+  
+  "image": [
+    "https://example.com/post/qnn/featured.png"
+  ],
+  
+  "datePublished": "2023-02-14T10:09:26+07:00",
+  "dateModified": "2023-02-14T10:09:26+07:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "QML Vietnam"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "QML Vietnam",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.com/media/icon_hu03ccfb93536ffaa14d5c51dca71785c3_35563_192x192_fill_lanczos_center_3.png"
+    }
+  },
+  "description": "Nội dung Giới thiệu Quantum Neural Network Code Giới thiệu Từ những năm 90s, các nhà khoa học đã nghiên cứu sự liên quan của các hiện tượng lượng tử (quantum phenomena) với khả năng nhận thức của con người (\u0026ldquo;Shadows of the Mind\u0026rdquo;, Roger Penrose, 1994)."
+}
+</script>
+
+  
+
+  
+
+  
+
+
+  <title>Bài 8: Quantum Neural Network | QML Vietnam</title>
+
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="4ee609ee8b01fd485e4612dddefa39fa" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.613040fe4f2c0f007b4dcb64404201cb.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<header class="header--fixed">
+  <nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+    <div class="container-xl">
+
+      
+      <div class="d-none d-lg-inline-flex">
+        <a class="navbar-brand" href="/">QML Vietnam</a>
+      </div>
+      
+
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+      <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+      
+      <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+        <a class="navbar-brand" href="/">QML Vietnam</a>
+      </div>
+      
+
+      
+      
+      <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+        
+        <ul class="navbar-nav d-md-inline-flex">
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#about"><span>Home</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#posts"><span>Blogs</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#newsletter"><span>Newsletter</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#contact"><span>Contact</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/donate_me/"><span>Support me</span></a>
+          </li>
+
+          
+          
+
+        
+
+          
+        </ul>
+      </div>
+
+      <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+        
+        
+          
+        
+
+        
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+        
+        
+        <li class="nav-item dropdown theme-dropdown">
+          <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+            <i class="fas fa-moon" aria-hidden="true"></i>
+          </a>
+          <div class="dropdown-menu">
+            <a href="#" class="dropdown-item js-set-theme-light">
+              <span>Light</span>
+            </a>
+            <a href="#" class="dropdown-item js-set-theme-dark">
+              <span>Dark</span>
+            </a>
+            <a href="#" class="dropdown-item js-set-theme-auto">
+              <span>Automatic</span>
+            </a>
+          </div>
+        </li>
+        
+
+        
+        
+
+      </ul>
+
+    </div>
+  </nav>
+</header>
+
+
+  </div>
+
+  <div class="page-body">
+    
+    
+    
+
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<div class="article-container pt-3">
+  <h1>Bài 8: Quantum Neural Network</h1>
+
+  
+
+  
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Feb 14, 2023
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    9 min read
+  </span>
+  
+
+  
+  
+  
+  
+
+  
+  
+
+</div>
+
+  
+
+
+
+
+
+</div>
+
+
+<div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 720px; max-height: 318px;">
+  <div style="position: relative">
+    <img src="/post/qnn/featured_hude1fb2f496a463b34edff2bd742b1973_99949_720x2500_fit_q75_h2_lanczos_3.webp" width="720" height="318" alt="" class="featured-image">
+    
+  </div>
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <h2 id="nội-dung">Nội dung</h2>
+<ol>
+<li><a href="#1">Giới thiệu</a></li>
+<li><a href="#2">Quantum Neural Network</a></li>
+<li><a href="#3">Code</a></li>
+</ol>
+<h2 id="giới-thiệu-a-name1a">Giới thiệu <a name="1"></a></h2>
+<!-- - Why Quantum neural network (https://pennylane.ai/qml/glossary/quantum_neural_network.html, https://axon.cs.byu.edu/papers/ezhov.fdisis00.pdf) -->
+<p>Từ những năm 90s, các nhà khoa học đã nghiên cứu sự liên quan của các hiện tượng lượng tử (<em>quantum phenomena</em>) với khả năng nhận thức của con người (<a href="https://www.amazon.com/Shadows-Mind-Missing-Science-Consciousness/dp/0195106466" target="_blank" rel="noopener">&ldquo;Shadows of the Mind&rdquo;, Roger Penrose, 1994</a>). Do đó, sự xuất hiện của Quantum Neural Network (hay QNN) dường như là một bước phát triển mới trong việc mô phỏng hệ thống thần kinh của con người khi xử lý thông tin. Mặt khác, những mạng neuron thần kinh truyền thống (<em>classical neural networks</em>) đang dần gặp khó khăn trong các ứng dụng dữ liệu lớn (<em>big data applications</em>). Từ đó các đặc điểm của tính toán lượng tử như <a href="https://en.wikipedia.org/wiki/Quantum_parallelism" target="_blank" rel="noopener">quantum parallelism</a>, <a href="https://en.wikipedia.org/wiki/Quantum_entanglement" target="_blank" rel="noopener">entanglement</a>, hay <a href="https://en.wikipedia.org/wiki/Quantum_interference" target="_blank" rel="noopener">interference</a> sẽ được tận dụng để cho ra mô hình hiệu quả hơn.</p>
+<p>Từ cuối thế kỷ trước, các nhà vật lý lượng tử đã cho ra <em>&lsquo;quantum versions&rsquo;</em> của mạng neuron thần kinh truyền thống. Ở đó, các phép biến đổi (hay các gates) trong quantum circuit được tham số hóa. Do đó Quantum Neural Network thường được ám chỉ tới <a href="https://arxiv.org/abs/1802.06002" target="_blank" rel="noopener">Parameterized Quantum Circuit</a>. Ở bài viết này, mình sẽ giới thiệu tới mọi người những bước chính để xây dựng cũng như huấn luyện một mô hình QNN.</p>
+<h2 id="quantum-neural-network-a-name2a">Quantum Neural Network <a name="2"></a></h2>
+<!-- - General pipeline -->
+<p>Hầu hết các thiết kế hiện nay của QNN đều dựa theo một hệ thống <em>&lsquo;hybrid&rsquo;</em> (mô tả ở <strong>Hình 1</strong>) gồm 2 phần &lsquo;quantum part&rsquo; và &lsquo;classical part&rsquo;. Trong đó chúng ta sẽ xây dựng mô hình và trích xuất kết quả ở &lsquo;quantum part&rsquo;. Tuy nhiên tham số sẽ được tối ưu bởi những thuật toán ở &lsquo;classical part&rsquo; (ví dụ như <a href="https://en.wikipedia.org/wiki/Gradient_descent" target="_blank" rel="noopener">Gradient Descent</a>, <a href="https://viblo.asia/p/thuat-toan-toi-uu-adam-aWj53k8Q56m" target="_blank" rel="noopener">Adam</a>, etc.).</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  id="figure-hình-1-hybrid-classical-quantum-systemhttpswwwmdpicom2079-9292113437">
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="[Hình 1: Hybrid classical-quantum system](https://www.mdpi.com/2079-9292/11/3/437)" srcset="
+               /post/qnn/hybrid_hu96260d1285b991b3aad9b0574cb6c075_16102_1ecc34cf5a405a492929a29085efc858.webp 400w,
+               /post/qnn/hybrid_hu96260d1285b991b3aad9b0574cb6c075_16102_64adc6829910defe808854818cc8b9a9.webp 760w,
+               /post/qnn/hybrid_hu96260d1285b991b3aad9b0574cb6c075_16102_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
+               src="/post/qnn/hybrid_hu96260d1285b991b3aad9b0574cb6c075_16102_1ecc34cf5a405a492929a29085efc858.webp"
+               width="519"
+               height="373"
+               loading="lazy" data-zoomable /></div>
+  </div><figcaption>
+      <a href="https://www.mdpi.com/2079-9292/11/3/437" target="_blank" rel="noopener">Hình 1: Hybrid classical-quantum system</a>
+    </figcaption></figure>
+<!-- - Components of QNN
+  + Data encoding
+  + Variational layers
+  + Decision function -->
+<p>Mô hình QNN thường có 3 bước chính (<strong>Hình 2</strong>) như hầu hết bài toán mình đã trình bày ở các bài viết trước: <em>data encoder</em>, <em>transformation</em>, và <em>measurement</em>. Sau đây mình sẽ đi chi tiết hơn vào từng bước một:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  id="figure-hình-2-general-structure-of-qnnhttpswwwmdpicom2079-9292113437">
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="[Hình 2: General Structure of QNN](https://www.mdpi.com/2079-9292/11/3/437)" srcset="
+               /post/qnn/qdnn%20%281%29_hu9eb6d6170a05425057da6cfa9dd27266_28444_b45dcd273115b3eeccb23c3a06b7144e.webp 400w,
+               /post/qnn/qdnn%20%281%29_hu9eb6d6170a05425057da6cfa9dd27266_28444_87fd33c9ec21b5a87b37aeef8276279f.webp 760w,
+               /post/qnn/qdnn%20%281%29_hu9eb6d6170a05425057da6cfa9dd27266_28444_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
+               src="/post/qnn/qdnn%20%281%29_hu9eb6d6170a05425057da6cfa9dd27266_28444_b45dcd273115b3eeccb23c3a06b7144e.webp"
+               width="759"
+               height="316"
+               loading="lazy" data-zoomable /></div>
+  </div><figcaption>
+      <a href="https://www.mdpi.com/2079-9292/11/3/437" target="_blank" rel="noopener">Hình 2: General Structure of QNN</a>
+    </figcaption></figure></p>
+<ol>
+<li><strong>Data Encoder:</strong>
+Cho $\vec{x} \in \mathbb{R}^n$, chúng ta sẽ mã hóa $\vec{x}$ dưới dạng một trạng thái lượng tử (<em>quantum state</em>) $\ket{\psi(x)}$. Nếu như ở các bài viết trước mình đã nói về <em>Amplitude Encoding</em> có thể mã hóa $\vec{x} \in \mathbb{R}^n$ với $\log{n}$ qubits, thì ở bài viết này mình sẽ giới thiệu một kỹ thuật khác: <a href="https://docs.pennylane.ai/en/stable/code/api/pennylane.AngleEmbedding.html" target="_blank" rel="noopener"><em>Angle Encoding</em></a>. Ở đó mỗi thành phần $x_i$ của $\vec{x}$ là tham số của các rotation gates:
+
+$$
+\ket{\psi(x)} = R(x_1) \otimes R(x_2) \otimes ... \otimes R(x_n) \ket{\psi_0}
+$$
+<br>
+Có thể thấy cách mã hóa này cần $n$ qubits cho $\vec{x} \in \mathbb{R}^n$, tuy nhiên với độ phức tạp nhỏ (gồm $n$ one-qubit rotation gates) [<strong>Box 1</strong>] kỹ thuật này vẫn thường xuyên được sử dụng trong các mô hình QNN.</li>
+</ol>
+<div class="alert alert-note">
+  <div>
+    <strong>Box 1:</strong> Khi so sánh độ phức tạp của một thuật toán quantum, ta thường tính đến số lượng <a href="https://en.wikipedia.org/wiki/Quantum_logic_gate#Universal_quantum_gates" target="_blank" rel="noopener"><em>universal quantum gates</em></a> được sử dụng. Với <em>Amplitude Encoding</em> mặc dù có thể sự tối ưu về số lượng qubits được sử dụng (&lsquo;qubit efficient&rsquo;) nhưng lại cần $O(2^n)$ universal gates để thực hiện. Ngược lại, <em>Angle Encoding</em> chỉ có độ phức tạp $O(n)$ nhưng cần tới $n$ qubits.
+  </div>
+</div>
+<ol start="2">
+<li><strong>Transformation</strong>
+Bước này đóng vai trò chính cho khả năng của một mô hình QNN. Ở đây các quantum gates sẽ được tham số hóa bởi $\omega \in \mathbb{R}^{n \times 3 \times l}$ như <strong>Hình 3</strong> với $l$ là số layers của mô hình. Có thể thấy với mỗi layer sẽ gồm 2 thành phần: rotation and entanglement. Nếu như với rotation, chúng ta thực hiện phép quay $\ket{\psi(x)}$ xung quanh <a href="https://en.wikipedia.org/wiki/Bloch_sphere" target="_blank" rel="noopener">Bloch sphere</a> để học những trạng thái khác nhau của data, thì entanglement sẽ tăng cường khả năng trao đổi thông tin của các qubits có trong $\ket{\psi(x)}$ từ đó giúp mô hình học được những hidden correlation của các features $x_i$ trong $\vec{x}$ (<strong>Box 2</strong>).  <br>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <figure  id="figure-hình-3-transformationhttpswwwmdpicom2079-9292113437">
+    <div class="d-flex justify-content-center">
+      <div class="w-100" ><img alt="[Hình 3: Transformation](https://www.mdpi.com/2079-9292/11/3/437)" srcset="
+                 /post/qnn/pqc_hu5db63afabc32ad892deff2516b206b0b_37698_1716bfa76128fed5cbc9d92835e9ee90.webp 400w,
+                 /post/qnn/pqc_hu5db63afabc32ad892deff2516b206b0b_37698_205c9b5c1dddb3abc70b62a4010daf64.webp 760w,
+                 /post/qnn/pqc_hu5db63afabc32ad892deff2516b206b0b_37698_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
+                 src="/post/qnn/pqc_hu5db63afabc32ad892deff2516b206b0b_37698_1716bfa76128fed5cbc9d92835e9ee90.webp"
+                 width="591"
+                 height="248"
+                 loading="lazy" data-zoomable /></div>
+    </div><figcaption>
+        <a href="https://www.mdpi.com/2079-9292/11/3/437" target="_blank" rel="noopener">Hình 3: Transformation</a>
+      </figcaption></figure></li>
+</ol>
+  <div class="alert alert-note">
+  <div>
+    <strong>Box 2:</strong> Nếu các bạn đã tìm hiểu qua thì khi hai qubits được gọi là &rsquo;entangled&rsquo; với nhau thì mang tới tính chất: Nếu trạng thái của qubit này thay đổi thì sẽ ảnh hưởng tới trạng thái của qubit còn lại. Do đó với mỗi qubit có trong $\ket{\psi(x)}$ đang chứa thông tin của $x_i$ (theo <em>Angle Encoding</em>), entanglement sẽ giúp tăng cường liên kết giữa các features của dữ liệu từ đó tăng khả năng dự đoán của mô hình. Đây cũng chính là đặc điểm mang tới sự vượt trội của QNN với classical NN.
+  </div>
+</div>
+<p>Hiện tại có rất nhiều thiết kế mô hình <em>Transformation</em> khác nhau, mọi người có thể xem qua bài báo <a href="https://arxiv.org/pdf/1905.10876.pdf" target="_blank" rel="noopener">này</a> để tìm hiểu thêm.</p>
+<ol start="3">
+<li><strong>Measurement</strong>
+Ở đây, chúng ta sẽ trả lời câu hỏi làm sao có để trích xuất những features có ý nghĩa từ quantum state để mình có thể lấy ra output từ chúng. Có lẽ phương pháp measurement phổ biến nhất trong các mô hình QNN là tính giá trị trung bình của <a href="https://en.wikipedia.org/wiki/Observable#:~:text=In%20physics%2C%20an%20observable%20is,Examples%20include%20position%20and%20momentum." target="_blank" rel="noopener">observables</a>, Pauli-Z, của một quantum state.</li>
+</ol>
+<p>Ta có:
+
+  $$
+  Z = \left[ \begin{array}{cc} 1 & 0 \\
+  0 & -1 \end{array} \right] = \ket{0}\bra{0} - \ket{1}\bra{1}
+  $$
+  </p>
+<p>$\Rightarrow$ Giá trị trung bình:
+
+  $$
+  \bra{\psi}Z\ket{\psi} = \bra{\psi}\ket{0}\bra{0}\ket{\psi} - \bra{\psi}\ket{1}\bra{1}\ket{\psi}
+  $$
+  
+
+  $$
+  = |\braket{0|\psi}|^2 - |\braket{1|\psi}|^2 = P(0) - P(1)
+  $$
+  
+Có thể thấy khi ta lấy giá trị trung bình của observables $Z$ của quantum state $\ket{\psi}$ ta thu được một hiệu giữa xác suất output có giá trị bằng $0$, $P(0)$ và xác suất output có giá trị bằng $1$, $P(1)$.</p>
+<p>Trong bài toán phân loại, mô hình chúng ta sẽ được tối ưu về $1$ tương đương $P(0) = 1$ và $P(1) = 0$ nếu dư liệu đầu vào có nhãn là $0$. Và ngược lại, mô hình tối ưu về $-1$ tương đương $P(0) = 0$ và $P(1) = 1$ nếu dư liệu đầu vào có nhãn là $1$.</p>
+<ol start="4">
+<li><strong>Tối ưu với quantum circuit:</strong></li>
+</ol>
+<p>Vậy làm sao chúng ta có thể tối ưu tham số trong một quantum circuit. Như mình đề cập ở trên, với mô hình hybrid quantum-classical, các tham số sẽ được tối ưu dựa vào thuật toán của &lsquo;classical part&rsquo;(<strong>Hình 1</strong>) như Gradient Descent hay Adam, etc. Vậy câu hỏi đưa ra rằng liệu có sự khác biệt giữa cách tính <strong>gradient</strong> của &lsquo;<em>classical parameters</em>&rsquo; và &lsquo;<em>quantum parameters</em>&rsquo;. Với mô hình NN truyền thống, nếu gradient của tham số được tính dựa theo <a href="https://en.wikipedia.org/wiki/Chain_rule" target="_blank" rel="noopener">Chain Rule</a> thì với QNN, ta có kỹ thuật <a href="https://pennylane.ai/qml/glossary/parameter_shift.html" target="_blank" rel="noopener">Paramter shift rule</a>.</p>
+<p>Với Paramter shift rule, gradient của tham số $\theta$ trong hàm $f(\theta)$ được tính bằng:
+
+  $$
+  \nabla_{\theta}f = r[f(\theta + s) - f(\theta + s)] 
+  $$
+  
+Với $r$ và $s$ được chọn dựa trên cách ta xây dựng hàm $f$. Nếu các bạn muốn tìm hiểu sâu hơn thì có thể đọc bài báo <a href="https://arxiv.org/abs/1811.11184" target="_blank" rel="noopener">này</a>.</p>
+<h2 id="code-a-name3a">Code <a name="3"></a></h2>
+<p>Mình đã đi qua đầy đủ các thành phần để xây dựng một thuật toán QNN, giờ chúng ta sẽ đi chi tiết hơn làm thế nào để triển khai một mô hình QNN với <a href="https://pennylane.ai/" target="_blank" rel="noopener">Pennylane</a></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="kn">import</span> <span class="n">shuffle</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">minmax_scale</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sklearn.metrics</span> <span class="k">as</span> <span class="nn">metrics</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pennylane</span> <span class="k">as</span> <span class="nn">qml</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pennylane</span> <span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pennylane.templates.embeddings</span> <span class="kn">import</span> <span class="n">AngleEmbedding</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pennylane.templates.layers</span> <span class="kn">import</span> <span class="n">StronglyEntanglingLayers</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pennylane.optimize</span> <span class="kn">import</span> <span class="n">GradientDescentOptimizer</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ---------------------------LOAD DATA------------------------------------------------</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># load the dataset</span>
+</span></span><span class="line"><span class="cl"><span class="n">iris</span> <span class="o">=</span> <span class="n">datasets</span> <span class="o">.</span> <span class="n">load_iris</span> <span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># shuffle the data</span>
+</span></span><span class="line"><span class="cl"><span class="n">X</span> <span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">shuffle</span> <span class="p">(</span> <span class="n">iris</span> <span class="o">.</span> <span class="n">data</span> <span class="p">,</span> <span class="n">iris</span> <span class="o">.</span> <span class="n">target</span> <span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># select only 2 first classes from the data</span>
+</span></span><span class="line"><span class="cl"><span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">y</span> <span class="o">&lt;=</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">y</span> <span class="o">&lt;=</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># normalize data</span>
+</span></span><span class="line"><span class="cl"><span class="n">X</span> <span class="o">=</span> <span class="n">minmax_scale</span> <span class="p">(</span><span class="n">X</span> <span class="p">,</span> <span class="n">feature_range</span> <span class="o">=</span><span class="p">(</span><span class="mi">0</span> <span class="p">,</span> <span class="n">np</span> <span class="o">.</span> <span class="n">pi</span> <span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># split data into train + validation and test</span>
+</span></span><span class="line"><span class="cl"><span class="n">X_train_val</span> <span class="p">,</span> <span class="n">X_test</span> <span class="p">,</span> <span class="n">y_train_val</span> <span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span> <span class="p">(</span><span class="n">X</span> <span class="p">,</span> <span class="n">y</span> <span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ------------------------------------DEFINE MODEL---------------------------------------</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># number of qubits is equal to the number of features</span>
+</span></span><span class="line"><span class="cl"><span class="n">n_qubits</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># quantum device handle</span>
+</span></span><span class="line"><span class="cl"><span class="n">dev</span> <span class="o">=</span> <span class="n">qml</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&#34;default.qubit&#34;</span> <span class="p">,</span> <span class="n">wires</span> <span class="o">=</span> <span class="n">n_qubits</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># quantum circuit</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@qml</span><span class="o">.</span><span class="n">qnode</span><span class="p">(</span><span class="n">dev</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">circuit</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span><span class="n">x</span><span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">  <span class="n">AngleEmbedding</span> <span class="p">(</span><span class="n">x</span> <span class="p">,</span> <span class="n">wires</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_qubits</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">  <span class="n">StronglyEntanglingLayers</span><span class="p">(</span><span class="n">weights</span> <span class="p">,</span> <span class="n">wires</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span> <span class="n">n_qubits</span> <span class="p">))</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">qml</span><span class="o">.</span><span class="n">expval</span><span class="p">(</span><span class="n">qml</span><span class="o">.</span><span class="n">PauliZ</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># variational quantum classifier</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">variational_classifier</span> <span class="p">(</span> <span class="n">theta</span> <span class="p">,</span> <span class="n">x</span><span class="o">=</span> <span class="kc">None</span> <span class="p">):</span>
+</span></span><span class="line"><span class="cl">  <span class="n">weights</span> <span class="o">=</span> <span class="n">theta</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="n">bias</span> <span class="o">=</span> <span class="n">theta</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">circuit</span><span class="p">(</span> <span class="n">weights</span> <span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">bias</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">cost</span> <span class="p">(</span> <span class="n">theta</span> <span class="p">,</span> <span class="n">X</span> <span class="p">,</span> <span class="n">expectations</span> <span class="p">):</span>
+</span></span><span class="line"><span class="cl">  <span class="n">e_predicted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="n">variational_classifier</span> <span class="p">(</span> <span class="n">theta</span> <span class="p">,</span> <span class="n">x</span><span class="o">=</span> <span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">X</span> <span class="p">])</span>
+</span></span><span class="line"><span class="cl">  <span class="n">loss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span> <span class="n">e_predicted</span> <span class="o">-</span> <span class="n">expectations</span> <span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">loss</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ------------------------------------TRAIN----------------------------</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># number of quantum layers</span>
+</span></span><span class="line"><span class="cl"><span class="n">n_layers</span> <span class="o">=</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># split into train and validation</span>
+</span></span><span class="line"><span class="cl"><span class="n">X_train</span> <span class="p">,</span> <span class="n">X_validation</span> <span class="p">,</span> <span class="n">y_train</span> <span class="p">,</span> <span class="n">y_validation</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span> <span class="n">X_train_val</span> <span class="p">,</span> <span class="n">y_train_val</span> <span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span><span class="mf">0.20</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># convert classes to expectations : 0 to -1, 1 to +1</span>
+</span></span><span class="line"><span class="cl"><span class="n">e_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span> <span class="p">(</span> <span class="n">y_train</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">e_train</span><span class="p">[</span><span class="n">y_train</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="n">e_train</span><span class="p">[</span><span class="n">y_train</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">+</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># select learning batch size</span>
+</span></span><span class="line"><span class="cl"><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">5</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># calculate numbe of batches</span>
+</span></span><span class="line"><span class="cl"><span class="n">batches</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span> <span class="o">//</span> <span class="n">batch_size</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># select number of epochs</span>
+</span></span><span class="line"><span class="cl"><span class="n">n_epochs</span> <span class="o">=</span> <span class="mi">5</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># draw random quantum node weights</span>
+</span></span><span class="line"><span class="cl"><span class="n">theta_weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">StronglyEntanglingLayers</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">n_layers</span><span class="o">=</span><span class="n">n_layers</span><span class="p">,</span> <span class="n">n_wires</span><span class="o">=</span><span class="n">n_qubits</span><span class="p">))</span> 
+</span></span><span class="line"><span class="cl"><span class="n">theta_bias</span> <span class="o">=</span> <span class="mf">0.0</span>
+</span></span><span class="line"><span class="cl"><span class="n">theta_init</span> <span class="o">=</span> <span class="p">(</span> <span class="n">theta_weights</span> <span class="p">,</span> <span class="n">theta_bias</span> <span class="p">)</span> <span class="c1"># initial weights</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># train the variational classifier</span>
+</span></span><span class="line"><span class="cl"><span class="n">theta</span> <span class="o">=</span> <span class="n">theta_init</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># start of main learning loop</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># build the optimizer object</span>
+</span></span><span class="line"><span class="cl"><span class="n">pennylane_opt</span> <span class="o">=</span> <span class="n">GradientDescentOptimizer</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># split training data into batches</span>
+</span></span><span class="line"><span class="cl"><span class="n">X_batches</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array_split</span><span class="p">(</span><span class="n">np</span> <span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span> <span class="n">X_train</span> <span class="p">))</span> <span class="p">,</span> <span class="n">batches</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">it</span> <span class="p">,</span> <span class="n">batch_index</span> <span class="ow">in</span> <span class="nb">enumerate</span> <span class="p">(</span> <span class="n">chain</span> <span class="p">(</span><span class="o">*</span><span class="p">(</span> <span class="n">n_epochs</span> <span class="o">*</span> <span class="p">[</span> <span class="n">X_batches</span> <span class="p">]))):</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># Update the weights by one optimizer step</span>
+</span></span><span class="line"><span class="cl">  <span class="n">batch_cost</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">theta</span> <span class="p">:</span> <span class="n">cost</span> <span class="p">(</span> <span class="n">theta</span> <span class="p">,</span> <span class="n">X_train</span><span class="p">[</span> <span class="n">batch_index</span> <span class="p">],</span> <span class="n">e_train</span> <span class="p">[</span> <span class="n">batch_index</span> <span class="p">])</span>
+</span></span><span class="line"><span class="cl">  <span class="n">theta</span> <span class="o">=</span> <span class="n">pennylane_opt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span> <span class="n">batch_cost</span> <span class="p">,</span> <span class="n">theta</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># use X_validation and y_validation to decide whether to stop</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># end of learning loop</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ----------------------------------------VALIDATION------------------------------------------</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># convert expectations to classes</span>
+</span></span><span class="line"><span class="cl"><span class="n">expectations</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span> <span class="p">([</span> <span class="n">variational_classifier</span><span class="p">(</span> <span class="n">theta</span> <span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span> <span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">X_test</span> <span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">prob_class_zero</span> <span class="o">=</span> <span class="p">(</span> <span class="n">expectations</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span>
+</span></span><span class="line"><span class="cl"><span class="n">y_pred</span> <span class="o">=</span> <span class="p">(</span><span class="n">prob_class_zero</span> <span class="o">&lt;=</span> <span class="mf">0.5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span> <span class="p">(</span> <span class="n">y_test</span> <span class="p">,</span> <span class="n">y_pred</span> <span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">confusion_matrix</span> <span class="p">(</span> <span class="n">y_test</span> <span class="p">,</span> <span class="n">y_pred</span> <span class="p">))</span>
+</span></span></code></pre></div><p>Đầu tiên, với hàm <code>circuit()</code> mình định nghĩa mô hình QNN của mình như sau:</p>
+<ol>
+<li>Data Encoder: Như mình đề cập ở trên, mình sẽ sử dụng kỹ thuật <code>AngleEmbedding</code>. Mọi người có thể dễ dàng import nó với pennylane: <code>pennylane.templates.embeddings.AngleEmbedding</code>.</li>
+<li>Transformation: Mình sử dụng mô hình như đã miêu tả ở <strong>Hình 3</strong> với built-in function của pennylane là <code>pennylane.templates.layers.StronglyEntanglingLayers</code> (chi tiết hơn ở <a href="https://docs.pennylane.ai/en/stable/code/api/pennylane.StronglyEntanglingLayers.html" target="_blank" rel="noopener">đây</a>)</li>
+<li>Measurement: Cuối cùng mình tính giá trị trung bình (expectation values) của Pauli-Z với <code>pennylane.expval()</code></li>
+</ol>
+<p>Chạy chương trình trên mình có kết quả <code>accuracy_score=1.0</code> và <code>confusion_matrix</code>:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  id="figure-hình-4-confusion-matrix">
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="[Hình 4: Confusion Matrix]()" srcset="
+               /post/qnn/result_hu2eee2778346ba8335926c6229b12536c_5798_260e66b76f61f431e47b36cd2423aa0f.webp 400w,
+               /post/qnn/result_hu2eee2778346ba8335926c6229b12536c_5798_122681b893e2aa1a38955240590045cc.webp 760w,
+               /post/qnn/result_hu2eee2778346ba8335926c6229b12536c_5798_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
+               src="/post/qnn/result_hu2eee2778346ba8335926c6229b12536c_5798_260e66b76f61f431e47b36cd2423aa0f.webp"
+               width="306"
+               height="266"
+               loading="lazy" data-zoomable /></div>
+  </div><figcaption>
+      <a href="">Hình 4: Confusion Matrix</a>
+    </figcaption></figure>
+<p>Chú ý rằng vì output của mô hình trong khoảng $[-1,1]$, nên khi thực hiện bước validation mình sẽ chuyển về $[0,1]$ nên ta mới có bước <code>prob_class_zero = ( expectations + 1.0) / 2.0</code>.</p>
+<p>Mọi người có để download code ở <a href="https://github.com/qmlvietnam/CodeforBlog/blob/main/QNN.ipynb" target="_blank" rel="noopener">đây</a></p>
+<p>Cảm ơn mọi người đã đọc bài.</p>
+<script src="https://giscus.app/client.js"
+        data-repo="qmlvietnam/qmlvietnam.github.io"
+        data-repo-id="R_kgDOH833kg"
+        data-category="General"
+        data-category-id="DIC_kwDOH833ks4CRwGU"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light_high_contrast"
+        data-lang="vi"
+        crossorigin="anonymous"
+        async>
+</script>
+
+    </div>
+
+    
+
+
+
+
+
+
+
+<div class="share-box">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://example.com/post/qnn/&amp;text=B%c3%a0i%208:%20Quantum%20Neural%20Network" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://example.com/post/qnn/&amp;t=B%c3%a0i%208:%20Quantum%20Neural%20Network" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=B%c3%a0i%208:%20Quantum%20Neural%20Network&amp;body=https://example.com/post/qnn/" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://example.com/post/qnn/&amp;title=B%c3%a0i%208:%20Quantum%20Neural%20Network" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=B%c3%a0i%208:%20Quantum%20Neural%20Network%20https://example.com/post/qnn/" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://example.com/post/qnn/&amp;title=B%c3%a0i%208:%20Quantum%20Neural%20Network" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="/authors/intro/"><img class="avatar mr-3 avatar-circle" src="/authors/intro/avatar_hu03ccfb93536ffaa14d5c51dca71785c3_35563_270x270_fill_lanczos_center_3.png" alt="QML Vietnam"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="/authors/intro/">QML Vietnam</a></h5>
+      <h6 class="card-subtitle">Prepare for the Future</h6>
+      
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/qmlvietnam" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.facebook.com/profile.php?id=100087187246829" target="_blank" rel="noopener">
+        <i class="fab fa-facebook"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+
+
+
+
+
+  
+  
+  
+
+  
+  
+    
+  
+  
+    
+  
+
+  
+
+  
+  <p class="powered-by copyright-license-text">
+    © 2023 Me. This work is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0" rel="noopener noreferrer" target="_blank">CC BY NC ND 4.0</a>
+  </p>
+  
+
+  <p class="powered-by footer-license-icons">
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0" rel="noopener noreferrer" target="_blank" aria-label="Creative Commons">
+      <i class="fab fa-creative-commons fa-2x" aria-hidden="true"></i>
+      <i class="fab fa-creative-commons-by fa-2x" aria-hidden="true"></i>
+      
+        <i class="fab fa-creative-commons-nc fa-2x" aria-hidden="true"></i>
+      
+      
+        <i class="fab fa-creative-commons-nd fa-2x" aria-hidden="true"></i>
+      
+    </a>
+  </p>
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-themes" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+
+
+<script src="/js/vendor-bundle.min.d26509351aa0ff874abbee824e982e9b.js"></script>
+
+
+
+
+  
+
+  
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script id="search-hit-fuse-template" type="text/x-template">
+    <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+    </div>
+  </script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/krisk/Fuse@v3.2.1/dist/fuse.min.js" integrity="sha512-o38bmzBGX+hD3JHWUFCDA09btWaqrNmoJ3RXLlrysA7PP01Kgs4UlE4MhelE1v5dJR3+cxlR4qQlotsW7jKsnw==" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/gh/julmot/mark.js@8.11.1/dist/jquery.mark.min.js" integrity="sha512-mhbv5DqBMgrWL+32MmsDOt/OAvqr/cHimk6B8y/bx/xS88MVkYGPiVv2ixKVrkywF2qHplNRUvFsAHUdxZ3Krg==" crossorigin="anonymous"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+<script id="page-data" type="application/json">{"use_headroom":true}</script>
+
+
+
+  <script src="/js/wowchemy-headroom.c251366b4128fd5e6b046d4c97a62a51.js" type="module"></script>
+
+
+
+
+
+
+
+
+  
+  
+
+
+<script src="/en/js/wowchemy.min.54dd6e4d8f2e4b1d098381b57f18dd83.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
